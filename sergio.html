@@ -12,12 +12,16 @@
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
         
         body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            font-family: sans-serif; 
             margin: 0; 
-            background-color: #f4f4f2; 
-            color: #1a1a1a; 
+            padding: 0;
+            background-color: #ffffff; /* Fondale bianco pagina principale */
+            color: #000000; /* Testo generale nero */
+            text-align: center;
+            line-height: 1.6;
         }
         
+        /* TESTATA ORIGINALE DI SERGIO MANTENUTA INTEGRALMENTE */
         .copertina-container { 
             position: relative; 
             width: 100%; 
@@ -80,35 +84,34 @@
         }
         
         .main-wrapper { 
-            display: flex; 
             max-width: 1300px; 
             margin: 30px auto; 
-            gap: 20px; 
             padding: 0 15px; 
         }
         
         .griglia-multimedia { 
-            flex-grow: 1; 
             display: grid; 
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-            gap: 20px; 
+            gap: 30px; 
         }
         
+        /* SCHEDINE DEI POST MODERNE SENZA CORNICI */
         .elemento-album { 
-            background: white; 
+            background: #ffffff; 
             border-radius: 12px; 
             overflow: hidden; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06); 
+            border: 1px solid #eaeaea; 
             cursor: pointer; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
-            border: 1px solid #ddd; 
-            transition: 0.3s; 
             display: flex; 
             flex-direction: column; 
             min-height: 250px; 
+            transition: transform 0.2s, box-shadow 0.2s;
         }
         
         .elemento-album:hover { 
-            transform: translateY(-5px); 
+            transform: translateY(-4px); 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
         
         .media-box { 
@@ -128,18 +131,19 @@
         }
         
         .info-box { 
-            padding: 15px; 
+            padding: 16px; 
             flex-grow: 1; 
             text-align: center; 
         }
         
         .titolo-post { 
-            font-size: 0.9rem; 
+            font-size: 0.95rem; 
             font-weight: bold; 
             color: #143ca0; 
             text-transform: uppercase; 
         }
         
+        /* OVERLAY PROFESSIONALE: FONDALE BIANCO A SCHERMO INTERO */
         #overlay-blu { 
             display: none; 
             position: fixed; 
@@ -147,10 +151,10 @@
             left: 0; 
             width: 100%; 
             height: 100%; 
-            background: rgba(20, 60, 160, 0.98); 
+            background-color: #ffffff; /* Sfondo bianco all'apertura del post */
             z-index: 9999; 
-            color: white; 
-            padding: 25px; 
+            color: #000000; 
+            padding: 40px 25px; 
             box-sizing: border-box; 
             overflow-y: auto; 
         }
@@ -161,25 +165,35 @@
             text-align: center; 
         }
         
+        /* DETTAGLIO FOTO/VIDEO PULITO SENZA BORDI DORATI */
+        .img-display-pulita {
+            max-width: 100%; 
+            max-height: 450px; 
+            border-radius: 8px; 
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            display: inline-block;
+        }
+        
+        /* TESTO STORIA IN NERO SU BIANCO SENZA BOX COLORE */
         .testo-storia { 
             text-align: justify; 
-            font-size: 1.2rem; 
+            font-size: 1.15rem; 
             line-height: 1.7; 
-            margin: 25px 0; 
-            background: rgba(255,255,255,0.1); 
-            padding: 30px; 
-            border-radius: 15px; 
+            margin: 25px auto; 
+            padding: 10px; 
+            color: #000000; /* Testo nero nitido */
             white-space: pre-wrap; 
-            border-left: 6px solid #FFD700; 
+            max-width: 750px;
         }
 
-        /* --- STILE NUOVO: PULSANTI DI PURO TESTO SENZA GRAFICA --- */
+        /* AREA PULSANTI TESTUALI IN LINEA IN BASSO IN NERO */
         .piede-pulsantiera {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            margin: 30px 0;
+            margin-top: 50px;
+            padding-bottom: 20px;
+            text-align: center;
+            border-top: 1px solid #eaeaea;
+            padding-top: 30px;
             width: 100%;
         }
 
@@ -187,35 +201,35 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 25px; /* Spazio orizzontale tra le scritte */
             width: 100%;
         }
 
-        /* Rimuove sfondi, bordi, ombre e arrotondamenti */
+        /* CORREZIONE CHIRURGICA: FORZA IL NERO E TOGLIE IL BLU E LE LINEE SOTTO */
         .puro-testo-btn {
             background: none !important;
             border: none !important;
             box-shadow: none !important;
-            padding: 5px 0 !important;
-            font-size: 1rem;
+            margin: 10px 20px;
+            font-size: 16px;
             font-weight: bold;
             text-transform: uppercase;
-            text-decoration: none;
-            color: white !important;
+            text-decoration: none !important; /* Via le sottolineature blu del browser */
+            color: #000000 !important; /* TUTTI i link rigorosamente neri */
             cursor: pointer;
             display: inline-block;
-            font-family: inherit;
+            font-family: sans-serif;
+            letter-spacing: 0.8px;
             transition: color 0.2s ease;
         }
 
-        /* Semplice effetto visivo quando passi il mouse sopra */
         .puro-testo-btn:hover {
-            color: #FFD700 !important; /* Diventa giallo oro al passaggio */
+            color: #143ca0 !important; /* Diventa blu portale solo quando ci passi sopra */
         }
     </style>
 </head>
 <body>
 
+    <!-- COPERTINA IN ALTO -->
     <div class="copertina-container">
         <a href="index.html" class="btn-nav btn-home">⬅ HOME</a>
         <img src="immagini/scuola.jpg" class="foto-scuola">
@@ -225,19 +239,32 @@
         </div>
     </div>
 
+    <!-- GRIGLIA ALBUM -->
     <div class="main-wrapper">
         <div class="griglia-multimedia" id="lista-multimedia"></div>
     </div>
 
+    <!-- OVERLAY MINIMALISTA BIANCO -->
     <div id="overlay-blu">
         <div id="box-contenuto">
-            <div id="titolo-view" style="text-align: center; font-size: 1.4rem; color: #FFD700; font-weight: 800; margin-bottom: 20px; text-transform: uppercase; font-family: 'Arial Black', Gadget, sans-serif; letter-spacing: 1px; line-height: 1.3;"></div>
+            <!-- TITOLO DEL POST IN NERO INTENSO -->
+            <div id="titolo-view" style="text-align: center; font-size: 2rem; color: #000000; font-weight: bold; margin-bottom: 25px; text-transform: uppercase; font-family: sans-serif; letter-spacing: 1px; line-height: 1.3;"></div>
             
+            <!-- CONTENITORE IMMAGINE O VIDEO -->
             <div id="media-display"></div> 
             
+            <!-- TESTO IN NERO -->
             <div id="testo-view" class="testo-storia"></div>
             
-            <div class="piede-pulsantiera" id="piede-pulsantiera-dinamica"></div>
+            <!-- PULSANTI SOLO TESTO FISSI NEL PIEDE CORRETTI -->
+            <div class="piede-pulsantiera">
+                <div class="riga-testo-pulsanti">
+                    <a id="link-luoghi" href="#" target="_blank" class="puro-testo-btn">WZ LUOGHI SCARABELLI</a>
+                    <a id="link-consiglio" href="#" target="_blank" class="puro-testo-btn">WZ CONSIGLIO</a>
+                    <a id="link-privato" href="#" target="_blank" class="puro-testo-btn">WZ A ME PRIVATO</a>
+                    <button class="puro-testo-btn" onclick="chiudiTutto()">CHIUDI X</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -261,6 +288,7 @@
             return (match && match[2].length == 11) ? match[2] : null; 
         }
 
+        // Lettura griglia con sintassi classica stabile
         database.ref('archivioSergio').on('value', (snapshot) => {
             const lista = document.getElementById('lista-multimedia'); 
             lista.innerHTML = "";
@@ -268,7 +296,15 @@
                 const data = child.val(); 
                 const id = child.key; 
                 const linkPulito = pulisciLink(data.immagine || "");
-                lista.insertAdjacentHTML('afterbegin', `<div class="elemento-album" onclick="apriContenuto('${id}')"><div class="media-box"><img src="${linkPulito}" onerror="this.src='immagini/scuola.jpg'"></div><div class="info-box"><div class="titolo-post">${data.titolo}</div></div></div>`);
+                
+                const card = document.createElement('div');
+                card.className = 'elemento-album';
+                card.onclick = function() { apriContenuto(id); };
+                
+                card.innerHTML = '<div class="media-box"><img src="' + linkPulito + '" onerror="this.src=\'immagini/scuola.jpg\'"></div>' +
+                                 '<div class="info-box"><div class="titolo-post">' + data.titolo + '</div></div>';
+                                 
+                lista.insertBefore(card, lista.firstChild);
             });
         });
 
@@ -285,26 +321,21 @@
                 let vId = ottieniYoutubeID(linkPulito);
 
                 if (vId) { 
-                    display.innerHTML = `<div style="background:rgba(255,255,255,0.1); padding:40px; border-radius:15px; border:2px dashed #FFD700; margin-bottom:25px;"><a href="https://www.youtube.com/watch?v=${vId}" target="_blank" style="display:inline-block; background:#FFD700; color:#143ca0; padding:15px 40px; border-radius:50px; text-decoration:none; font-weight:bold; font-size:1.2rem;">GUARDA IL VIDEO 🎥</a></div>`; 
+                    display.innerHTML = '<div style="background:rgba(0,0,0,0.03); padding:40px; border-radius:15px; margin-bottom:25px;">' +
+                                        '<a href="https://www.youtube.com/watch?v=' + vId + '" target="_blank" style="display:inline-block; background:#143ca0; color:white; padding:15px 40px; border-radius:50px; text-decoration:none; font-weight:bold; font-size:1.2rem;">GUARDA IL VIDEO 🎥</a>' +
+                                        '</div>'; 
                 } else { 
-                    display.innerHTML = `<img src="${linkPulito}" style="max-width:100%; max-height:500px; border-radius:15px; border:3px solid #FFD700; margin-bottom:20px;" onerror="this.src='immagini/scuola.jpg'">`; 
+                    display.innerHTML = '<img src="' + linkPulito + '" class="img-display-pulita" onerror="this.src=\'immagini/scuola.jpg\'">'; 
                 }
 
                 const urlSito = window.location.origin + window.location.pathname + "?id=" + id;
                 const msgTutti = encodeURIComponent("✨ Guarda questo ricordo:\n*" + data.titolo + "*\n\nLink:\n" + urlSito);
                 const msgMe = encodeURIComponent("Ciao Sergio, riguardo a: " + data.titolo + "\n" + urlSito); 
 
-                // --- AGGIORNAMENTO DINAMICO: Solo scritte e i quattro pulsanti richiesti ---
-                document.getElementById('piede-pulsantiera-dinamica').innerHTML = `
-                    <div class="riga-testo-pulsanti">
-                        <a href="https://api.whatsapp.com/send?text=${msgTutti}" target="_blank" class="puro-testo-btn">WZ luoghi scarabelli</a>
-                        <a href="https://api.whatsapp.com/send?text=${msgTutti}" target="_blank" class="puro-testo-btn">WZ consiglio</a>
-                    </div>
-                    <div class="riga-testo-pulsanti">
-                        <a href="https://wa.me/393398329580?text=${msgMe}" target="_blank" class="puro-testo-btn">WZ a me privato</a>
-                        <button class="puro-testo-btn" onclick="chiudiTutto()">Chiudi x</button>
-                    </div>
-                `;
+                // Configurazione indirizzi dei link in puro testo neri
+                document.getElementById('link-luoghi').href = "https://api.whatsapp.com/send?text=" + msgTutti;
+                document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + msgTutti;
+                document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + msgMe;
 
                 document.getElementById('overlay-blu').style.display = 'block'; 
                 document.body.style.overflow = 'hidden';
@@ -314,6 +345,10 @@
         window.chiudiTutto = function() { 
             document.getElementById('overlay-blu').style.display = 'none'; 
             document.body.style.overflow = 'auto'; 
+            
+            document.getElementById('link-luoghi').href = "#";
+            document.getElementById('link-consiglio').href = "#";
+            document.getElementById('link-privato').href = "#";
         }
     </script>
 </body>

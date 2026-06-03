@@ -9,15 +9,16 @@
     <meta property="og:type" content="website">
     <title>Archivio - Cinzia</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght=700&display=swap');
         
         body { 
             font-family: sans-serif; 
             margin: 0; 
             padding: 0;
-            background-color: #f4f4f2; 
-            color: #1a1a1a; 
-            line-height: 1.5; 
+            background-color: #ffffff; /* Fondale bianco pagina principale */
+            color: #000000; /* Testo generale nero */
+            text-align: center;
+            line-height: 1.6;
         }
         
         /* TESTATA ORIGINALE DI CINZIA */
@@ -31,15 +32,30 @@
         .btn-home { left: 15px; background: rgba(255,255,255,0.2); color: white; border: 1px solid white; }
         
         .content-wrapper { margin-top: 270px; padding: 20px; text-align: center; }
-        .griglia-articoli { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; max-width: 1200px; margin: auto; }
+        .griglia-articoli { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: auto; }
         
-        /* SCHEDINE SULLA PAGINA PRINCIPALE */
-        .card-didattica { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); cursor: pointer; border: 1px solid #eee; transition: 0.3s; display: flex; flex-direction: column; text-align: left; }
+        /* SCHEDINE DEI POST MODERNE E PULITE */
+        .card-didattica { 
+            background: #ffffff; 
+            border-radius: 12px; 
+            overflow: hidden; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06); 
+            cursor: pointer; 
+            text-align: left; 
+            display: flex; 
+            flex-direction: column;
+            border: 1px solid #eaeaea;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card-didattica:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
         .card-didattica img { width: 100%; height: 180px; object-fit: cover; }
-        .card-info { padding: 12px; }
-        .card-titolo { font-weight: bold; color: #1e8449; font-size: 1rem; }
+        .card-info { padding: 16px; }
+        .card-titolo { font-weight: bold; color: #1e8449; font-size: 1.05rem; }
         
-        /* OVERLAY MODELLO SERGIO: TUTTO SCHERMO BLU */
+        /* OVERLAY PROFESSIONALE: TUTTO BIANCO */
         #overlay { 
             display: none; 
             position: fixed; 
@@ -47,71 +63,71 @@
             left: 0; 
             width: 100%; 
             height: 100%; 
-            background-color: #143ca0; /* Il blu ufficiale dello schermo di Sergio */
+            background-color: #ffffff; /* Fondale bianco anche all'apertura del post */
             z-index: 2000; 
             overflow-y: auto; 
             box-sizing: border-box;
-            padding: 30px 20px;
+            padding: 40px 20px;
         }
         
         .content-view { 
             max-width: 800px; 
             margin: auto; 
             text-align: center; 
-            color: white; 
         }
         
-        /* SOTTILE BORDINO GIALLO INTORNO ALLA FOTO COME NELLO SCREENSHOT */
+        /* IMMAGINE PULITA NELL'OVERLAY */
         .img-view { 
             width: auto; 
             max-width: 100%; 
             height: auto; 
             max-height: 450px; 
             object-fit: contain; 
-            border-radius: 15px; 
-            border: 2px solid #ffeb3b; 
-            margin: 15px auto; 
+            border-radius: 8px; 
+            margin: 20px auto; 
             display: block;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
         
-        /* IL TESTO DELL'ARTICOLO APERTO */
+        /* TESTO DELL'ARTICOLO NERO SU BIANCO */
         .testo-scritto {
             text-align: justify; 
             white-space: pre-wrap; 
             font-size: 1.15rem; 
-            padding: 20px; 
-            color: white;
-            max-width: 700px;
-            margin: 20px auto;
+            padding: 10px; 
+            color: #000000; /* Testo nero nitido */
+            max-width: 750px;
+            margin: 25px auto;
         }
 
-        /* I PULSANTI TESTUALI IN LINEA IN FONDO COME DA SCREENSHOT */
+        /* AREA PULSANTI TESTUALI IN LINEA IN NERETTO */
         .area-pulsanti-sergio {
-            margin-top: 40px;
-            padding-bottom: 30px;
+            margin-top: 50px;
+            padding-bottom: 20px;
             text-align: center;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            border-top: 1px solid #eaeaea;
+            padding-top: 30px;
         }
         .area-pulsanti-sergio a {
-            color: white;
+            color: #000000; /* Link neri nel piede della pagina */
             font-weight: bold;
             text-decoration: none;
             text-transform: uppercase;
             margin: 10px 20px;
             display: inline-block;
             font-size: 16px;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
             font-family: sans-serif;
+            transition: color 0.2s;
         }
         .area-pulsanti-sergio a:hover {
-            color: #ffeb3b;
+            color: #27ae60; /* Evidenziato verde quando ci passi sopra */
         }
     </style>
 </head>
 <body>
 
+    <!-- TESTATA ORIGINALE DI CINZIA -->
     <div class="header-fissa">
         <a href="index.html" class="btn-nav btn-home">⬅ HOME</a>
         <img src="immagini/scuola.jpg" class="foto-header">
@@ -121,19 +137,25 @@
         </div>
     </div>
 
+    <!-- GRIGLIA ARTICOLI SU FONDO BIANCO -->
     <div class="content-wrapper">
         <div class="griglia-articoli" id="container-articoli-cinzia"></div>
     </div>
 
+    <!-- OVERLAY COMPLETAMENTE BIANCO CON TESTI NERI -->
     <div id="overlay">
         <div class="content-view">
             
-            <h2 id="titolo-view" style="color: #ffeb3b; font-family: sans-serif; font-size: 2.3rem; font-weight: bold; text-transform: uppercase; margin-bottom: 20px;"></h2>
+            <!-- TITOLO DEL POST APERTO IN NERO (O VERDE COORDINATO) -->
+            <h2 id="titolo-view" style="color: #1e8449; font-family: sans-serif; font-size: 2.4rem; font-weight: bold; text-transform: uppercase; margin-bottom: 25px;"></h2>
             
+            <!-- IMMAGINE PULITA -->
             <img id="img-view" src="" style="display:none;" class="img-view">
             
+            <!-- TESTO NERO NITIDO -->
             <div id="testo-view" class="testo-scritto"></div>
             
+            <!-- I QUATTRO PULSANTI TESTUALI IN LINEA NERI -->
             <div class="area-pulsanti-sergio">
                 <a id="link-consiglio" href="#" target="_blank">WZ CONSIGLIO SCARABELLI</a>
                 <a id="link-tutti" href="#" target="_blank">WZ TUTTI GLI EX ALLIEVI</a>
@@ -178,7 +200,7 @@
                     "Link: " + urlSito
                 );
 
-                // Aggancia i messaggi corretti ai pulsanti testuali
+                // Aggancia i messaggi ai link testuali neri
                 document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + msgTutti;
                 document.getElementById('link-tutti').href = "https://api.whatsapp.com/send?text=" + msgTutti;
                 document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + msgMe;
@@ -193,7 +215,7 @@
             window.history.replaceState({}, document.title, window.location.pathname);
         }
 
-        // Caricamento griglia principale
+        // Caricamento griglia principale con sintassi classica sicura
         db.ref('archivioCinzia').on('value', (snapshot) => {
             const container = document.getElementById('container-articoli-cinzia'); container.innerHTML = "";
             const data = snapshot.val();
