@@ -5,198 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ARCHIVIO SCARABELLI - Carlo</title>
     <style>
-        /* IMPORTAZIONE FONT ELEGANTE PARISIENNE */
         @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
-
-        body { 
-            font-family: sans-serif; 
-            margin: 0; 
-            padding: 0;
-            background-color: #ffffff; /* Fondale bianco professionale */
-            color: #000000; /* Testo nero nitido */
-            line-height: 1.6; 
-            overflow-x: hidden; 
-        }
-
-        /* TESTATA MODELLO UNIFICATO PORTALE */
-        .copertina-container { 
-            position: relative; 
-            width: 100%; 
-            max-width: 1300px; 
-            margin: 0 auto; 
-            height: 250px; 
-            overflow: hidden; 
-            border-bottom: 5px solid #143ca0; 
-            background: #000; 
-        }
-        .foto-scuola { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            object-position: center 40%;
-            opacity: 0.7; 
-        }
-        
-        /* POSIZIONAMENTO AL PIEDE PER SFIORARE IL BORDO BLU ACCORDATO */
-        #contenitore-titolo { 
-            position: absolute; 
-            bottom: 5px; 
-            left: 50%; 
-            transform: translateX(-50%); 
-            text-align: center; 
-            z-index: 10; 
-            width: 100%; 
-        }
-        
-        /* SCARABELLIAMENTE IN ALTO ORIENTATO AL MODELLO UNIFICATO (3.8rem) */
-        .titolo-stampato { 
-            font-family: 'Parisienne', cursive;
-            font-size: 3.8rem; 
-            color: white; 
-            text-shadow: 3px 3px 8px rgba(0,0,0,1);
-            font-weight: normal; 
-            text-transform: none; 
-            letter-spacing: normal;
-            margin-bottom: -15px; /* Sovrapposizione bilanciata stile manoscritti antichi */
-            display: block;
-        }
-        
-        /* INSERITO "Archivio Carlo" CON LA MAIUSCOLA DI RIGORE (2.2rem) */
-        .firma-carlo { 
-            font-family: 'Parisienne', cursive; 
-            font-size: 2.2rem; 
-            color: white; 
-            text-shadow: 3px 3px 8px rgba(0,0,0,1); 
-            margin-top: 0;
-            display: block;
-        }
-        
-        /* BARRA DI NAVIGAZIONE CHIARA */
-        .nav-bar { 
-            max-width: 1200px; 
-            margin: 20px auto; 
-            display: flex; 
-            align-items: center; 
-            background: #ffffff; 
-            padding: 0 20px; 
-            border-radius: 8px; 
-            border: 1px solid #eaeaea; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.04); 
-            height: 60px; 
-            justify-content: space-between; 
-            box-sizing: border-box; 
-        }
+        body { font-family: sans-serif; margin: 0; padding: 0; background-color: #ffffff; color: #000000; line-height: 1.6; overflow-x: hidden; }
+        .copertina-container { position: relative; width: 100%; max-width: 1300px; margin: 0 auto; height: 250px; overflow: hidden; border-bottom: 5px solid #143ca0; background: #000; }
+        .foto-scuola { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; opacity: 0.7; }
+        #contenitore-titolo { position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); text-align: center; z-index: 10; width: 100%; }
+        .titolo-stampato { font-family: 'Parisienne', cursive; font-size: 3.8rem; color: white; text-shadow: 3px 3px 8px rgba(0,0,0,1); font-weight: normal; margin-bottom: -15px; display: block; }
+        .firma-carlo { font-family: 'Parisienne', cursive; font-size: 2.2rem; color: white; text-shadow: 3px 3px 8px rgba(0,0,0,1); margin-top: 0; display: block; }
+        .nav-bar { max-width: 1200px; margin: 20px auto; display: flex; align-items: center; background: #ffffff; padding: 0 20px; border-radius: 8px; border: 1px solid #eaeaea; box-shadow: 0 4px 15px rgba(0,0,0,0.04); height: 60px; justify-content: space-between; box-sizing: border-box; }
         .identita-redattore { display: flex; align-items: center; gap: 12px; }
         .foto-redattore-mini { width: 40px; height: 40px; border-radius: 50%; border: 1px solid #eaeaea; object-fit: cover; }
         .nome-redattore { font-size: 0.9rem; font-weight: bold; color: #000000; text-transform: uppercase; letter-spacing: 0.5px; }
-        
-        .btn-home { 
-            background: none !important;
-            border: none !important;
-            text-decoration: none !important;
-            font-weight: bold; 
-            font-size: 0.9rem; 
-            text-transform: uppercase; 
-            color: #000000 !important;
-            transition: color 0.2s;
-        }
+        .btn-home { background: none !important; border: none !important; text-decoration: none !important; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; color: #000000 !important; transition: color 0.2s; }
         .btn-home:hover { color: #143ca0 !important; }
-
         .main-container { max-width: 1200px; margin: 0 auto; padding: 10px 20px; box-sizing: border-box; }
-        
-        /* PARTE TRADING PULITA */
         .area-trading { display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 30px; }
         .box-widget { background: white; border: 1px solid #eaeaea; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
-
-        /* GRIGLIA POST CARLO */
         .griglia-articoli { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 40px; }
-        
-        /* CARD SENZA CORNICI SPESSE O COLORATE */
-        .box-articolo { 
-            background: #ffffff; 
-            border: 1px solid #eaeaea; 
-            padding: 20px; 
-            border-radius: 12px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06); 
-            box-sizing: border-box; 
-            display: flex; 
-            flex-direction: column; 
-            cursor: pointer; 
-            transition: transform 0.2s, box-shadow 0.2s; 
-            word-wrap: break-word; 
-        }
-        .box-articolo:hover { 
-            transform: translateY(-4px); 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
-        }
-        
-        /* ARTICOLO SINGOLO ESPANSO - MINIMALISTA */
-        .box-articolo.singolo-aperto { 
-            grid-column: span 3; 
-            max-width: 850px; 
-            margin: 0 auto; 
-            cursor: default; 
-            border: none; 
-            box-shadow: none;
-            padding: 10px; 
-        }
-        .box-articolo.singolo-aperto:hover { transform: none; box-shadow: none; }
-
+        .box-articolo { background: #ffffff; border: 1px solid #eaeaea; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.06); box-sizing: border-box; display: flex; flex-direction: column; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; word-wrap: break-word; }
+        .box-articolo:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .box-articolo.singolo-aperto { grid-column: span 3; max-width: 850px; margin: 0 auto; cursor: default; border: none; box-shadow: none; padding: 10px; }
         h1 { color: #143ca0; font-size: 1.15rem; font-weight: bold; margin: 12px 0; text-transform: uppercase; line-height: 1.3; text-align: left; }
         .box-articolo.singolo-aperto h1 { font-size: 2.4rem; color: #000000; text-align: center; margin-bottom: 25px; border-bottom: 1px solid #eaeaea; padding-bottom: 15px; }
-        
         .img-articolo { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
         .box-articolo.singolo-aperto .img-articolo { width: auto; max-width: 100%; height: auto; max-height: 450px; object-fit: contain; margin: 20px auto; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-
         .testo-articolo { font-size: 0.95rem; text-align: justify; white-space: pre-wrap; color: #444444; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
         .box-articolo.singolo-aperto .testo-articolo { font-size: 1.15rem; display: block; overflow: visible; color: #000000; max-width: 750px; margin: 25px auto; padding: 0 10px; }
-
-        /* PIEDE PULSANTIERA IN PURO TESTO NERO PER L'ARTICOLO APERTO */
-        .piede-pulsantiera-carlo {
-            margin-top: 50px;
-            padding-bottom: 20px;
-            text-align: center;
-            border-top: 1px solid #eaeaea;
-            padding-top: 30px;
-            width: 100%;
-            display: none; /* Visibile solo ad articolo aperto */
-        }
-        .puro-testo-btn {
-            background: none !important;
-            border: none !important;
-            box-shadow: none !important;
-            margin: 10px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            text-transform: uppercase;
-            text-decoration: none !important; 
-            color: #000000 !important; 
-            cursor: pointer;
-            display: inline-block;
-            font-family: sans-serif;
-            letter-spacing: 0.8px;
-            transition: color 0.2s ease;
-        }
-        .puro-testo-btn:hover {
-            color: #143ca0 !important; 
-        }
-
-        @media (max-width: 900px) { 
-            .griglia-articoli { grid-template-columns: repeat(2, 1fr); } 
-            .box-articolo.singolo-aperto { grid-column: span 2; }
-        }
-        @media (max-width: 600px) { 
-            .copertina-container { height: 160px; } 
-            .firma-carlo { font-size: 2.2rem; }
-            .area-trading { flex-direction: column; } 
-            .griglia-articoli { grid-template-columns: 1fr; }
-            .box-articolo.singolo-aperto { grid-column: span 1; }
-        }
+        .piede-pulsantiera-carlo { margin-top: 50px; padding-bottom: 20px; text-align: center; border-top: 1px solid #eaeaea; padding-top: 30px; width: 100%; display: none; }
+        .puro-testo-btn { background: none !important; border: none !important; box-shadow: none !important; margin: 10px 20px; font-size: 16px; font-weight: bold; text-transform: uppercase; text-decoration: none !important; color: #000000 !important; cursor: pointer; display: inline-block; font-family: sans-serif; letter-spacing: 0.8px; }
+        .puro-testo-btn:hover { color: #143ca0 !important; }
     </style>
 </head>
 <body>
-
-    <!-- COPERTINA STRUTTURATA COORDINTATA IN PARISIENNE -->
     <div class="copertina-container">
         <img src="immagini/scuola.jpg" class="foto-scuola">
         <div id="contenitore-titolo">
@@ -204,8 +44,6 @@
             <span class="firma-carlo">Archivio Carlo</span>
         </div>
     </div>
-    
-    <!-- BARRA IDENTITÀ -->
     <div class="nav-bar">
         <div class="identita-redattore">
             <img src="immagini/carlo.jpg" class="foto-redattore-mini" onerror="this.src='immagini/scuola.jpg'">
@@ -213,42 +51,30 @@
         </div>
         <a href="index.html" class="btn-home">HOME PAGE</a>
     </div>
-
-    <!-- CONTENUTO PRINCIPALE -->
     <div class="main-container">
-        
-        <!-- SEZIONE FINANZIARIA TRADINGVIEW -->
         <div id="sezione-trading">
             <div style="margin-bottom: 20px; border-radius: 12px; overflow: hidden; border: 1px solid #eaeaea; background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.04);">
                 <iframe src="https://s.tradingview.com/embed-widget/ticker-tape/?locale=it" width="100%" height="46" frameborder="0" scrolling="no"></iframe>
             </div>
-
             <div class="area-trading">
                 <div class="box-widget" style="flex: 1; min-width: 300px; height: 400px;">
                     <iframe src="https://s.tradingview.com/embed-widget/technical-analysis/?locale=it" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
                 </div>
-
                 <div class="box-widget" style="flex: 1; min-width: 300px; height: 400px; padding: 15px; background: white; box-sizing: border-box;">
                     <h4 style="text-align:center; margin: 0 0 15px 0; color:#000000; font-size:0.85rem; font-weight:bold; text-transform:uppercase; letter-spacing:0.5px;">Trend di Mercato</h4>
                     <iframe src="https://s.tradingview.com/embed-widget/mini-symbol-overview/?locale=it" width="100%" height="310" frameborder="0" scrolling="no"></iframe>
                 </div>
             </div>
         </div>
-
-        <!-- GRIGLIA POST ALBUM -->
         <div id="lista-articoli" class="griglia-articoli"></div>
-
-        <!-- I PULSANTI FISSI TESTUALI NEL PIEDE PER WHATSAPP -->
         <div class="piede-pulsantiera-carlo" id="piede-whatsapp-carlo">
             <a id="link-consiglio" href="#" target="_blank" class="puro-testo-btn">WZ CONSIGLIO</a>
             <a id="link-tutti" href="#" target="_blank" class="puro-testo-btn">WZ TUTTI EX ALLIEVI</a>
             <a id="link-privato" href="#" target="_blank" class="puro-testo-btn">WZ ARCHIVIO PERSONALE</a>
             <a href="carlo.html" class="puro-testo-btn">TORNA ALL'ARCHIVIO</a>
         </div>
-
     </div>
 
-    <!-- CARICAMENTO FIREBASE CON SINTASSI CLASSICA COMPATIBILE ED ESENTE DA ERRORE 13 -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
@@ -256,7 +82,6 @@
         const firebaseConfig = { databaseURL: "https://sito-sergio-b19ce-default-rtdb.europe-west1.firebasedatabase.app" };
         const app = initializeApp(firebaseConfig); 
         const db = getDatabase(app);
-
         const urlParams = new URLSearchParams(window.location.search);
         const idDaAprire = urlParams.get('id');
 
@@ -268,58 +93,36 @@
             if (data) { 
                 Object.keys(data).reverse().forEach(function(id) { 
                     const art = data[id];
-                    
-                    // Gestione del filtro per ID singolo
                     if (idDaAprire && id !== idDaAprire) return;
                     
                     if(idDaAprire && id === idDaAprire) {
                         const sez = document.getElementById('sezione-trading');
                         if(sez) sez.style.display = 'none';
-                        
-                        // Attiva i messaggi e mostra i pulsanti WhatsApp se l'articolo è aperto
                         const urlSito = window.location.origin + window.location.pathname + "?id=" + id;
-                        const msgTutti = encodeURIComponent(
-                            "🚀 *VIENI A VEDERE SUL SITO IL POST AMPLIATO, DURATURO E STABILE.*\n\n" +
-                            "📢 *Cosa che purtroppo non succede su WhatsApp dove tutto scorre via.*\n\n" +
-                            "📖 Titolo: *" + art.titolo + "*\n" +
-                            "🔗 Apri l'archivio qui: " + urlSito
-                        );
-                        const msgMe = encodeURIComponent(
-                            "📌 ARCHIVIO PERSONALE:\n" +
-                            "Post: " + art.titolo + "\n" +
-                            "Link: " + urlSito
-                        );
-
+                        const msgTutti = encodeURIComponent("🚀 *VIENI A VEDERE IL POST:*\n📖 *" + art.titolo + "*\n🔗 " + urlSito);
+                        const msgMe = encodeURIComponent("📌 ARCHIVIO PERSONALE:\nPost: " + art.titolo + "\nLink: " + urlSito);
                         document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + msgTutti;
                         document.getElementById('link-tutti').href = "https://api.whatsapp.com/send?text=" + msgTutti;
                         document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + msgMe;
                         document.getElementById('piede-whatsapp-carlo').style.display = 'block';
                     }
-
-                    // Creazione dinamica strutturata senza backtick o template literals
+                    
                     const card = document.createElement('div');
-                    if (idDaAprire) {
-                        card.className = "box-articolo singolo-aperto";
-                    } else {
-                        card.className = "box-articolo";
-                        card.onclick = function() {
-                            window.location.href = 'carlo.html?id=' + id;
-                        };
-                    }
+                    card.className = idDaAprire ? "box-articolo singolo-aperto" : "box-articolo";
+                    if (!idDaAprire) card.onclick = function() { window.location.href = 'carlo.html?id=' + id; };
                     
                     let contenutoHtml = "";
-                    
-                    if (art.urlImmagine) {
-                        let trovato = art.urlImmagine.match(/https?:\/\/[^"'>\s]+\.(?:jpg|jpeg|gif|png|webp)/i);
-                        let urlPulito = trovato ? trovato[0] : art.urlImmagine;
+                    let imgDaUsare = art.urlImmagine || art.immagine;
+                    if (imgDaUsare) {
+                        let trovato = imgDaUsare.match(/https?:\/\/[^"'>\s]+\.(?:jpg|jpeg|gif|png|webp)/i);
+                        let urlPulito = trovato ? trovato[0] : imgDaUsare;
                         contenutoHtml += '<img src="' + urlPulito + '" class="img-articolo" onerror="this.style.display=\'none\'">';
                     }
-                    
                     contenutoHtml += '<span style="font-size:0.8rem; color:#777; font-weight:bold; margin-bottom:5px; display:block; text-align:left;">DATA: ' + (art.data || '') + '</span>';
                     contenutoHtml += '<h1>' + art.titolo + '</h1>';
                     contenutoHtml += '<div class="testo-articolo">' + art.testo + '</div>';
                     
-                    card.innerHTML = contenidoHtml;
+                    card.innerHTML = contenutoHtml;
                     container.appendChild(card);
                 }); 
             }
