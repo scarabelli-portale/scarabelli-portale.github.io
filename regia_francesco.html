@@ -5,16 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>REGIA EDITORIALE - FRANCESCO</title>
     <style>
-        body { font-family: sans-serif; background: #002244; color: white; text-align: center; padding: 10px; margin: 0; }
-        .box-regia { width: 95%; max-width: 800px; margin: 20px auto; background: white; color: #333; padding: 20px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border-top: 8px solid #FFD700; }
-        .riga-post { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 2px solid #eee; background: #f9f9f9; margin-bottom: 10px; border-radius: 8px; }
+        body { 
+            font-family: sans-serif; 
+            background-color: #ffffff; /* Fondale bianco professionale */
+            color: #000000; /* Testo nero */
+            text-align: center; 
+            padding: 20px; 
+            margin: 0; 
+            line-height: 1.6;
+        }
+        
+        .box-regia { 
+            width: 95%; 
+            max-width: 850px; 
+            margin: 20px auto; 
+            background: #ffffff; 
+            padding: 30px 20px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+            border: 1px solid #eaeaea; 
+        }
+        
+        /* RIGHE DEL FLUSSO REDAZIONALE APERTE E MODERNE */
+        .riga-post { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 15px 10px; 
+            border-bottom: 1px solid #eaeaea; 
+            background: #ffffff; 
+            margin-bottom: 5px; 
+        }
+        
         .info-post { text-align: left; flex-grow: 1; }
-        .autore-label { font-size: 0.7rem; font-weight: bold; color: #e67e22; text-transform: uppercase; }
-        .titolo-post { font-size: 1.1rem; font-weight: bold; color: #003366; display: block; }
-        .area-bottoni { display: flex; gap: 10px; }
-        .btn-home { background: #27ae60; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
-        .btn-elimina { background: #ff4d4d; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
-        .badge-home { background: #FFD700; color: #333; padding: 5px 10px; border-radius: 5px; font-weight: bold; margin-bottom: 20px; display: inline-block; }
+        .autore-label { font-size: 0.8rem; font-weight: bold; color: #143ca0; text-transform: uppercase; display: block; margin-bottom: 2px; }
+        .titolo-post { font-size: 1.1rem; font-weight: bold; color: #000000; display: block; }
+        .data-label { font-size: 0.8rem; color: #777777; font-weight: bold; }
+        
+        .area-bottoni { display: flex; gap: 25px; align-items: center; }
+        
+        /* SEZIONE BADGE PRIMA PAGINA MINIMALISTA */
+        .badge-home { 
+            font-size: 1rem;
+            color: #000000; 
+            padding: 15px; 
+            border-radius: 8px; 
+            font-weight: bold; 
+            margin-bottom: 35px; 
+            display: block; 
+            border: 1px solid #eaeaea;
+            background-color: #f9f9f9;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        #titolo-attuale { color: #143ca0; }
+        
+        /* PULSANTI DI COMANDO IN PURO TESTO SENZA SCATOLETTE COLORATE */
+        .puro-testo-cmd {
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 5px 0 !important;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none !important;
+            color: #000000 !important;
+            cursor: pointer;
+            font-family: sans-serif;
+            letter-spacing: 0.5px;
+            transition: color 0.2s;
+        }
+        .puro-testo-cmd.lancia:hover { color: #27ae60 !important; } /* Verde quando si lancia */
+        .puro-testo-cmd.cancella:hover { color: #ff4d4d !important; } /* Rosso quando si elimina */
+        .puro-testo-cmd.navigazione:hover { color: #143ca0 !important; } /* Blu quando si torna alla home */
     </style>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
@@ -22,19 +86,21 @@
 <body>
 
 <div class="box-regia">
-    <h1 style="color:#003366; margin-bottom:5px;">⚓ Regia di Francesco</h1>
-    <p>Gestione flussi redazionali e Prima Pagina</p>
+    <h1 style="color:#000000; font-weight: bold; text-transform: uppercase; margin: 0 0 5px 0; font-size: 2.2rem;">⚓ Regia di Francesco</h1>
+    <p style="color:#555555; font-weight: 500; margin-bottom: 30px;">Gestione flussi redazionali e Prima Pagina</p>
     
     <div id="stato-home">
         <div class="badge-home">ATTUALMENTE IN PRIMA PAGINA: <span id="titolo-attuale">Caricamento...</span></div>
     </div>
 
     <div id="flusso-totale">
-        <h3 style="border-bottom: 2px solid #003366; padding-bottom: 10px; color: #003366;">ULTIMI POST DALLA REDAZIONE</h3>
+        <h3 style="border-bottom: 1px solid #eaeaea; padding-bottom: 15px; color: #000000; text-transform: uppercase; font-size: 1.1rem; letter-spacing: 0.5px;">ULTIMI POST DALLA REDAZIONE</h3>
         <div id="lista-globale"></div>
     </div>
 
-    <button onclick="location.href='index.html'" style="background:#888; color:white; border:none; padding:15px; border-radius:8px; width:100%; margin-top:15px; cursor:pointer; font-weight:bold;">VAI ALLA HOME DEL SITO</button>
+    <div style="margin-top: 40px; border-top: 1px solid #eaeaea; padding-top: 20px;">
+        <button class="puro-testo-cmd navigazione" style="font-size: 1rem;" onclick="location.href='index.html'">VAI ALLA HOME DEL SITO</button>
+    </div>
 </div>
 
 <script>
@@ -48,7 +114,7 @@
     const database = firebase.database();
 
     // 1. LEGGI COSA C'È IN PRIMA PAGINA ADESSO
-    database.ref('ultimoArticolo').on('value', (snapshot) => {
+    database.ref('ultimoArticolo').on('value', function(snapshot) {
         const d = snapshot.val();
         document.getElementById('titolo-attuale').innerText = d ? d.titolo : "Nessun articolo";
     });
@@ -66,49 +132,62 @@
         const contenitore = document.getElementById('lista-globale');
         contenitore.innerHTML = "";
 
-        archivi.forEach(arc => {
-            database.ref(arc.nome).limitToLast(5).on('value', (snapshot) => {
-                snapshot.forEach((child) => {
+        archivi.forEach(function(arc) {
+            database.ref(arc.nome).limitToLast(5).on('value', function(snapshot) {
+                snapshot.forEach(function(child) {
                     const post = child.val();
                     const id = child.key;
-                    const htmlPost = `
-                        <div class="riga-post" id="post-${id}">
-                            <div class="info-post">
-                                <span class="autore-label">${arc.etichetta}</span>
-                                <span class="titolo-post">${post.titolo}</span>
-                                <small>${post.data || ''}</small>
-                            </div>
-                            <div class="area-bottoni">
-                                <button class="btn-home" onclick="mettiInHome('${arc.nome}', '${id}')">VAI IN HOME</button>
-                                <button class="btn-elimina" onclick="eliminaPost('${arc.nome}', '${id}')">🗑️</button>
-                            </div>
-                        </div>
-                    `;
-                    contenitore.insertAdjacentHTML('afterbegin', htmlPost);
+                    
+                    // Rimozione chirurgica dei backtick per evitare l'errore 13 della chat
+                    const riga = document.createElement('div');
+                    riga.className = 'riga-post';
+                    riga.id = 'post-' + id;
+                    
+                    riga.innerHTML = '<div class="info-post">' +
+                                         '<span class="autore-label">' + arc.etichetta + '</span>' +
+                                         '<span class="titolo-post">' + post.titolo + '</span>' +
+                                         '<span class="data-label">' + (post.data || '') + '</span>' +
+                                     '</div>' +
+                                     '<div class="area-bottoni">' +
+                                         '<button class="puro-testo-cmd lancia" onclick="mettiInHome(\'' + arc.nome + '\', \'' + id + '\')">VAI IN HOME</button>' +
+                                         '<button class="puro-testo-cmd cancella" onclick="eliminaPost(\'' + arc.nome + '\', \'' + id + '\')">ELIMINA 🗑️</button>' +
+                                     '</div>';
+                                     
+                    contenitore.insertBefore(riga, contenitore.firstChild);
                 });
             });
         });
     }
 
-    // 3. FUNZIONE PER PORTARE IN PRIMA PAGINA (IL "POTERE")
-    function mettiInHome(archivio, id) {
-        database.ref(archivio + '/' + id).once('value').then((snapshot) => {
+    // 3. FUNZIONE PER PORTARE IN PRIMA PAGINA CORRETTA E COORDINTATA
+    window.mettiInHome = function(archivio, id) {
+        database.ref(archivio + '/' + id).once('value').then(function(snapshot) {
             const dati = snapshot.val();
+            
+            // Pulizia link immagine per la Home Page
+            let imgLink = dati.immagine || dati.urlImmagine || "";
+            if (imgLink.includes('<img')) {
+                const m = imgLink.match(/src="([^"]+)"/);
+                if (m) imgLink = m[1];
+            }
+
+            // Inviamo le etichette giuste che la Index si aspetta di leggere
             database.ref('ultimoArticolo').set({
                 titolo: dati.titolo,
                 testo: dati.testo,
-                foto: dati.immagine, // Usiamo 'foto' perché la index probabilmente cerca quella
+                immagine: imgLink,       // Sincronizzato con la index
+                urlImmagine: imgLink,    // Doppia sicurezza per Carlo e Sergio
                 autore: dati.autore || "Redazione",
-                data: dati.data,
+                data: dati.data || new Date().toLocaleString('it-IT'),
                 video: dati.video || ""
-            }).then(() => {
-                alert("🚀 NOTIZIA LANCIATA IN PRIMA PAGINA!");
+            }).then(function() {
+                alert("🚀 NOTIZIA LANCIATA IN PRIMA PAGINA CON SUCCESSO!");
             });
         });
     }
 
-    // 4. ELIMINAZIONE
-    function eliminaPost(archivio, id) {
+    // 4. ELIMINAZIONE DEL POST DALL'ARCHIVIO SPECIFICO
+    window.eliminaPost = function(archivio, id) {
         if(confirm("Vuoi cancellare definitivamente questo post da " + archivio + "?")) {
             database.ref(archivio + '/' + id).remove();
             location.reload();

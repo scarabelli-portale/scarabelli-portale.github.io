@@ -3,18 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="SCARABELLIANAMENTE - Home Page">
+    <meta property="og:description" content="Guarda i ricordi e i documenti dell'Archivio Scarabelli">
+    <meta property="og:image" content="https://scarabelli-portale.github.io/scarabelliamente/immagini/scuola.jpg">
+    <meta property="og:type" content="website">
     <title>SCARABELLIANAMENTE - Home Page</title>
     <style>
-        body { font-family: 'Times New Roman', serif; margin: 0; background-color: #f4f4f2; color: #1a1a1a; line-height: 1.4; overflow-x: hidden; }
-        .copertina-container { position: relative; width: 100%; max-width: 1300px; margin: 0 auto; height: 220px; overflow: hidden; border-bottom: 4px solid #0056b3; }
-        .foto-scuola { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght=700&display=swap');
         
-        #fondalino-animato { position: absolute; bottom: 0; left: -100%; width: 100%; height: 60px; background: linear-gradient(to bottom, rgba(173, 216, 230, 0.5) 0%, rgba(173, 216, 230, 0.5) 50%, rgba(135, 206, 235, 0.6) 50%, rgba(135, 206, 235, 0.6) 100%); z-index: 9; animation: entraFondale 9s forwards ease-in-out; }
-        #scritta-fiori { position: absolute; bottom: 15px; right: -100%; width: 100%; text-align: center; font-size: 1.9rem; font-weight: 900; color: #ffffff; text-transform: uppercase; letter-spacing: 3px; text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7); z-index: 10; animation: entraTitolo 9s forwards ease-in-out; }
-        @keyframes entraFondale { 0% { left: -100%; } 12% { left: 0; } 88% { left: 0; } 100% { left: 110%; } }
-        @keyframes entraTitolo { 0% { right: -100%; } 12% { right: 0; } 88% { right: 0; } 100% { right: 110%; } }
+        body { 
+            font-family: sans-serif; 
+            margin: 0; 
+            padding: 0;
+            background-color: #ffffff; /* Fondale bianco puro professionale */
+            color: #000000; 
+            line-height: 1.5; 
+            overflow-x: hidden; 
+        }
         
-        .main-container { max-width: 1300px; margin: 20px auto; display: flex; flex-direction: column; gap: 20px; padding: 0 15px; }
+        /* TESTATA PULITA SENZA ANIMAZIONI PESANTI */
+        .copertina-container { 
+            position: relative; 
+            width: 100%; 
+            max-width: 1300px; 
+            margin: 0 auto; 
+            height: 250px; 
+            overflow: hidden; 
+            border-bottom: 5px solid #143ca0; 
+            background: #000; 
+        }
+        
+        .foto-scuola { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            object-position: center 40%; 
+            opacity: 0.7; 
+        }
+        
+        #contenitore-titolo-home { 
+            position: absolute; 
+            bottom: 25px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            text-align: center; 
+            z-index: 10; 
+            width: 100%; 
+        }
+        
+        .titolo-stampato-home { 
+            font-size: 1rem; 
+            letter-spacing: 6px; 
+            text-transform: uppercase; 
+            color: white; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.9); 
+            font-weight: bold; 
+        }
+        
+        .firma-home { 
+            font-family: 'Dancing Script', cursive; 
+            font-size: 3.5rem; 
+            color: #ffffff; 
+            text-shadow: 3px 3px 8px rgba(0,0,0,1); 
+            margin-top: -5px;
+        }
+
+        /* VETRINA PRIMA PAGINA LANCIATA DALLA REGIA */
+        .container-vetrina-home {
+            max-width: 1270px;
+            margin: 25px auto 0 auto;
+            padding: 0 15px;
+            display: none; /* Si attiva solo se c'è un post */
+        }
+        .box-prima-pagina {
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .titolo-prima-pagina {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #000000;
+            margin: 0 0 15px 0;
+        }
+        .info-prima-pagina {
+            font-size: 0.85rem;
+            color: #777777;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+        .media-prima-pagina {
+            max-width: 700px;
+            margin: 15px auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+        .media-prima-pagina img, .media-prima-pagina iframe {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            display: block;
+            object-fit: contain;
+        }
+        .testo-prima-pagina {
+            font-size: 1.1rem;
+            text-align: justify;
+            max-width: 850px;
+            margin: 20px auto 0 auto;
+            white-space: pre-wrap;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+        
+        /* DISPOSIZIONE COLONNE PULITA */
+        .main-container { 
+            max-width: 1300px; 
+            margin: 25px auto 30px auto; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 30px; 
+            padding: 0 15px; 
+        }
+        
         @media (min-width: 900px) {
             .main-container { flex-direction: row; justify-content: center; align-items: flex-start; }
             .colonna-sinistra { order: 1; flex: 1; }
@@ -22,116 +139,218 @@
             .colonna-destra { order: 3; flex: 1; }
         }
 
-        .colonna-centro, .colonna-sinistra, .colonna-destra { display: flex; flex-direction: column; gap: 20px; }
-        .box { background: white; border: 1px solid #ddd; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); position: relative; display: flex; flex-direction: column; }
+        .colonna-centro, .colonna-sinistra, .colonna-destra { display: flex; flex-direction: column; gap: 30px; }
         
-        .container-pulsanti { display: flex; gap: 8px; margin-top: 15px; }
-        .btn-link { flex: 1; padding: 12px 5px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 0.85rem; text-align: center; color: white; transition: 0.3s; }
-        .btn-link:hover { opacity: 0.8; transform: translateY(-2px); }
+        /* BOX SENZA CORNICI SPESSE COLORATE O SFONDI APPESANTITI */
+        .box { 
+            background: #ffffff; 
+            padding: 20px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+            border: 1px solid #eaeaea;
+            position: relative; 
+            display: flex; 
+            flex-direction: column; 
+        }
         
-        .bg-blue { background: #0056b3; } .bg-sky { background: #00a8e8; } .bg-green { background: #27ae60; } .bg-orange { background: #e67e22; } .bg-navy { background: #143ca0; } .bg-gestione { background: #2c3e50; }
-
-        .riga-titolo { display: flex; align-items: center; padding: 7px 0; border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 0.88rem; font-weight: bold; cursor: pointer; color: #333; }
-        .foto-profilo { width: 80px; height: 100px; object-fit: cover; border-radius: 6px; border: 2px solid #ddd; }
-        .monitor-anteprima { background: #000; flex-grow: 1; border-radius: 6px; overflow: hidden; position: relative; min-height: 150px; display: flex; align-items: center; justify-content: center; }
+        /* TITOLI DELLE SEZIONI INTERNE */
+        .titolo-sezione {
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #000000;
+            margin: 0 0 15px 0;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+        
+        /* RIGHE DEI TITOLI DEI POST */
+        .riga-titolo { 
+            display: flex; 
+            align-items: center; 
+            padding: 10px 0; 
+            border-bottom: 1px solid #eaeaea; 
+            font-size: 0.9rem; 
+            font-weight: bold; 
+            cursor: pointer; 
+            color: #333333; 
+        }
+        .riga-titolo:hover {
+            color: #143ca0;
+        }
+        
+        /* FOTO PROFILO E MONITOR DETTAGLIATI MA LEGGERI */
+        .foto-profilo { width: 80px; height: 100px; object-fit: cover; border-radius: 6px; border: 1px solid #eaeaea; }
+        
+        .monitor-anteprima { 
+            background: #f9f9f9; 
+            flex-grow: 1; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            position: relative; 
+            min-height: 150px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            border: 1px solid #eaeaea;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
         .monitor-anteprima img { width: 100%; height: 100%; object-fit: cover; }
-        footer { margin-top: 50px; padding: 30px; background: #2c3e50; color: white; text-align: center; }
+        
+        /* CONTENITORE PULSANTI IN PURO TESTO IN LINEA */
+        .container-pulsanti { 
+            display: flex; 
+            justify-content: center;
+            gap: 20px; 
+            margin-top: 20px; 
+            border-top: 1px solid #eaeaea;
+            padding-top: 15px;
+        }
+        
+        .btn-link { 
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            text-decoration: none !important; 
+            font-weight: bold; 
+            font-size: 0.9rem; 
+            text-align: center; 
+            color: #000000 !important; 
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: color 0.2s; 
+        }
+        .btn-link:hover { 
+            color: #143ca0 !important; 
+        }
+        
+        footer { 
+            margin-top: 60px; 
+            padding: 25px; 
+            background: #ffffff; 
+            color: #777777; 
+            text-align: center; 
+            font-size: 0.85rem;
+            border-top: 1px solid #eaeaea;
+        }
     </style>
 </head>
 
 <body>
 
+    <!-- COPERTINA UNIFORMATA AL MODELLO DI TESTATA -->
     <div class="copertina-container">
         <img src="immagini/scuola.jpg" class="foto-scuola">
-        <div id="fondalino-animato"></div>
-        <div id="scritta-fiori">SCARABELLIAMENTE</div>
+        <div id="contenitore-titolo-home">
+            <div class="titolo-stampato-home">Progetto</div>
+            <div class="firma-home">Scarabellianamente</div>
+        </div>
+    </div>
+
+    <!-- SPAZIO RICEVITORE: PRIMA PAGINA EDITORIALE DALLA REGIA -->
+    <div id="vetrina-regia" class="container-vetrina-home">
+        <div class="box-prima-pagina">
+            <div id="vetrina-autore" class="info-prima-pagina">IN PRIMA PAGINA</div>
+            <h1 id="vetrina-titolo" class="titolo-stampato-home" style="color:#000000; font-size:2rem; text-shadow:none;"></h1>
+            <div id="vetrina-media" class="media-prima-pagina"></div>
+            <div id="vetrina-testo" class="testo-prima-pagina"></div>
+        </div>
     </div>
 
     <div class="main-container">
-       <div class="colonna-centro">
-            <div class="box" style="min-height: 550px; border-top: 4px solid #0056b3;">
-                <div style="background: #0056b3; color: white; text-align: center; padding: 5px; border-radius: 20px; font-weight: bold; margin-bottom: 15px;">Pres. Francesco Mariani</div>
+        
+        <!-- COLONNA CENTRO: FRANCESCO -->
+        <div class="colonna-centro">
+            <div class="box" style="min-height: 550px;">
+                <div class="titolo-sezione">Pres. Francesco Mariani</div>
                 <div style="display:flex; gap:15px; align-items: flex-start; margin-bottom: 15px;">
-                    <img src="immagini/francesco.jpg" class="foto-profilo" style="border-color: #0056b3;">
-                    <div style="background: #fcfcfc; border: 1px solid #eee; padding: 8px; flex-grow: 1; height: 120px; overflow-y: auto;">
+                    <img src="immagini/francesco.jpg" class="foto-profilo">
+                    <div style="background: #ffffff; border: 1px solid #eaeaea; border-radius: 6px; padding: 8px; flex-grow: 1; height: 120px; overflow-y: auto;">
                         <ul id="lista-home-francesco" style="list-style:none; padding:0; margin:0;"></ul>
                     </div>
                 </div>
-                <div class="monitor-anteprima" style="border: 3px solid #0056b3;">
+                <div class="monitor-anteprima">
                     <img id="img-francesco-dinamica" src="immagini/francesco.jpg">
                 </div>
                 <div class="container-pulsanti">
-                    <a href="francesco.html" class="btn-link bg-blue">ARCHIVIO</a>
-                    <a href="gestione_francesco.html" class="btn-link bg-gestione">GESTIONE</a>
+                    <a href="francesco.html" class="btn-link">ARCHIVIO</a>
+                    <a href="gestione_francesco.html" class="btn-link">GESTIONE</a>
                 </div>
             </div>
         </div>
 
+        <!-- COLONNA SINISTRA: FAUSTO & CINZIA -->
         <div class="colonna-sinistra">
-            <div class="box" style="border-top: 4px solid #00a8e8;">
-                <h3 style="color:#00a8e8; text-align:center; font-size:1rem; text-transform:uppercase; margin:0 0 10px 0;">Meteo & Satellite</h3>
+            <!-- FAUSTO -->
+            <div class="box">
+                <div class="titolo-sezione">Meteo & Satellite</div>
                 <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
-                    <img src="immagini/fausto.jpg" class="foto-profilo" style="border-color:#00a8e8">
-                    <div style="flex: 1; border: 1px solid #eee; border-radius: 6px; overflow: hidden; height: 100px; background:#000; cursor: pointer;" onclick="window.location.href='fausto.html'">
+                    <img src="immagini/fausto.jpg" class="foto-profilo">
+                    <div style="flex: 1; border: 1px solid #eaeaea; border-radius: 6px; overflow: hidden; height: 100px; background:#f9f9f9; cursor: pointer;" onclick="window.location.href='fausto.html'">
                         <iframe src="sat.html" style="width: 100%; height: 100%; border: none; pointer-events: none;" scrolling="no"></iframe>
                     </div>
                 </div>
-                <div style="background: #fdfdfd; padding: 8px; height: 100px; overflow-y: auto; border: 1px solid #eee;">
+                <div style="background: #ffffff; border: 1px solid #eaeaea; border-radius: 6px; padding: 8px; height: 100px; overflow-y: auto;">
                     <ul id="lista-titoli-fausto" style="list-style: none; padding: 0; margin:0;"></ul>
                 </div>
                 <div class="container-pulsanti">
-                    <a href="fausto.html" class="btn-link bg-sky">ARCHIVIO</a>
-                    <a href="gestione_fausto.html" class="btn-link bg-gestione">GESTIONE</a>
+                    <a href="fausto.html" class="btn-link">ARCHIVIO</a>
+                    <a href="gestione_fausto.html" class="btn-link">GESTIONE</a>
                 </div>
             </div>    
 
-            <div class="box" style="border-top: 4px solid #27ae60;">
-                <h3 style="color:#27ae60; text-align:center; font-size:1rem; text-transform:uppercase; margin:0 0 10px 0;">Didattica & Lavoro</h3>
+            <!-- CINZIA -->
+            <div class="box">
+                <div class="titolo-sezione">Didattica & Lavoro</div>
                 <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
-                    <img src="immagini/cinzia.jpg" class="foto-profilo" style="border-color:#27ae60">
+                    <img src="immagini/cinzia.jpg" class="foto-profilo">
                     <div class="monitor-anteprima" style="height: 100px; min-height: 100px;">
                         <img id="img-cinzia-dinamica" src="immagini/cinzia.jpg">
                     </div>
                 </div>
-                <div style="background: #fdfdfd; padding: 8px; height: 100px; overflow-y: auto; border: 1px solid #eee;">
+                <div style="background: #ffffff; border: 1px solid #eaeaea; border-radius: 6px; padding: 8px; height: 100px; overflow-y: auto;">
                     <ul id="lista-home-cinzia" style="list-style: none; padding: 0; margin:0;"></ul>
                 </div>
                 <div class="container-pulsanti">
-                    <a href="cinzia.html" class="btn-link bg-green">ARCHIVIO</a>
-                    <a href="gestione_cinzia.html" class="btn-link bg-gestione">GESTIONE</a>
+                    <a href="cinzia.html" class="btn-link">ARCHIVIO</a>
+                    <a href="gestione_cinzia.html" class="btn-link">GESTIONE</a>
                 </div>
             </div>
         </div>
 
+        <!-- COLONNA DESTRA: CARLO & SERGIO -->
         <div class="colonna-destra">
-            <div class="box" style="border-top: 4px solid #e67e22;">
-                <h3 style="color:#e67e22; text-align:center; font-size:1rem; margin:0 0 10px 0;">Economia</h3>
+            <!-- CARLO -->
+            <div class="box">
+                <div class="titolo-sezione">Economia</div>
                 <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
-                    <img src="immagini/carlo.jpg" class="foto-profilo" style="border-color:#e67e22">
-                    <div style="background: #fdfdfd; padding: 8px; flex-grow: 1; height: 100px; overflow-y: auto; border: 1px solid #eee;">
+                    <img src="immagini/carlo.jpg" class="foto-profilo">
+                    <div style="background: #ffffff; border: 1px solid #eaeaea; border-radius: 6px; padding: 8px; flex-grow: 1; height: 100px; overflow-y: auto;">
                         <ul id="lista-titoli-carlo" style="list-style: none; padding: 0; margin:0;"></ul>
                     </div>
                 </div>
                 <div class="container-pulsanti">
-                    <a href="carlo.html" class="btn-link bg-orange">ARCHIVIO</a>
-                    <a href="gestione_carlo.html" class="btn-link bg-gestione">GESTIONE</a>
+                    <a href="carlo.html" class="btn-link">ARCHIVIO</a>
+                    <a href="gestione_carlo.html" class="btn-link">GESTIONE</a>
                 </div>
             </div>
 
-            <div class="box" style="border-top: 4px solid #143ca0;">
-                <h3 style="color:#143ca0; text-align:center; font-size:1rem; margin:0 0 10px 0;">Archivio Sergio</h3>
+            <!-- SERGIO -->
+            <div class="box">
+                <div class="titolo-sezione">Archivio Sergio</div>
                 <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
-                    <img src="immagini/sergio.jpg" class="foto-profilo" style="border-color:#143ca0">
+                    <img src="immagini/sergio.jpg" class="foto-profilo">
                     <div class="monitor-anteprima" style="height: 100px; min-height: 100px;">
                         <img id="img-sergio-dinamica" src="immagini/sergio.jpg">
                     </div>
                 </div>
-                <div style="background: #fdfdfd; padding: 8px; height: 100px; overflow-y: auto; border: 1px solid #eee;">
+                <div style="background: #ffffff; border: 1px solid #eaeaea; border-radius: 6px; padding: 8px; height: 100px; overflow-y: auto;">
                     <ul id="lista-titoli-sergio" style="list-style: none; padding: 0; margin:0;"></ul>
                 </div>
                 <div class="container-pulsanti">
-                    <a href="sergio.html" class="btn-link bg-navy">ARCHIVIO</a>
-                    <a href="gestione_sergio.html" class="btn-link bg-gestione">GESTIONE</a>
+                    <a href="sergio.html" class="btn-link">ARCHIVIO</a>
+                    <a href="gestione_sergio.html" class="btn-link">GESTIONE</a>
                 </div>
             </div>
         </div>
@@ -151,11 +370,47 @@
                 let vid = "";
                 if (url.includes('v=')) { vid = url.split('v=')[1].split('&')[0]; }
                 else { vid = url.split('/').pop().split('?')[0]; }
-                return vid ? `https://img.youtube.com/vi/${vid}/hqdefault.jpg` : null;
+                return vid ? 'https://img.youtube.com/vi/' + vid + '/hqdefault.jpg' : null;
             }
             return null;
         }
 
+        // --- ASCOLTATORE CANALE PRIMA PAGINA (ULTIMOARTICOLO) ---
+        db.ref('ultimoArticolo').on('value', function(snapshot) {
+            const art = snapshot.val();
+            const vetrina = document.getElementById('vetrina-regia');
+            if(art && art.titolo) {
+                document.getElementById('vetrina-titolo').innerText = art.titolo;
+                document.getElementById('vetrina-testo').innerText = art.testo || "";
+                document.getElementById('vetrina-autore').innerText = 'IN PRIMA PAGINA • Redatto da: ' + (art.autore || 'Redazione') + ' • ' + (art.data || '');
+                
+                const mediaBox = document.getElementById('vetrina-media');
+                mediaBox.innerHTML = "";
+                
+                let sorgente = art.immagine || art.urlImmagine || art.foto || "";
+                if (sorgente.includes('<img')) {
+                    const match = sorgente.match(/src="([^"]+)"/);
+                    if (match) sorgente = match[1];
+                }
+                sorgente = sorgente.trim();
+
+                if(sorgente.includes('youtube.com') || sorgente.includes('youtu.be')) {
+                    let vid = sorgente.includes('v=') ? sorgente.split('v=')[1].split('&')[0] : sorgente.split('/').pop();
+                    mediaBox.innerHTML = '<iframe height="350" src="https://www.youtube.com/embed/' + vid + '" frameborder="0" allowfullscreen style="width:100%; border-radius:8px;"></iframe>';
+                    mediaBox.style.display = 'block';
+                } else if(sorgente.length > 10) {
+                    mediaBox.innerHTML = '<img src="' + sorgente + '">';
+                    mediaBox.style.display = 'block';
+                } else {
+                    mediaBox.style.display = 'none';
+                }
+                vetrina.style.display = 'block';
+            } else {
+                vetrina.style.display = 'none';
+            }
+        });
+
+        // --- CANALI DEGLI ARCHIVI IN COLONNA ---
         const archivi = [
             { ref: 'archivio_francesco', lista: 'lista-home-francesco', monitor: 'img-francesco-dinamica', def: 'immagini/francesco.jpg', link: 'francesco.html' },
             { ref: 'archivioCinzia', lista: 'lista-home-cinzia', monitor: 'img-cinzia-dinamica', def: 'immagini/cinzia.jpg', link: 'cinzia.html' },
@@ -170,7 +425,7 @@
                 if(!listEl) return;
                 listEl.innerHTML = "";
                 let articoli = [];
-                snap.forEach(c => { articoli.push({ id: c.key, ...c.val() }); });
+                snap.forEach(c => { articoli.push(Object.assign({ id: c.key }, c.val())); });
                 articoli.reverse();
 
                 const setMonitor = (post, targetImg) => {
@@ -202,8 +457,7 @@
                     li.className = 'riga-titolo';
                     li.innerHTML = art.titolo;
                     
-                    // CORREZIONE PUNTERIA: Gestione click per aprire il link con l'ID corretto
-                    li.onclick = () => { 
+                    li.onclick = function() { 
                         if (art.id) {
                             window.location.href = area.link + '?id=' + art.id; 
                         } else {
@@ -212,7 +466,7 @@
                     };
                     
                     if(area.monitor) {
-                        li.onmouseenter = () => setMonitor(art, area.monitor);
+                        li.onmouseenter = function() { setMonitor(art, area.monitor); };
                     }
                     listEl.appendChild(li);
                 });
