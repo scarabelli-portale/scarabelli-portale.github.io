@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ARCHIVIO SCARABELLI - Carlo</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+        /* IMPORTAZIONE FONT ELEGANTE PARISIENNE */
+        @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
 
         body { 
             font-family: sans-serif; 
@@ -35,29 +36,39 @@
             object-position: center 40%;
             opacity: 0.7; 
         }
+        
+        /* POSIZIONAMENTO AL PIEDE PER SFIORARE IL BORDO BLU ACCORDATO */
         #contenitore-titolo { 
             position: absolute; 
-            bottom: 20px; 
+            bottom: 5px; 
             left: 50%; 
             transform: translateX(-50%); 
             text-align: center; 
             z-index: 10; 
             width: 100%; 
         }
+        
+        /* SCARABELLIAMENTE IN ALTO ORIENTATO AL MODELLO UNIFICATO (3.8rem) */
         .titolo-stampato { 
-            font-size: 1rem; 
-            letter-spacing: 6px; 
-            text-transform: uppercase; 
+            font-family: 'Parisienne', cursive;
+            font-size: 3.8rem; 
             color: white; 
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.9); 
-            font-weight: bold; 
+            text-shadow: 3px 3px 8px rgba(0,0,0,1);
+            font-weight: normal; 
+            text-transform: none; 
+            letter-spacing: normal;
+            margin-bottom: -15px; /* Sovrapposizione bilanciata stile manoscritti antichi */
+            display: block;
         }
+        
+        /* INSERITO "Archivio Carlo" CON LA MAIUSCOLA DI RIGORE (2.2rem) */
         .firma-carlo { 
-            font-family: 'Dancing Script', cursive; 
-            font-size: 3.5rem; 
+            font-family: 'Parisienne', cursive; 
+            font-size: 2.2rem; 
             color: white; 
             text-shadow: 3px 3px 8px rgba(0,0,0,1); 
-            margin-top: -5px;
+            margin-top: 0;
+            display: block;
         }
         
         /* BARRA DI NAVIGAZIONE CHIARA */
@@ -185,12 +196,12 @@
 </head>
 <body>
 
-    <!-- COPIRTINA STRUTTURATA -->
+    <!-- COPERTINA STRUTTURATA COORDINTATA IN PARISIENNE -->
     <div class="copertina-container">
         <img src="immagini/scuola.jpg" class="foto-scuola">
         <div id="contenitore-titolo">
-            <div class="titolo-stampato">Economia e Mercati</div>
-            <div class="firma-carlo">Carlo</div>
+            <span class="titolo-stampato">Scarabelliamente</span>
+            <span class="firma-carlo">Archivio Carlo</span>
         </div>
     </div>
     
@@ -237,7 +248,7 @@
 
     </div>
 
-    <!-- CARICAMENTO FIREBASE CON LOGICA CLASSICA COMPATIBILE ED ESENTE DA ERRORE 13 -->
+    <!-- CARICAMENTO FIREBASE CON SINTASSI CLASSICA COMPATIBILE ED ESENTE DA ERRORE 13 -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
@@ -308,7 +319,7 @@
                     contenutoHtml += '<h1>' + art.titolo + '</h1>';
                     contenutoHtml += '<div class="testo-articolo">' + art.testo + '</div>';
                     
-                    card.innerHTML = contenutoHtml;
+                    card.innerHTML = contenidoHtml;
                     container.appendChild(card);
                 }); 
             }

@@ -9,7 +9,8 @@
     <meta property="og:type" content="website">
     <title>Archivio - Cinzia</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght=700&display=swap');
+        /* IMPORTAZIONE FONT ELEGANTE PARISIENNE */
+        @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
         
         body { 
             font-family: sans-serif; 
@@ -21,12 +22,35 @@
             line-height: 1.6;
         }
         
-        /* TESTATA ORIGINALE DI CINZIA */
+        /* TESTATA STRUTTURATA UNIFORME AI MODELLI DEL PORTALE */
         .header-fissa { position: fixed; top: 0; width: 100%; height: 250px; z-index: 1000; background: #000; border-bottom: 5px solid #27ae60; overflow: hidden; }
         .foto-header { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; opacity: 0.7; }
-        #contenitore-titolo { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); text-align: center; width: 100%; }
-        .titolo-stampato { font-size: 0.9rem; letter-spacing: 6px; text-transform: uppercase; color: white; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
-        .firma-persona { font-family: 'Dancing Script', cursive; font-size: 3.5rem; color: #27ae60; text-shadow: 3px 3px 8px rgba(0,0,0,1); margin-top: -10px; }
+        
+        /* POSIZIONAMENTO AL PIEDE PER SFIORARE IL BORDO VERDE */
+        #contenitore-titolo { position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); text-align: center; width: 100%; }
+        
+        /* SCARABELLIAMENTE IN ALTO ORIENTATO AL MODELLO UNIFICATO (3.8rem) */
+        .titolo-stampato { 
+            font-family: 'Parisienne', cursive;
+            font-size: 3.8rem; 
+            color: white; 
+            text-shadow: 3px 3px 8px rgba(0,0,0,1); 
+            font-weight: normal; 
+            text-transform: none; 
+            letter-spacing: normal;
+            margin-bottom: -15px; /* Sovrapposizione bilanciata stile antica scrittura */
+            display: block;
+        }
+        
+        /* INSERITO "Archivio Cinzia" CON LA MAIUSCOLA SACROSANTA (2.2rem) */
+        .firma-persona { 
+            font-family: 'Parisienne', cursive; 
+            font-size: 2.2rem; 
+            color: #ffffff; 
+            text-shadow: 3px 3px 8px rgba(0,0,0,1); 
+            margin-top: 0; 
+            display: block;
+        }
         
         .btn-nav { position: absolute; top: 15px; padding: 10px 18px; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 0.7rem; z-index: 1001; display: flex; align-items: center; gap: 5px; }
         .btn-home { left: 15px; background: rgba(255,255,255,0.2); color: white; border: 1px solid white; }
@@ -63,7 +87,7 @@
             left: 0; 
             width: 100%; 
             height: 100%; 
-            background-color: #ffffff; /* Fondale bianco anche all'apertura del post */
+            background-color: #ffffff; 
             z-index: 2000; 
             overflow-y: auto; 
             box-sizing: border-box;
@@ -76,7 +100,6 @@
             text-align: center; 
         }
         
-        /* IMMAGINE PULITA NELL'OVERLAY */
         .img-view { 
             width: auto; 
             max-width: 100%; 
@@ -89,13 +112,12 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
         
-        /* TESTO DELL'ARTICOLO NERO SU BIANCO */
         .testo-scritto {
             text-align: justify; 
             white-space: pre-wrap; 
             font-size: 1.15rem; 
             padding: 10px; 
-            color: #000000; /* Testo nero nitido */
+            color: #000000; 
             max-width: 750px;
             margin: 25px auto;
         }
@@ -109,7 +131,7 @@
             padding-top: 30px;
         }
         .area-pulsanti-sergio a {
-            color: #000000; /* Link neri nel piede della pagina */
+            color: #000000; 
             font-weight: bold;
             text-decoration: none;
             text-transform: uppercase;
@@ -121,19 +143,19 @@
             transition: color 0.2s;
         }
         .area-pulsanti-sergio a:hover {
-            color: #27ae60; /* Evidenziato verde quando ci passi sopra */
+            color: #27ae60; 
         }
     </style>
 </head>
 <body>
 
-    <!-- TESTATA ORIGINALE DI CINZIA -->
+    <!-- COPERTINA CON LE PROPORZIONI UNIFICATE E MAIUSCOLA DI RIGORE -->
     <div class="header-fissa">
         <a href="index.html" class="btn-nav btn-home">⬅ HOME</a>
         <img src="immagini/scuola.jpg" class="foto-header">
         <div id="contenitore-titolo">
-            <div class="titolo-stampato">Scuola & Lavoro</div>
-            <div class="firma-persona">Cinzia</div>
+            <span class="titolo-stampato">Scarabelliamente</span>
+            <span class="firma-persona">Archivio Cinzia</span>
         </div>
     </div>
 
@@ -146,16 +168,12 @@
     <div id="overlay">
         <div class="content-view">
             
-            <!-- TITOLO DEL POST APERTO IN NERO (O VERDE COORDINATO) -->
             <h2 id="titolo-view" style="color: #1e8449; font-family: sans-serif; font-size: 2.4rem; font-weight: bold; text-transform: uppercase; margin-bottom: 25px;"></h2>
             
-            <!-- IMMAGINE PULITA -->
             <img id="img-view" src="" style="display:none;" class="img-view">
             
-            <!-- TESTO NERO NITIDO -->
             <div id="testo-view" class="testo-scritto"></div>
             
-            <!-- I QUATTRO PULSANTI TESTUALI IN LINEA NERI -->
             <div class="area-pulsanti-sergio">
                 <a id="link-consiglio" href="#" target="_blank">WZ CONSIGLIO SCARABELLI</a>
                 <a id="link-tutti" href="#" target="_blank">WZ TUTTI GLI EX ALLIEVI</a>
@@ -174,13 +192,12 @@
         const db = firebase.database();
         function pulisciLink(url) { if (!url) return ""; let trovato = url.match(/https?:\/\/[^"'>\s]+\.(?:jpg|jpeg|gif|png|webp)/i); return trovato ? trovato[0] : url.trim(); }
         
-        // Gestione apertura automatica da link esterno (?id=...)
         const urlParams = new URLSearchParams(window.location.search);
         const postId = urlParams.get('id');
-        if (postId) { setTimeout(() => { apri(postId); }, 1000); }
+        if (postId) { setTimeout(function() { apri(postId); }, 1000); }
 
         window.apri = function(id) {
-            db.ref('archivioCinzia/' + id).once('value').then((snap) => {
+            db.ref('archivioCinzia/' + id).once('value').then(function(snap) {
                 const art = snap.val(); if(!art) return;
                 const imgV = document.getElementById('img-view');
                 if(art.immagine) { imgV.src = pulisciLink(art.immagine); imgV.style.display = 'block'; } else { imgV.style.display = 'none'; }
@@ -200,7 +217,6 @@
                     "Link: " + urlSito
                 );
 
-                // Aggancia i messaggi ai link testuali neri
                 document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + msgTutti;
                 document.getElementById('link-tutti').href = "https://api.whatsapp.com/send?text=" + msgTutti;
                 document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + msgMe;
@@ -215,12 +231,12 @@
             window.history.replaceState({}, document.title, window.location.pathname);
         }
 
-        // Caricamento griglia principale con sintassi classica sicura
-        db.ref('archivioCinzia').on('value', (snapshot) => {
+        // Caricamento griglia principale con sintassi classica esente da Errore 13
+        db.ref('archivioCinzia').on('value', function(snapshot) {
             const container = document.getElementById('container-articoli-cinzia'); container.innerHTML = "";
             const data = snapshot.val();
             if (data) {
-                Object.keys(data).reverse().forEach(id => {
+                Object.keys(data).reverse().forEach(function(id) {
                     const art = data[id]; const imgPulita = art.immagine ? pulisciLink(art.immagine) : 'https://via.placeholder.com/400x250?text=Didattica';
                     
                     const card = document.createElement('div');

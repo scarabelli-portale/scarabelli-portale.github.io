@@ -10,7 +10,8 @@
     <title>ARCHIVIO METEO - FAUSTO</title>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+        /* IMPORTAZIONE FONT ELEGANTE PARISIENNE */
+        @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
         
         body { 
             font-family: sans-serif; 
@@ -21,7 +22,7 @@
             line-height: 1.6;
         }
 
-        /* TESTATA MODELLO SERGIO/CINZIA */
+        /* TESTATA MODELLO UNIFICATO DEL PORTALE */
         .copertina-container { 
             position: relative; 
             width: 100%; 
@@ -37,20 +38,39 @@
             object-position: center 40%;
             opacity: 0.7; 
         }
+        
+        /* POSIZIONAMENTO AL PIEDE PER SFIORARE IL BORDO BLU ACCORDATO */
         #contenitore-titolo { 
             position: absolute; 
-            bottom: 20px; 
+            bottom: 5px; 
             left: 50%; 
             transform: translateX(-50%); 
             text-align: center; 
             z-index: 10; 
             width: 100%; 
         }
+        
+        /* SCARABELLIAMENTE IN ALTO ORIENTATO AL MODELLO UNIFICATO (3.8rem) */
+        .titolo-stampato { 
+            font-family: 'Parisienne', cursive;
+            font-size: 3.8rem; 
+            color: white; 
+            text-shadow: 3px 3px 8px rgba(0,0,0,1);
+            font-weight: normal; 
+            text-transform: none; 
+            letter-spacing: normal;
+            margin-bottom: -15px; /* Sovrapposizione bilanciata stile manoscritti antichi */
+            display: block;
+        }
+        
+        /* INSERITO "Archivio Fausto" SOTTO E PORTATO AL VALORE DI REGIME (2.2rem) */
         .firma-fausto { 
-            font-family: 'Dancing Script', cursive; 
-            font-size: 3.5rem; 
+            font-family: 'Parisienne', cursive; 
+            font-size: 2.2rem; 
             color: white; 
             text-shadow: 3px 3px 8px rgba(0,0,0,1); 
+            margin-top: 0;
+            display: block;
         }
 
         .btn-nav { 
@@ -171,12 +191,13 @@
 </head>
 <body>
 
-    <!-- TESTATA IN ALTO -->
+    <!-- TESTATA STRUTTURATA COORDINTATA IN PARISIENNE -->
     <div class="copertina-container">
         <a href="index.html" class="btn-nav btn-home">⬅ HOME</a>
         <img src="immagini/scuola.jpg" class="foto-scuola">
         <div id="contenitore-titolo">
-            <div class="firma-fausto">Archivio Fausto</div>
+            <span class="titolo-stampato">Scarabelliamente</span>
+            <span class="firma-fausto">Archivio Fausto</span>
         </div>
     </div>
 
@@ -214,19 +235,15 @@
     <!-- GRIGLIA ALBUM -->
     <div id="gallery" class="container-gallery"></div>
 
-    <!-- OVERLAY DETTAGLIO POST BIANCO CON TUTTI I LINK WHATSAPP CORRETTI -->
+    <!-- OVERLAY DETTAGLIO POST BIANCO -->
     <div id="myModal" class="modal">
         <div class="modal-content">
-            <!-- TITOLO DEL POST IN ARCHIVIO -->
             <h2 id="modal-titolo" style="text-align:center; margin-bottom:25px; color:#143ca0; font-family: sans-serif; font-weight: bold; text-transform: uppercase; font-size: 2rem;"></h2>
             
-            <!-- IMMAGINE PULITA -->
             <div id="modal-media" class="modal-media"></div>
             
-            <!-- TESTO IN NERO -->
             <div id="modal-testo" class="modal-text"></div>
             
-            <!-- I QUATTRO PULSANTI IN LINEA DI WHATSAPP + CHIUDI X IN PURO TESTO NERO -->
             <div class="piede-pulsantiera-fausto">
                 <a id="link-consiglio" href="#" target="_blank" class="puro-testo-btn">WZ CONSIGLIO</a>
                 <a id="link-tutti" href="#" target="_blank" class="puro-testo-btn">WZ TUTTI EX ALLIEVI</a>
@@ -247,7 +264,7 @@
         
         const db = firebase.database().ref('archivioFausto'); 
         
-        // Lettura griglia con sintassi classica pulita anti-errore 13
+        // Lettura griglia con sintassi classica esente da Errore 13
         db.on('value', function(snap) {
             const container = document.getElementById('gallery');
             const dati = snap.val();
@@ -277,7 +294,6 @@
             }
         });
 
-        // Gestione apertura del post con caricamento dei testi dinamici per WhatsApp
         window.apriModal = function(id, titolo, testo, immagine) {
             document.getElementById("modal-titolo").innerText = titolo;
             document.getElementById("modal-testo").innerText = testo || "";
@@ -296,7 +312,6 @@
                 "Link: " + urlSito
             );
 
-            // Iniezione degli indirizzi internet corretti dentro i link neri
             document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + msgTutti;
             document.getElementById('link-tutti').href = "https://api.whatsapp.com/send?text=" + msgTutti;
             document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + msgMe;

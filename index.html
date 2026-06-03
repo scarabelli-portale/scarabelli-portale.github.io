@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="SCARABELLIANAMENTE - Home Page">
+    <meta property="og:title" content="SCARABELLIAMENTE - Home Page">
     <meta property="og:description" content="Guarda i ricordi e i documenti dell'Archivio Scarabelli">
     <meta property="og:image" content="https://scarabelli-portale.github.io/scarabelliamente/immagini/scuola.jpg">
     <meta property="og:type" content="website">
-    <title>SCARABELLIANAMENTE - Home Page</title>
+    <title>SCARABELLIAMENTE - Home Page</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght=700&display=swap');
+        /* IMPORTAZIONE NUOVO FONT ELEGANTE PARISIENNE */
+        @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
         
         body { 
             font-family: sans-serif; 
@@ -41,9 +42,10 @@
             opacity: 0.7; 
         }
         
+        /* POSIZIONAMENTO RIBASSATO AL PIEDE PER SFIORARE IL BORDO BLU */
         #contenitore-titolo-home { 
             position: absolute; 
-            bottom: 25px; 
+            bottom: 5px; 
             left: 50%; 
             transform: translateX(-50%); 
             text-align: center; 
@@ -51,21 +53,23 @@
             width: 100%; 
         }
         
+        /* UNIFORMATE ENTRAMBE LE RIGHE AL PARISIENNE COORDINTATO */
         .titolo-stampato-home { 
-            font-size: 1rem; 
-            letter-spacing: 6px; 
-            text-transform: uppercase; 
+            font-family: 'Parisienne', cursive;
+            font-size: 1.8rem; 
             color: white; 
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.9); 
-            font-weight: bold; 
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.9); 
+            font-weight: normal; 
+            letter-spacing: 2px;
+            margin-bottom: -15px; /* Avvicina le due parole nello stile grafia antica */
         }
         
         .firma-home { 
-            font-family: 'Dancing Script', cursive; 
-            font-size: 3.5rem; 
+            font-family: 'Parisienne', cursive; 
+            font-size: 4.2rem; 
             color: #ffffff; 
             text-shadow: 3px 3px 8px rgba(0,0,0,1); 
-            margin-top: -5px;
+            margin-top: 0;
         }
 
         /* VETRINA PRIMA PAGINA LANCIATA DALLA REGIA */
@@ -73,7 +77,7 @@
             max-width: 1270px;
             margin: 25px auto 0 auto;
             padding: 0 15px;
-            display: none; /* Si attiva solo se c'è un post */
+            display: none; 
         }
         .box-prima-pagina {
             background: #ffffff;
@@ -141,7 +145,7 @@
 
         .colonna-centro, .colonna-sinistra, .colonna-destra { display: flex; flex-direction: column; gap: 30px; }
         
-        /* BOX SENZA CORNICI SPESSE COLORATE O SFONDI APPESANTITI */
+        /* BOX GENERALE */
         .box { 
             background: #ffffff; 
             padding: 20px; 
@@ -153,7 +157,6 @@
             flex-direction: column; 
         }
         
-        /* TITOLI DELLE SEZIONI INTERNE */
         .titolo-sezione {
             font-size: 1.1rem;
             font-weight: bold;
@@ -164,7 +167,6 @@
             letter-spacing: 0.5px;
         }
         
-        /* RIGHE DEI TITOLI DEI POST */
         .riga-titolo { 
             display: flex; 
             align-items: center; 
@@ -179,7 +181,6 @@
             color: #143ca0;
         }
         
-        /* FOTO PROFILO E MONITOR DETTAGLIATI MA LEGGERI */
         .foto-profilo { width: 80px; height: 100px; object-fit: cover; border-radius: 6px; border: 1px solid #eaeaea; }
         
         .monitor-anteprima { 
@@ -197,7 +198,6 @@
         }
         .monitor-anteprima img { width: 100%; height: 100%; object-fit: cover; }
         
-        /* CONTENITORE PULSANTI IN PURO TESTO IN LINEA */
         .container-pulsanti { 
             display: flex; 
             justify-content: center;
@@ -239,27 +239,26 @@
 
 <body>
 
-    <!-- COPERTINA UNIFORMATA AL MODELLO DI TESTATA -->
+    <!-- COPERTINA CON VALORI DI STILE COORDINATI E BLOCCO RIBASSATO AL MASSIMO -->
     <div class="copertina-container">
         <img src="immagini/scuola.jpg" class="foto-scuola">
         <div id="contenitore-titolo-home">
             <div class="titolo-stampato-home">Progetto</div>
-            <div class="firma-home">Scarabellianamente</div>
+            <div class="firma-home">Scarabelliamente</div>
         </div>
     </div>
 
-    <!-- SPAZIO RICEVITORE: PRIMA PAGINA EDITORIALE DALLA REGIA -->
+    <!-- SPAZIO RICEVITORE: PRIMA PAGINA EDITORIALE -->
     <div id="vetrina-regia" class="container-vetrina-home">
         <div class="box-prima-pagina">
             <div id="vetrina-autore" class="info-prima-pagina">IN PRIMA PAGINA</div>
-            <h1 id="vetrina-titolo" class="titolo-stampato-home" style="color:#000000; font-size:2rem; text-shadow:none;"></h1>
+            <h1 id="vetrina-titolo" style="font-size: 2.2rem; font-weight: bold; text-transform: uppercase; margin: 0 0 15px 0; color: #000000;"></h1>
             <div id="vetrina-media" class="media-prima-pagina"></div>
             <div id="vetrina-testo" class="testo-prima-pagina"></div>
         </div>
     </div>
 
     <div class="main-container">
-        
         <!-- COLONNA CENTRO: FRANCESCO -->
         <div class="colonna-centro">
             <div class="box" style="min-height: 550px;">
@@ -356,7 +355,7 @@
         </div>
     </div>
 
-    <footer><p>© 2026 Progetto Scarabellianamente</p></footer>
+    <footer><p>© 2026 Progetto Scarabelliamente</p></footer>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
@@ -375,7 +374,7 @@
             return null;
         }
 
-        // --- ASCOLTATORE CANALE PRIMA PAGINA (ULTIMOARTICOLO) ---
+        // --- ASCOLTATORE CANALE PRIMA PAGINA (SUPER SICURO - NO BACKTICK) ---
         db.ref('ultimoArticolo').on('value', function(snapshot) {
             const art = snapshot.val();
             const vetrina = document.getElementById('vetrina-regia');
@@ -410,7 +409,7 @@
             }
         });
 
-        // --- CANALI DEGLI ARCHIVI IN COLONNA ---
+        // --- CANALI DEGLI ARCHIVI IN COLONNA (SICURO ERRORE 13) ---
         const archivi = [
             { ref: 'archivio_francesco', lista: 'lista-home-francesco', monitor: 'img-francesco-dinamica', def: 'immagini/francesco.jpg', link: 'francesco.html' },
             { ref: 'archivioCinzia', lista: 'lista-home-cinzia', monitor: 'img-cinzia-dinamica', def: 'immagini/cinzia.jpg', link: 'cinzia.html' },
@@ -419,16 +418,16 @@
             { ref: 'archivioSergio', lista: 'lista-titoli-sergio', monitor: 'img-sergio-dinamica', def: 'immagini/sergio.jpg', link: 'sergio.html' }
         ];
 
-        archivi.forEach(area => {
-            db.ref(area.ref).limitToLast(8).on('value', snap => {
+        archivi.forEach(function(area) {
+            db.ref(area.ref).limitToLast(8).on('value', function(snap) {
                 const listEl = document.getElementById(area.lista);
                 if(!listEl) return;
                 listEl.innerHTML = "";
                 let articoli = [];
-                snap.forEach(c => { articoli.push(Object.assign({ id: c.key }, c.val())); });
+                snap.forEach(function(c) { articoli.push(Object.assign({ id: c.key }, c.val())); });
                 articoli.reverse();
 
-                const setMonitor = (post, targetImg) => {
+                const setMonitor = function(post, targetImg) {
                     const monitor = document.getElementById(targetImg);
                     if (!monitor) return;
                     let sorgente = post.immagine || "";
@@ -452,7 +451,7 @@
                     setMonitor(articoli[0], area.monitor);
                 }
 
-                articoli.forEach(art => {
+                articoli.forEach(function(art) {
                     const li = document.createElement('li');
                     li.className = 'riga-titolo';
                     li.innerHTML = art.titolo;

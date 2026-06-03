@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Archivio Francesco - SCARABELLIAMENTE</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght=700&display=swap');
+        /* IMPORTAZIONE FONT ELEGANTE PARISIENNE */
+        @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
         
         body { 
             font-family: sans-serif; 
@@ -34,29 +35,38 @@
             object-position: center 40%;
             opacity: 0.7; 
         }
+        
+        /* POSIZIONAMENTO AL PIEDE PER SFIORARE IL BORDO BLU */
         #contenitore-titolo { 
             position: absolute; 
-            bottom: 20px; 
+            bottom: 5px; 
             left: 50%; 
             transform: translateX(-50%); 
             text-align: center; 
             z-index: 10; 
             width: 100%; 
         }
+        
+        /* SCARABELLIAMENTE RIDOTTO DEL 15% (DA 4.5rem A 3.8rem) */
         .titolo-stampato { 
-            font-size: 1rem; 
-            letter-spacing: 6px; 
-            text-transform: uppercase; 
+            font-family: 'Parisienne', cursive;
+            font-size: 3.8rem; 
             color: white; 
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.9); 
-            font-weight: bold; 
+            text-shadow: 3px 3px 8px rgba(0,0,0,1);
+            font-weight: normal; 
+            text-transform: none; 
+            margin-bottom: -15px; /* Spazio di sovrapposizione ottimizzato per le nuove misure */
+            display: block;
         }
+        
+        /* INSERITO "Archivio francesco" AUMENTATO DEL 10% (DA 2rem A 2.2rem) */
         .firma-francesco { 
-            font-family: 'Dancing Script', cursive; 
-            font-size: 3.5rem; 
-            color: white; 
-            text-shadow: 3px 3px 8px rgba(0,0,0,1); 
-            margin-top: -5px;
+            font-family: 'Parisienne', cursive; 
+            font-size: 2.2rem; 
+            color: #ffffff; 
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.9); 
+            margin-top: 0;
+            display: block;
         }
 
         .btn-nav { 
@@ -111,7 +121,7 @@
             top: 0; 
             width: 100%; 
             height: 100%; 
-            background-color: #ffffff; /* Schermo bianco nativo */
+            background-color: #ffffff; 
             overflow-y: auto; 
             box-sizing: border-box;
             padding: 40px 20px;
@@ -138,7 +148,7 @@
         .modal-text { 
             text-align: justify; 
             line-height: 1.7; 
-            color: #000000; /* Testo dell'articolo nero */
+            color: #000000; 
             white-space: pre-wrap; 
             font-size: 1.15rem; 
             max-width: 750px;
@@ -164,7 +174,7 @@
             font-weight: bold;
             text-transform: uppercase;
             text-decoration: none !important; 
-            color: #000000 !important; /* Puro nero senza alterazioni */
+            color: #000000 !important; 
             cursor: pointer;
             display: inline-block;
             font-family: sans-serif;
@@ -172,40 +182,33 @@
             transition: color 0.2s ease;
         }
         .puro-testo-btn:hover {
-            color: #143ca0 !important; /* Illuminazione blu portale al passaggio del mouse */
+            color: #143ca0 !important; 
         }
     </style>
 </head>
 <body>
 
-    <!-- COPERTINA CON TITOLO FISSO -->
     <div class="copertina-container">
         <a href="index.html" class="btn-nav btn-home">⬅ HOME</a>
         <img src="immagini/scuola.jpg" class="foto-scuola">
         <div id="contenitore-titolo">
-            <div class="titolo-stampato">Regia & Archivio Storico</div>
-            <div class="firma-francesco">Francesco</div>
+            <span class="titolo-stampato">Scarabelliamente</span>
+            <span class="firma-francesco">Archivio francesco</span>
         </div>
     </div>
 
-    <!-- STRUTTURA GRIGLIA PRINCIPALE CHIARA -->
     <div class="main-wrapper">
         <div class="container-griglia" id="archivio-grid"></div>
     </div>
 
-    <!-- FINESRA DELL'ARTICOLO APERTO (SFONDO BIANCO, TESTI NERI, PULSANTI WZ) -->
     <div id="myModal" class="modal">
         <div class="modal-content">
-            <!-- TITOLO IN NERO O CORREZIONE CROMATICA COORDINATA -->
             <h2 id="modal-titolo" style="text-align:center; color:#143ca0; font-family: sans-serif; font-weight: bold; text-transform: uppercase; font-size: 2rem; margin-bottom: 25px;"></h2>
             
-            <!-- IMMAGINE O VIDEO INTERNO -->
             <div id="modal-media" class="modal-media"></div>
             
-            <!-- TESTO APERTO IN NERO NITIDO -->
             <div id="modal-testo" class="modal-text"></div>
             
-            <!-- PULSANTIERA WHATSAPP + STRUTTURA IN PURO TESTO NERO -->
             <div class="piede-pulsantiera-francesco">
                 <a id="link-consiglio" href="#" target="_blank" class="puro-testo-btn">WZ CONSIGLIO</a>
                 <a id="link-tutti" href="#" target="_blank" class="puro-testo-btn">WZ TUTTI EX ALLIEVI</a>
@@ -227,7 +230,6 @@
         const database = firebase.database();
 
         function caricaArchivio() {
-            // Sintassi classica e sicura esente da Errore 13
             database.ref('archivioFrancesco').on('value', function(snap) {
                 const grid = document.getElementById('archivio-grid');
                 grid.innerHTML = "";
@@ -271,7 +273,6 @@
                 mMedia.innerHTML = '<img src="' + media + '" onerror="this.style.display=\'none\'">';
             }
             
-            // Calcolo stringhe dinamiche per la pulsantiera WhatsApp
             const urlSito = window.location.origin + window.location.pathname + "?id=" + id;
             const msgTutti = encodeURIComponent(
                 "🚀 *VIENI A VEDERE SUL SITO IL POST AMPLIATO, DURATURO E STABILE.*\n\n" +
@@ -285,7 +286,6 @@
                 "Link: " + urlSito
             );
 
-            // Iniezione degli indirizzi internet dentro i pulsanti testuali neri
             document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + msgTutti;
             document.getElementById('link-tutti').href = "https://api.whatsapp.com/send?text=" + msgTutti;
             document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + msgMe;
