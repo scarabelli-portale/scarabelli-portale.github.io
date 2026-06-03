@@ -5,122 +5,310 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Archivio Francesco - SCARABELLIAMENTE</title>
     <style>
-        body { font-family: sans-serif; background-color: #f4f4f2; margin: 0; padding: 20px; padding-bottom: 80px; }
-        h2 { text-align: center; color: #002244; margin-bottom: 30px; }
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght=700&display=swap');
         
-        .container { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; max-width: 1200px; margin: auto; }
+        body { 
+            font-family: sans-serif; 
+            background-color: #ffffff; /* Fondale bianco professionale */
+            color: #000000; /* Testo nero nitido */
+            margin: 0; 
+            padding: 0; 
+            line-height: 1.6;
+        }
         
-        .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: 0.3s; cursor: pointer; display: flex; flex-direction: column; }
-        .card:hover { transform: translateY(-5px); }
-        .card img { width: 100%; height: 200px; object-fit: cover; border-bottom: 2px solid #002244; }
-        .card-content { padding: 15px; flex-grow: 1; }
-        .card-content h3 { margin: 0 0 10px; color: #002244; font-size: 1.2rem; }
-        .card-content p { color: #555; font-size: 0.9rem; height: 40px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+        /* TESTATA STRUTTURATA UNIFORME AI MODELLI DEL PORTALE */
+        .copertina-container { 
+            position: relative; 
+            width: 100%; 
+            max-width: 1300px; 
+            margin: 0 auto; 
+            height: 250px; 
+            overflow: hidden; 
+            border-bottom: 5px solid #143ca0; 
+            background: #000; 
+        }
+        .foto-scuola { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            object-position: center 40%;
+            opacity: 0.7; 
+        }
+        #contenitore-titolo { 
+            position: absolute; 
+            bottom: 20px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            text-align: center; 
+            z-index: 10; 
+            width: 100%; 
+        }
+        .titolo-stampato { 
+            font-size: 1rem; 
+            letter-spacing: 6px; 
+            text-transform: uppercase; 
+            color: white; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.9); 
+            font-weight: bold; 
+        }
+        .firma-francesco { 
+            font-family: 'Dancing Script', cursive; 
+            font-size: 3.5rem; 
+            color: white; 
+            text-shadow: 3px 3px 8px rgba(0,0,0,1); 
+            margin-top: -5px;
+        }
 
-        /* --- FINESTRA MAGICA (MODAL) STILE SERGIO --- */
-        .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); overflow-y: auto; }
-        .modal-content { background-color: #fefefe; margin: 5% auto; padding: 20px; border-radius: 15px; width: 90%; max-width: 800px; position: relative; color: #333; }
-        .close { position: absolute; top: 10px; right: 20px; color: #aaa; font-size: 35px; font-weight: bold; cursor: pointer; }
-        .modal-media img, .modal-media iframe { width: 100%; border-radius: 10px; display: block; }
-        .modal-text { margin-top: 20px; line-height: 1.6; color: #333; white-space: pre-wrap; text-align: justify; font-size: 1.1rem; }
+        .btn-nav { 
+            position: absolute; 
+            top: 15px; 
+            padding: 8px 18px; 
+            border-radius: 5px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            font-size: 0.75rem; 
+            z-index: 20; 
+            border: none; 
+            cursor: pointer; 
+        }
+        .btn-home { 
+            left: 15px; 
+            background: rgba(0,0,0,0.6); 
+            color: white; 
+        }
+        
+        .main-wrapper { max-width: 1200px; margin: 30px auto; padding: 0 15px; }
+        
+        /* GRIGLIA ALBUM MODERNA SENZA CORNICI PESANTI */
+        .container-griglia { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+        
+        .card { 
+            background: #ffffff; 
+            border-radius: 12px; 
+            overflow: hidden; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06); 
+            border: 1px solid #eaeaea;
+            transition: transform 0.2s, box-shadow 0.2s; 
+            cursor: pointer; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        .card:hover { 
+            transform: translateY(-4px); 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .card img { width: 100%; height: 180px; object-fit: cover; }
+        .card-content { padding: 16px; flex-grow: 1; text-align: left; }
+        .card-content h3 { margin: 0 0 8px; color: #143ca0; font-size: 1.05rem; font-weight: bold; text-transform: uppercase; }
+        .card-content p { color: #444444; font-size: 0.95rem; margin: 0; height: 45px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.4; }
 
-        /* BARRA NAVIGAZIONE */
-        .footer-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: white; display: flex; justify-content: space-around; padding: 15px 0; box-shadow: 0 -5px 20px rgba(0,0,0,0.1); z-index: 999; }
-        .btn-footer { text-decoration: none; color: #002244; font-weight: bold; padding: 8px 15px; border: 1px solid #002244; border-radius: 20px; background: #f0f7ff; }
+        /* --- FINESTRA DI INGRANDIMENTO INTERAMENTE BIANCA --- */
+        .modal { 
+            display: none; 
+            position: fixed; 
+            z-index: 9999; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: #ffffff; /* Schermo bianco nativo */
+            overflow-y: auto; 
+            box-sizing: border-box;
+            padding: 40px 20px;
+        }
+        .modal-content { 
+            max-width: 800px; 
+            margin: auto; 
+            text-align: center; 
+            position: relative; 
+        }
+        .modal-media img, .modal-media iframe { 
+            width: auto; 
+            max-width: 100%; 
+            height: auto; 
+            max-height: 450px; 
+            object-fit: contain; 
+            border-radius: 8px; 
+            margin: 20px auto; 
+            display: block;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08); 
+        }
+        .modal-media iframe { width: 100%; height: 400px; }
+        
+        .modal-text { 
+            text-align: justify; 
+            line-height: 1.7; 
+            color: #000000; /* Testo dell'articolo nero */
+            white-space: pre-wrap; 
+            font-size: 1.15rem; 
+            max-width: 750px;
+            margin: 25px auto;
+            padding: 10px;
+        }
+
+        /* PULSANTI FISSI TESTUALI IN LINEA IN NERO IN FONDO AL MODAL */
+        .piede-pulsantiera-francesco {
+            margin-top: 50px;
+            padding-bottom: 20px;
+            text-align: center;
+            border-top: 1px solid #eaeaea;
+            padding-top: 30px;
+            width: 100%;
+        }
+        .puro-testo-btn {
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            margin: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none !important; 
+            color: #000000 !important; /* Puro nero senza alterazioni */
+            cursor: pointer;
+            display: inline-block;
+            font-family: sans-serif;
+            letter-spacing: 0.8px;
+            transition: color 0.2s ease;
+        }
+        .puro-testo-btn:hover {
+            color: #143ca0 !important; /* Illuminazione blu portale al passaggio del mouse */
+        }
     </style>
 </head>
 <body>
 
-<h2>📚 Archivio Storico Francesco</h2>
-
-<div class="container" id="archivio-grid"></div>
-
-<div id="myModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="chiudiModal()">&times;</span>
-        <div id="modal-media" class="modal-media"></div>
-        <h2 id="modal-titolo" style="text-align:left; margin-top:20px; color:#002244;"></h2>
-        <div id="modal-testo" class="modal-text"></div>
-        <button onclick="chiudiModal()" style="margin-top:20px; padding:15px; background:#002244; color:white; border:none; border-radius:8px; width:100%; cursor:pointer; font-weight:bold; font-size:1rem;">CHIUDI</button>
+    <!-- COPERTINA CON TITOLO FISSO -->
+    <div class="copertina-container">
+        <a href="index.html" class="btn-nav btn-home">⬅ HOME</a>
+        <img src="immagini/scuola.jpg" class="foto-scuola">
+        <div id="contenitore-titolo">
+            <div class="titolo-stampato">Regia & Archivio Storico</div>
+            <div class="firma-francesco">Francesco</div>
+        </div>
     </div>
-</div>
 
-<div class="footer-nav">
-    <a href="index.html" class="btn-footer">🏠 Home</a>
-    <a href="gestione_francesco.html" class="btn-footer">✍️ Scrivi</a>
-</div>
+    <!-- STRUTTURA GRIGLIA PRINCIPALE CHIARA -->
+    <div class="main-wrapper">
+        <div class="container-griglia" id="archivio-grid"></div>
+    </div>
 
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <!-- FINESRA DELL'ARTICOLO APERTO (SFONDO BIANCO, TESTI NERI, PULSANTI WZ) -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <!-- TITOLO IN NERO O CORREZIONE CROMATICA COORDINATA -->
+            <h2 id="modal-titolo" style="text-align:center; color:#143ca0; font-family: sans-serif; font-weight: bold; text-transform: uppercase; font-size: 2rem; margin-bottom: 25px;"></h2>
+            
+            <!-- IMMAGINE O VIDEO INTERNO -->
+            <div id="modal-media" class="modal-media"></div>
+            
+            <!-- TESTO APERTO IN NERO NITIDO -->
+            <div id="modal-testo" class="modal-text"></div>
+            
+            <!-- PULSANTIERA WHATSAPP + STRUTTURA IN PURO TESTO NERO -->
+            <div class="piede-pulsantiera-francesco">
+                <a id="link-consiglio" href="#" target="_blank" class="puro-testo-btn">WZ CONSIGLIO</a>
+                <a id="link-tutti" href="#" target="_blank" class="puro-testo-btn">WZ TUTTI EX ALLIEVI</a>
+                <a id="link-privato" href="#" target="_blank" class="puro-testo-btn">WZ ARCHIVIO PERSONALE</a>
+                <button class="puro-testo-btn" onclick="chiudiModal()">CHIUDI X</button>
+            </div>
+        </div>
+    </div>
 
-<script>
-    const firebaseConfig = { 
-        apiKey: "AIzaSyDoVrE-Tx0NL2UqDXAK0Z9EnZdjEVxZLIc",
-        databaseURL: "https://sito-sergio-b19ce-default-rtdb.europe-west1.firebasedatabase.app/" 
-    };
-    if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
-    const database = firebase.database();
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
-    function caricaArchivio() {
-        // AGGIORNATO AL NUOVO DATABASE UNIFICATO
-        database.ref('archivioFrancesco').on('value', (snap) => {
-            const grid = document.getElementById('archivio-grid');
-            grid.innerHTML = "";
-            const dati = snap.val();
-            if (dati) {
-                Object.keys(dati).reverse().forEach((id) => {
-                    const post = dati[id];
-                    let imgPura = post.urlImmagine || post.immagine || "";
-                    
-                    // Pulizia link strutturati ImgBB
-                    if (imgPura.includes('<img')) {
-                        const m = imgPura.match(/src="([^"]+)"/);
-                        if (m) imgPura = m[1];
-                    }
+    <script>
+        const firebaseConfig = { 
+            apiKey: "AIzaSyDoVrE-Tx0NL2UqDXAK0Z9EnZdjEVxZLIc",
+            databaseURL: "https://sito-sergio-b19ce-default-rtdb.europe-west1.firebasedatabase.app/" 
+        };
+        if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
+        const database = firebase.database();
 
-                    const card = document.createElement('div');
-                    card.className = 'card';
-                    card.onclick = () => apriModal(post.titolo, post.testo, imgPura);
-                    
-                    card.innerHTML = `
-                        <img src="${imgPura}" onerror="this.src='immagini/francesco.jpg'">
-                        <div class="card-content">
-                            <h3>${post.titolo}</h3>
-                            <p>${post.testo || ""}</p>
-                        </div>
-                    `;
-                    grid.appendChild(card);
-                });
-            }
-        });
-    }
+        function caricaArchivio() {
+            // Sintassi classica e sicura esente da Errore 13
+            database.ref('archivioFrancesco').on('value', function(snap) {
+                const grid = document.getElementById('archivio-grid');
+                grid.innerHTML = "";
+                const dati = snap.val();
+                if (dati) {
+                    Object.keys(dati).reverse().forEach(function(id) {
+                        const post = dati[id];
+                        let imgPura = post.urlImmagine || post.immagine || "";
+                        
+                        if (imgPura.includes('<img')) {
+                            const m = imgPura.match(/src="([^"]+)"/);
+                            if (m) imgPura = m[1];
+                        }
 
-    function apriModal(titolo, testo, media) {
-        const modal = document.getElementById("myModal");
-        const mMedia = document.getElementById("modal-media");
-        document.getElementById("modal-titolo").innerText = titolo;
-        document.getElementById("modal-testo").innerText = testo || "";
-
-        if (media.includes('youtube.com') || media.includes('youtu.be')) {
-            let vid = media.includes('v=') ? media.split('v=')[1].split('&')[0] : media.split('/').pop();
-            mMedia.innerHTML = `<iframe height="350" src="https://www.youtube.com/embed/${vid}" frameborder="0" allowfullscreen></iframe>`;
-        } else {
-            mMedia.innerHTML = `<img src="${media}" onerror="this.style.display='none'">`;
+                        const card = document.createElement('div');
+                        card.className = 'card';
+                        card.onclick = function() {
+                            apriModal(id, post.titolo, post.testo, imgPura);
+                        };
+                        
+                        card.innerHTML = '<img src="' + imgPura + '" onerror="this.src=\'immagini/francesco.jpg\'">' +
+                                         '<div class="card-content">' +
+                                             '<h3>' + post.titolo + '</h3>' +
+                                             '<p>' + (post.testo || "") + '</p>' +
+                                         '</div>';
+                        grid.appendChild(card);
+                    });
+                }
+            });
         }
-        modal.style.display = "block";
-    }
 
-    function chiudiModal() {
-        document.getElementById("myModal").style.display = "none";
-        document.getElementById("modal-media").innerHTML = "";
-    }
+        window.apriModal = function(id, titolo, testo, media) {
+            const mMedia = document.getElementById("modal-media");
+            document.getElementById("modal-titolo").innerText = titolo;
+            document.getElementById("modal-testo").innerText = testo || "";
 
-    window.onclick = function(event) {
-        if (event.target == document.getElementById("myModal")) { chiudiModal(); }
-    }
+            if (media.includes('youtube.com') || media.includes('youtu.be')) {
+                let vid = media.includes('v=') ? media.split('v=')[1].split('&')[0] : media.split('/').pop();
+                mMedia.innerHTML = '<iframe src="https://www.youtube.com/embed/' + vid + '" frameborder="0" allowfullscreen></iframe>';
+            } else {
+                mMedia.innerHTML = '<img src="' + media + '" onerror="this.style.display=\'none\'">';
+            }
+            
+            // Calcolo stringhe dinamiche per la pulsantiera WhatsApp
+            const urlSito = window.location.origin + window.location.pathname + "?id=" + id;
+            const msgTutti = encodeURIComponent(
+                "🚀 *VIENI A VEDERE SUL SITO IL POST AMPLIATO, DURATURO E STABILE.*\n\n" +
+                "📢 *Cosa che purtroppo non succede su WhatsApp dove tutto scorre via.*\n\n" +
+                "📖 Titolo: *" + titolo + "*\n" +
+                "🔗 Apri l'archivio qui: " + urlSito
+            );
+            const msgMe = encodeURIComponent(
+                "📌 ARCHIVIO PERSONALE:\n" +
+                "Post: " + titolo + "\n" +
+                "Link: " + urlSito
+            );
 
-    caricaArchivio();
-</script>
+            // Iniezione degli indirizzi internet dentro i pulsanti testuali neri
+            document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + msgTutti;
+            document.getElementById('link-tutti').href = "https://api.whatsapp.com/send?text=" + msgTutti;
+            document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + msgMe;
 
+            document.getElementById("myModal").style.display = "block";
+            document.body.style.overflow = 'hidden';
+        }
+
+        window.chiudiModal = function() {
+            document.getElementById("myModal").style.display = "none";
+            document.getElementById("modal-media").innerHTML = "";
+            document.body.style.overflow = 'auto';
+            
+            document.getElementById('link-consiglio').href = "#";
+            document.getElementById('link-tutti').href = "#";
+            document.getElementById('link-privato').href = "#";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("myModal")) { chiudiModal(); }
+        }
+
+        caricaArchivio();
+    </script>
 </body>
 </html>
