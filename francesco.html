@@ -10,14 +10,13 @@
         
         body { 
             font-family: sans-serif; 
-            background-color: #ffffff; /* Fondale bianco professionale */
-            color: #000000; /* Testo nero nitido */
+            background-color: #ffffff; 
+            color: #000000; 
             margin: 0; 
             padding: 0; 
             line-height: 1.6;
         }
         
-        /* TESTATA STRUTTURATA UNIFORME AI MODELLI DEL PORTALE */
         .copertina-container { 
             position: relative; 
             width: 100%; 
@@ -36,7 +35,6 @@
             opacity: 0.7; 
         }
         
-        /* POSIZIONAMENTO AL PIEDE PER SFIORARE IL BORDO BLU */
         #contenitore-titolo { 
             position: absolute; 
             bottom: 5px; 
@@ -47,19 +45,16 @@
             width: 100%; 
         }
         
-        /* SCARABELLIAMENTE RIDOTTO DEL 15% (DA 4.5rem A 3.8rem) */
         .titolo-stampato { 
             font-family: 'Parisienne', cursive;
             font-size: 3.8rem; 
             color: white; 
             text-shadow: 3px 3px 8px rgba(0,0,0,1);
             font-weight: normal; 
-            text-transform: none; 
-            margin-bottom: -15px; /* Spazio di sovrapposizione ottimizzato per le nuove misure */
+            margin-bottom: -15px;
             display: block;
         }
         
-        /* INSERITO "Archivio francesco" AUMENTATO DEL 10% (DA 2rem A 2.2rem) */
         .firma-francesco { 
             font-family: 'Parisienne', cursive; 
             font-size: 2.2rem; 
@@ -89,7 +84,6 @@
         
         .main-wrapper { max-width: 1200px; margin: 30px auto; padding: 0 15px; }
         
-        /* GRIGLIA ALBUM MODERNA SENZA CORNICI PESANTI */
         .container-griglia { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
         
         .card { 
@@ -112,38 +106,31 @@
         .card-content h3 { margin: 0 0 8px; color: #143ca0; font-size: 1.05rem; font-weight: bold; text-transform: uppercase; }
         .card-content p { color: #444444; font-size: 0.95rem; margin: 0; height: 45px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.4; }
 
-        /* --- FINESTRA DI INGRANDIMENTO INTERAMENTE BIANCA --- */
+        /* MODALE: Immagine a larghezza piena, intera e nitida */
         .modal { 
             display: none; 
             position: fixed; 
             z-index: 9999; 
-            left: 0; 
-            top: 0; 
-            width: 100%; 
-            height: 100%; 
+            left: 0; top: 0; 
+            width: 100%; height: 100%; 
             background-color: #ffffff; 
             overflow-y: auto; 
             box-sizing: border-box;
             padding: 40px 20px;
         }
-        .modal-content { 
-            max-width: 800px; 
-            margin: auto; 
-            text-align: center; 
-            position: relative; 
-        }
-        .modal-media img, .modal-media iframe { 
-            width: auto; 
-            max-width: 100%; 
-            height: auto; 
-            max-height: 450px; 
+        .modal-content { max-width: 800px; margin: auto; text-align: center; }
+        
+        .modal-media img { 
+            width: 100% !important; 
+            max-width: 100% !important; 
+            height: auto !important; 
+            max-height: 70vh !important; 
             object-fit: contain; 
-            border-radius: 8px; 
             margin: 20px auto; 
             display: block;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08); 
         }
-        .modal-media iframe { width: 100%; height: 400px; }
+        .modal-media iframe { width: 100%; height: 300px; border-radius: 8px; margin: 20px auto; display: block; }
         
         .modal-text { 
             text-align: justify; 
@@ -156,10 +143,8 @@
             padding: 10px;
         }
 
-        /* PULSANTI FISSI TESTUALI IN LINEA IN NERO IN FONDO AL MODAL */
         .piede-pulsantiera-francesco {
             margin-top: 50px;
-            padding-bottom: 20px;
             text-align: center;
             border-top: 1px solid #eaeaea;
             padding-top: 30px;
@@ -168,7 +153,6 @@
         .puro-testo-btn {
             background: none !important;
             border: none !important;
-            box-shadow: none !important;
             margin: 10px 20px;
             font-size: 16px;
             font-weight: bold;
@@ -181,9 +165,7 @@
             letter-spacing: 0.8px;
             transition: color 0.2s ease;
         }
-        .puro-testo-btn:hover {
-            color: #143ca0 !important; 
-        }
+        .puro-testo-btn:hover { color: #143ca0 !important; }
     </style>
 </head>
 <body>
@@ -193,7 +175,7 @@
         <img src="immagini/scuola.jpg" class="foto-scuola">
         <div id="contenitore-titolo">
             <span class="titolo-stampato">Scarabelliamente</span>
-            <span class="firma-francesco">Archivio francesco</span>
+            <span class="firma-francesco">Archivio Francesco</span>
         </div>
     </div>
 
@@ -204,11 +186,8 @@
     <div id="myModal" class="modal">
         <div class="modal-content">
             <h2 id="modal-titolo" style="text-align:center; color:#143ca0; font-family: sans-serif; font-weight: bold; text-transform: uppercase; font-size: 2rem; margin-bottom: 25px;"></h2>
-            
             <div id="modal-media" class="modal-media"></div>
-            
-            <div id="modal-testo" class="modal-text"></div>
-            
+            <div id="modal-text" class="modal-text"></div>
             <div class="piede-pulsantiera-francesco">
                 <a id="link-consiglio" href="#" target="_blank" class="puro-testo-btn">WZ CONSIGLIO</a>
                 <a id="link-tutti" href="#" target="_blank" class="puro-testo-btn">WZ TUTTI EX ALLIEVI</a>
@@ -238,18 +217,13 @@
                     Object.keys(dati).reverse().forEach(function(id) {
                         const post = dati[id];
                         let imgPura = post.urlImmagine || post.immagine || "";
-                        
                         if (imgPura.includes('<img')) {
                             const m = imgPura.match(/src="([^"]+)"/);
                             if (m) imgPura = m[1];
                         }
-
                         const card = document.createElement('div');
                         card.className = 'card';
-                        card.onclick = function() {
-                            apriModal(id, post.titolo, post.testo, imgPura);
-                        };
-                        
+                        card.onclick = function() { apriModal(id, post.titolo, post.testo, imgPura); };
                         card.innerHTML = '<img src="' + imgPura + '" onerror="this.src=\'immagini/francesco.jpg\'">' +
                                          '<div class="card-content">' +
                                              '<h3>' + post.titolo + '</h3>' +
@@ -264,7 +238,7 @@
         window.apriModal = function(id, titolo, testo, media) {
             const mMedia = document.getElementById("modal-media");
             document.getElementById("modal-titolo").innerText = titolo;
-            document.getElementById("modal-testo").innerText = testo || "";
+            document.getElementById("modal-text").innerText = testo || "";
 
             if (media.includes('youtube.com') || media.includes('youtu.be')) {
                 let vid = media.includes('v=') ? media.split('v=')[1].split('&')[0] : media.split('/').pop();
@@ -274,17 +248,8 @@
             }
             
             const urlSito = window.location.origin + window.location.pathname + "?id=" + id;
-            const msgTutti = encodeURIComponent(
-                "🚀 *VIENI A VEDERE SUL SITO IL POST AMPLIATO, DURATURO E STABILE.*\n\n" +
-                "📢 *Cosa che purtroppo non succede su WhatsApp dove tutto scorre via.*\n\n" +
-                "📖 Titolo: *" + titolo + "*\n" +
-                "🔗 Apri l'archivio qui: " + urlSito
-            );
-            const msgMe = encodeURIComponent(
-                "📌 ARCHIVIO PERSONALE:\n" +
-                "Post: " + titolo + "\n" +
-                "Link: " + urlSito
-            );
+            const msgTutti = encodeURIComponent("🚀 *VIENI A VEDERE IL POST:*\n\n📖 *" + titolo + "*\n🔗 " + urlSito);
+            const msgMe = encodeURIComponent("📌 ARCHIVIO PERSONALE:\nPost: " + titolo + "\nLink: " + urlSito);
 
             document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + msgTutti;
             document.getElementById('link-tutti').href = "https://api.whatsapp.com/send?text=" + msgTutti;
@@ -298,14 +263,6 @@
             document.getElementById("myModal").style.display = "none";
             document.getElementById("modal-media").innerHTML = "";
             document.body.style.overflow = 'auto';
-            
-            document.getElementById('link-consiglio').href = "#";
-            document.getElementById('link-tutti').href = "#";
-            document.getElementById('link-privato').href = "#";
-        }
-
-        window.onclick = function(event) {
-            if (event.target == document.getElementById("myModal")) { chiudiModal(); }
         }
 
         caricaArchivio();
