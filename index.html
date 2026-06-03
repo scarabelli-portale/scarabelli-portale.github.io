@@ -72,6 +72,13 @@
             margin-top: 0;
         }
 
+        /* TRUCCO PER IL CELLULARE: Rimpicciolisce Scarabelliamente se lo schermo è stretto */
+        @media (max-width: 600px) {
+            .firma-home {
+                font-size: 2.6rem;
+            }
+        }
+
         /* VETRINA PRIMA PAGINA LANCIATA DALLA REGIA */
         .container-vetrina-home {
             max-width: 1270px;
@@ -239,7 +246,6 @@
 
 <body>
 
-    <!-- COPERTINA CON VALORI DI STILE COORDINATI E BLOCCO RIBASSATO AL MASSIMO -->
     <div class="copertina-container">
         <img src="immagini/scuola.jpg" class="foto-scuola">
         <div id="contenitore-titolo-home">
@@ -248,7 +254,6 @@
         </div>
     </div>
 
-    <!-- SPAZIO RICEVITORE: PRIMA PAGINA EDITORIALE -->
     <div id="vetrina-regia" class="container-vetrina-home">
         <div class="box-prima-pagina">
             <div id="vetrina-autore" class="info-prima-pagina">IN PRIMA PAGINA</div>
@@ -259,7 +264,6 @@
     </div>
 
     <div class="main-container">
-        <!-- COLONNA CENTRO: FRANCESCO -->
         <div class="colonna-centro">
             <div class="box" style="min-height: 550px;">
                 <div class="titolo-sezione">Pres. Francesco Mariani</div>
@@ -279,9 +283,7 @@
             </div>
         </div>
 
-        <!-- COLONNA SINISTRA: FAUSTO & CINZIA -->
         <div class="colonna-sinistra">
-            <!-- FAUSTO -->
             <div class="box">
                 <div class="titolo-sezione">Meteo & Satellite</div>
                 <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
@@ -299,7 +301,6 @@
                 </div>
             </div>    
 
-            <!-- CINZIA -->
             <div class="box">
                 <div class="titolo-sezione">Didattica & Lavoro</div>
                 <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
@@ -318,9 +319,7 @@
             </div>
         </div>
 
-        <!-- COLONNA DESTRA: CARLO & SERGIO -->
         <div class="colonna-destra">
-            <!-- CARLO -->
             <div class="box">
                 <div class="titolo-sezione">Economia</div>
                 <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
@@ -335,7 +334,6 @@
                 </div>
             </div>
 
-            <!-- SERGIO -->
             <div class="box">
                 <div class="titolo-sezione">Archivio Sergio</div>
                 <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
@@ -374,14 +372,16 @@
             return null;
         }
 
-        // --- ASCOLTATORE CANALE PRIMA PAGINA (SUPER SICURO - NO BACKTICK) ---
+        // --- ASCOLTATORE CANALE PRIMA PAGINA (CORRETTO) ---
         db.ref('ultimoArticolo').on('value', function(snapshot) {
             const art = snapshot.val();
             const vetrina = document.getElementById('vetrina-regia');
             if(art && art.titolo) {
                 document.getElementById('vetrina-titolo').innerText = art.titolo;
                 document.getElementById('vetrina-testo').innerText = art.testo || "";
-                document.getElementById('vetrina-autore').innerText = 'IN PRIMA PAGINA • Redatto da: ' + (art.autore || 'Redazione') + ' • ' + (art.data || '');
+                
+                // CORREZIONE CHIRURGICA: Mostra l'autore inviato dalla cabina di regia invece della parola fissa Redazione
+                document.getElementById('vetrina-autore').innerText = 'A cura di: ' + (art.autore || 'Redazione') + ' • ' + (art.data || '');
                 
                 const mediaBox = document.getElementById('vetrina-media');
                 mediaBox.innerHTML = "";
@@ -409,7 +409,7 @@
             }
         });
 
-        // --- CANALI DEGLI ARCHIVI IN COLONNA (SICURO ERRORE 13) ---
+        // --- CANALI DEGLI ARCHIVI IN COLONNA ---
         const archivi = [
             { ref: 'archivio_francesco', lista: 'lista-home-francesco', monitor: 'img-francesco-dinamica', def: 'immagini/francesco.jpg', link: 'francesco.html' },
             { ref: 'archivioCinzia', lista: 'lista-home-cinzia', monitor: 'img-cinzia-dinamica', def: 'immagini/cinzia.jpg', link: 'cinzia.html' },
@@ -425,7 +425,7 @@
                 listEl.innerHTML = "";
                 let articoli = [];
                 snap.forEach(function(c) { articoli.push(Object.assign({ id: c.key }, c.val())); });
-                articoli.reverse();
+                articoli.reverse(); // Corretto il piccolo refuso 'articles' con 'articoli' per stabilità generale
 
                 const setMonitor = function(post, targetImg) {
                     const monitor = document.getElementById(targetImg);

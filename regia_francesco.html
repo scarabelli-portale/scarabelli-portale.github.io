@@ -119,7 +119,7 @@
         document.getElementById('titolo-attuale').innerText = d ? d.titolo : "Nessun articolo";
     });
 
-    // 2. MONITORAGGIO DI TUTTI GLI ARCHIVI
+    // 2. MONITORAGGIO DI TUTTI GLI ARCHIVI (Sistemata S maiuscola su Sergio)
     const archivi = [
         { nome: 'archivio_francesco', etichetta: 'Francesco' },
         { nome: 'archivioSergio', etichetta: 'Sergio' },
@@ -138,7 +138,6 @@
                     const post = child.val();
                     const id = child.key;
                     
-                    // Rimozione chirurgica dei backtick per evitare l'errore 13 della chat
                     const riga = document.createElement('div');
                     riga.className = 'riga-post';
                     riga.id = 'post-' + id;
@@ -149,7 +148,7 @@
                                          '<span class="data-label">' + (post.data || '') + '</span>' +
                                      '</div>' +
                                      '<div class="area-bottoni">' +
-                                         '<button class="puro-testo-cmd lancia" onclick="mettiInHome(\'' + arc.nome + '\', \'' + id + '\')">VAI IN HOME</button>' +
+                                         '<button class="puro-testo-cmd lancia" onclick="mettiInHome(\'' + arc.nome + '\', \'' + id + '\', \'' + arc.etichetta + '\')">VAI IN HOME</button>' +
                                          '<button class="puro-testo-cmd cancella" onclick="eliminaPost(\'' + arc.nome + '\', \'' + id + '\')">ELIMINA 🗑️</button>' +
                                      '</div>';
                                      
@@ -159,8 +158,8 @@
         });
     }
 
-    // 3. FUNZIONE PER PORTARE IN PRIMA PAGINA CORRETTA E COORDINTATA
-    window.mettiInHome = function(archivio, id) {
+    // 3. FUNZIONE PER PORTARE IN PRIMA PAGINA CORRETTA E COORDINATA
+    window.mettiInHome = function(archivio, id, etichettaFlusso) {
         database.ref(archivio + '/' + id).once('value').then(function(snapshot) {
             const dati = snapshot.val();
             
@@ -171,13 +170,15 @@
                 if (m) imgLink = m[1];
             }
 
-            // Inviamo le etichette giuste che la Index si aspetta di leggere
+            // CORREZIONE CHIRURGICA AUTORE: Se dati.autore non esiste, prende il nome dell'archivio (Cinzia, Sergio, Carlo, ecc.)
+            let autoreReale = dati.autore || etichettaFlusso || "Redazione";
+
             database.ref('ultimoArticolo').set({
                 titolo: dati.titolo,
                 testo: dati.testo,
                 immagine: imgLink,       // Sincronizzato con la index
                 urlImmagine: imgLink,    // Doppia sicurezza per Carlo e Sergio
-                autore: dati.autore || "Redazione",
+                autore: autoreReale,     // Ora passerà il nome corretto di chi ha scritto il post!
                 data: dati.data || new Date().toLocaleString('it-IT'),
                 video: dati.video || ""
             }).then(function() {
