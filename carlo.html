@@ -5,128 +5,373 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ARCHIVIO SCARABELLI - Carlo</title>
     <style>
+        /* IMPORTAZIONE FONT ELEGANTE PARISIENNE */
         @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
-        body { font-family: sans-serif; margin: 0; padding: 0; background-color: #ffffff; color: #000000; line-height: 1.6; overflow-x: hidden; }
-        .copertina-container { position: relative; width: 100%; max-width: 1300px; margin: 0 auto; height: 250px; overflow: hidden; border-bottom: 5px solid #143ca0; background: #000; }
-        .foto-scuola { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; opacity: 0.7; }
-        #contenitore-titolo { position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); text-align: center; z-index: 10; width: 100%; }
-        .titolo-stampato { font-family: 'Parisienne', cursive; font-size: 3.8rem; color: white; text-shadow: 3px 3px 8px rgba(0,0,0,1); font-weight: normal; margin-bottom: -15px; display: block; }
-        .firma-carlo { font-family: 'Parisienne', cursive; font-size: 2.2rem; color: white; text-shadow: 3px 3px 8px rgba(0,0,0,1); margin-top: 0; display: block; }
-        .nav-bar { max-width: 1200px; margin: 20px auto; display: flex; align-items: center; background: #ffffff; padding: 0 20px; border-radius: 8px; border: 1px solid #eaeaea; box-shadow: 0 4px 15px rgba(0,0,0,0.04); height: 60px; justify-content: space-between; box-sizing: border-box; }
+
+        body { 
+            font-family: sans-serif; 
+            margin: 0; 
+            padding: 0;
+            background-color: #ffffff; /* Fondale bianco professionale */
+            color: #000000; /* Testo nero nitido */
+            line-height: 1.6; 
+            overflow-x: hidden; 
+        }
+
+        /* TESTATA MODELLO UNIFICATO PORTALE */
+        .copertina-container { 
+            position: relative; 
+            width: 100%; 
+            max-width: 1300px; 
+            margin: 0 auto; 
+            height: 250px; 
+            overflow: hidden; 
+            border-bottom: 5px solid #143ca0; 
+            background: #000; 
+        }
+        .foto-scuola { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            object-position: center 40%;
+            opacity: 0.7; 
+        }
+        
+        #contenitore-titolo { 
+            position: absolute; 
+            bottom: 5px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            text-align: center; 
+            z-index: 10; 
+            width: 100%; 
+        }
+        
+        .titolo-stampato { 
+            font-family: 'Parisienne', cursive;
+            font-size: 3.8rem; 
+            color: white; 
+            text-shadow: 3px 3px 8px rgba(0,0,0,1);
+            font-weight: normal; 
+            text-transform: none; 
+            letter-spacing: normal;
+            margin-bottom: -15px; 
+            display: block;
+        }
+        
+        .firma-carlo { 
+            font-family: 'Parisienne', cursive; 
+            font-size: 2.2rem; 
+            color: white; 
+            text-shadow: 3px 3px 8px rgba(0,0,0,1); 
+            margin-top: 0;
+            display: block;
+        }
+        
+        /* BARRA DI NAVIGAZIONE CHIARA */
+        .nav-bar { 
+            max-width: 1200px; 
+            margin: 20px auto; 
+            display: flex; 
+            align-items: center; 
+            background: #ffffff; 
+            padding: 0 20px; 
+            border-radius: 8px; 
+            border: 1px solid #eaeaea; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04); 
+            height: 60px; 
+            justify-content: space-between; 
+            box-sizing: border-box; 
+        }
         .identita-redattore { display: flex; align-items: center; gap: 12px; }
         .foto-redattore-mini { width: 40px; height: 40px; border-radius: 50%; border: 1px solid #eaeaea; object-fit: cover; }
         .nome-redattore { font-size: 0.9rem; font-weight: bold; color: #000000; text-transform: uppercase; letter-spacing: 0.5px; }
-        .btn-home { background: none !important; border: none !important; text-decoration: none !important; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; color: #000000 !important; transition: color 0.2s; }
+        
+        .btn-home { 
+            background: none !important;
+            border: none !important;
+            text-decoration: none !important;
+            font-weight: bold; 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            color: #000000 !important;
+            transition: color 0.2s;
+        }
         .btn-home:hover { color: #143ca0 !important; }
+
         .main-container { max-width: 1200px; margin: 0 auto; padding: 10px 20px; box-sizing: border-box; }
+        
+        /* PARTE TRADING PULITA */
         .area-trading { display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 30px; }
         .box-widget { background: white; border: 1px solid #eaeaea; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
+
+        /* GRIGLIA POST CARLO */
         .griglia-articoli { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 40px; }
-        .box-articolo { background: #ffffff; border: 1px solid #eaeaea; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.06); box-sizing: border-box; display: flex; flex-direction: column; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; word-wrap: break-word; }
-        .box-articolo:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        .box-articolo.singolo-aperto { grid-column: span 3; max-width: 850px; margin: 0 auto; cursor: default; border: none; box-shadow: none; padding: 10px; }
+        
+        .box-articolo { 
+            background: #ffffff; 
+            border: 1px solid #eaeaea; 
+            padding: 20px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06); 
+            box-sizing: border-box; 
+            display: flex; 
+            flex-direction: column; 
+            cursor: pointer; 
+            transition: transform 0.2s, box-shadow 0.2s; 
+            word-wrap: break-word; 
+        }
+        .box-articolo:hover { 
+            transform: translateY(-4px); 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+        }
+        
         h1 { color: #143ca0; font-size: 1.15rem; font-weight: bold; margin: 12px 0; text-transform: uppercase; line-height: 1.3; text-align: left; }
-        .box-articolo.singolo-aperto h1 { font-size: 2.4rem; color: #000000; text-align: center; margin-bottom: 25px; border-bottom: 1px solid #eaeaea; padding-bottom: 15px; }
         .img-articolo { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
-        .box-articolo.singolo-aperto .img-articolo { width: auto; max-width: 100%; height: auto; max-height: 450px; object-fit: contain; margin: 20px auto; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
         .testo-articolo { font-size: 0.95rem; text-align: justify; white-space: pre-wrap; color: #444444; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
-        .box-articolo.singolo-aperto .testo-articolo { font-size: 1.15rem; display: block; overflow: visible; color: #000000; max-width: 750px; margin: 25px auto; padding: 0 10px; }
-        .piede-pulsantiera-carlo { margin-top: 50px; padding-bottom: 20px; text-align: center; border-top: 1px solid #eaeaea; padding-top: 30px; width: 100%; display: none; }
-        .puro-testo-btn { background: none !important; border: none !important; box-shadow: none !important; margin: 10px 20px; font-size: 16px; font-weight: bold; text-transform: uppercase; text-decoration: none !important; color: #000000 !important; cursor: pointer; display: inline-block; font-family: sans-serif; letter-spacing: 0.8px; }
-        .puro-testo-btn:hover { color: #143ca0 !important; }
+
+        /* --- FINESTRA DI INGRANDIMENTO SCHERMO BIANCO COPIATA DA FAUSTO --- */
+        .modal { 
+            display: none; 
+            position: fixed; 
+            z-index: 9999; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: #ffffff; 
+            overflow-y: auto; 
+            box-sizing: border-box;
+            padding: 40px 20px;
+        }
+        .modal-content { 
+            max-width: 800px; 
+            margin: auto; 
+            text-align: center; 
+            position: relative; 
+        }
+        .modal-media img { 
+            width: auto; 
+            max-width: 100%; 
+            height: auto; 
+            max-height: 450px; 
+            object-fit: contain; 
+            border-radius: 8px; 
+            margin: 20px auto; 
+            display: block;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .modal-text { 
+            text-align: justify; 
+            line-height: 1.7; 
+            color: #000000; 
+            white-space: pre-wrap; 
+            font-size: 1.15rem; 
+            max-width: 750px;
+            margin: 25px auto;
+            padding: 10px;
+        }
+
+        /* PIEDE PULSANTIERA IN PURO TESTO NERO */
+        .piede-pulsantiera-carlo {
+            margin-top: 50px;
+            padding-bottom: 20px;
+            text-align: center;
+            border-top: 1px solid #eaeaea;
+            padding-top: 30px;
+            width: 100%;
+        }
+        .puro-testo-btn {
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            margin: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none !important; 
+            color: #000000 !important; 
+            cursor: pointer;
+            display: inline-block;
+            font-family: sans-serif;
+            letter-spacing: 0.8px;
+            transition: color 0.2s ease;
+        }
+        .puro-testo-btn:hover {
+            color: #143ca0 !important; 
+        }
+
+        @media (max-width: 900px) { 
+            .griglia-articoli { grid-template-columns: repeat(2, 1fr); } 
+        }
+        @media (max-width: 600px) { 
+            .copertina-container { height: 160px; } 
+            .firma-carlo { font-size: 2.2rem; }
+            .area-trading { flex-direction: column; } 
+            .griglia-articoli { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
-    <div class="copertina-container">
-        <img src="immagini/scuola.jpg" class="foto-scuola">
-        <div id="contenitore-titolo">
-            <span class="titolo-stampato">Scarabelliamente</span>
-            <span class="firma-carlo">Archivio Carlo</span>
-        </div>
-    </div>
-    <div class="nav-bar">
-        <div class="identita-redattore">
-            <img src="immagini/carlo.jpg" class="foto-redattore-mini" onerror="this.src='immagini/scuola.jpg'">
-            <span class="nome-redattore">Carlo</span>
-        </div>
-        <a href="index.html" class="btn-home">HOME PAGE</a>
-    </div>
-    <div class="main-container">
-        <div id="sezione-trading">
-            <div style="margin-bottom: 20px; border-radius: 12px; overflow: hidden; border: 1px solid #eaeaea; background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.04);">
-                <iframe src="https://s.tradingview.com/embed-widget/ticker-tape/?locale=it" width="100%" height="46" frameborder="0" scrolling="no"></iframe>
-            </div>
-            <div class="area-trading">
-                <div class="box-widget" style="flex: 1; min-width: 300px; height: 400px;">
-                    <iframe src="https://s.tradingview.com/embed-widget/technical-analysis/?locale=it" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
-                </div>
-                <div class="box-widget" style="flex: 1; min-width: 300px; height: 400px; padding: 15px; background: white; box-sizing: border-box;">
-                    <h4 style="text-align:center; margin: 0 0 15px 0; color:#000000; font-size:0.85rem; font-weight:bold; text-transform:uppercase; letter-spacing:0.5px;">Trend di Mercato</h4>
-                    <iframe src="https://s.tradingview.com/embed-widget/mini-symbol-overview/?locale=it" width="100%" height="310" frameborder="0" scrolling="no"></iframe>
-                </div>
+
+    <!-- STRUTTURA PRINCIPALE VISIBILE -->
+    <div id="struttura-visibile-carlo">
+        <div class="copertina-container">
+            <img src="immagini/scuola.jpg" class="foto-scuola">
+            <div id="contenitore-titolo">
+                <span class="titolo-stampato">Scarabelliamente</span>
+                <span class="firma-carlo">Archivio Carlo</span>
             </div>
         </div>
-        <div id="lista-articoli" class="griglia-articoli"></div>
-        <div class="piede-pulsantiera-carlo" id="piede-whatsapp-carlo">
-            <a id="link-consiglio" href="#" target="_blank" class="puro-testo-btn">WZ CONSIGLIO</a>
-            <a id="link-tutti" href="#" target="_blank" class="puro-testo-btn">WZ TUTTI EX ALLIEVI</a>
-            <a id="link-privato" href="#" target="_blank" class="puro-testo-btn">WZ ARCHIVIO PERSONALE</a>
-            <a href="carlo.html" class="puro-testo-btn">TORNA ALL'ARCHIVIO</a>
+        
+        <div class="nav-bar">
+            <div class="identita-redattore">
+                <img src="immagini/carlo.jpg" class="foto-redattore-mini" onerror="this.src='immagini/scuola.jpg'">
+                <span class="nome-redattore">Carlo</span>
+            </div>
+            <a href="index.html" class="btn-home">HOME PAGE</a>
+        </div>
+
+        <div class="main-container">
+            <!-- SEZIONE FINANZIARIA TRADINGVIEW -->
+            <div id="sezione-trading">
+                <div style="margin-bottom: 20px; border-radius: 12px; overflow: hidden; border: 1px solid #eaeaea; background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.04);">
+                    <iframe src="https://s.tradingview.com/embed-widget/ticker-tape/?locale=it" width="100%" height="46" frameborder="0" scrolling="no"></iframe>
+                </div>
+
+                <div class="area-trading">
+                    <div class="box-widget" style="flex: 1; min-width: 300px; height: 400px;">
+                        <iframe src="https://s.tradingview.com/embed-widget/technical-analysis/?locale=it" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
+                    </div>
+
+                    <div class="box-widget" style="flex: 1; min-width: 300px; height: 400px; padding: 15px; background: white; box-sizing: border-box;">
+                        <h4 style="text-align:center; margin: 0 0 15px 0; color:#000000; font-size:0.85rem; font-weight:bold; text-transform:uppercase; letter-spacing:0.5px;">Trend di Mercato</h4>
+                        <iframe src="https://s.tradingview.com/embed-widget/mini-symbol-overview/?locale=it" width="100%" height="310" frameborder="0" scrolling="no"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GRIGLIA POST ALBUM -->
+            <div id="lista-articoli" class="griglia-articoli"></div>
         </div>
     </div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-        
-        const firebaseConfig = { databaseURL: "https://sito-sergio-b19ce-default-rtdb.europe-west1.firebasedatabase.app" };
-        const app = initializeApp(firebaseConfig); 
-        const db = getDatabase(app);
+    <!-- OVERLAY DETTAGLIO POST BIANCO (STRUTTURA UNIFICATA) -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span id="modal-data" style="font-size:0.9rem; color:#777; font-weight:bold; margin-bottom:10px; display:block; text-align:center;"></span>
+            <h2 id="modal-titolo" style="text-align:center; margin-bottom:25px; color:#143ca0; font-family: sans-serif; font-weight: bold; text-transform: uppercase; font-size: 2rem;"></h2>
+            
+            <div id="modal-media" class="modal-media"></div>
+            
+            <div id="modal-testo" class="modal-text"></div>
+            
+            <div class="piede-pulsantiera-carlo">
+                <a id="link-consiglio" href="#" target="_blank" class="puro-testo-btn">WZ CONSIGLIO</a>
+                <a id="link-tutti" href="#" target="_blank" class="puro-testo-btn">WZ TUTTI EX ALLIEVI</a>
+                <a id="link-privato" href="#" target="_blank" class="puro-testo-btn">WZ ARCHIVIO PERSONALE</a>
+                <button class="puro-testo-btn" onclick="chiudiModal()">CHIUDI X</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MOTORE CLASSICO STABILE FIREBASE 8 -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script>
+        const firebaseConfig = { 
+            apiKey: "AIzaSyDoVrE-Tx0NL2UqDXAK0Z9EnZdjEVxZLIc",
+            databaseURL: "https://sito-sergio-b19ce-default-rtdb.europe-west1.firebasedatabase.app/" 
+        };
+        if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
+        const database = firebase.database();
+        const dbRef = database.ref('archivioCarlo');
+
         const urlParams = new URLSearchParams(window.location.search);
         const idDaAprire = urlParams.get('id');
 
-        onValue(ref(db, 'archivioCarlo'), function(snapshot) {
-            const container = document.getElementById("lista-articoli"); 
-            container.innerHTML = "";
-            const data = snapshot.val();
-            
-            if (data) { 
-                Object.keys(data).reverse().forEach(function(id) { 
-                    const art = data[id];
-                    if (idDaAprire && id !== idDaAprire) return;
+        dbRef.on('value', function(snap) {
+            const container = document.getElementById('lista-articoli');
+            const dati = snap.val();
+            if(dati) {
+                container.innerHTML = "";
+                Object.keys(dati).reverse().forEach(function(id) {
+                    const post = dati[id];
                     
-                    if(idDaAprire && id === idDaAprire) {
-                        const sez = document.getElementById('sezione-trading');
-                        if(sez) sez.style.display = 'none';
-                        const urlSito = window.location.origin + window.location.pathname + "?id=" + id;
-                        const msgTutti = encodeURIComponent("🚀 *VIENI A VEDERE IL POST:*\n📖 *" + art.titolo + "*\n🔗 " + urlSito);
-                        const msgMe = encodeURIComponent("📌 ARCHIVIO PERSONALE:\nPost: " + art.titolo + "\nLink: " + urlSito);
-                        document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + msgTutti;
-                        document.getElementById('link-tutti').href = "https://api.whatsapp.com/send?text=" + msgTutti;
-                        document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + msgMe;
-                        document.getElementById('piede-whatsapp-carlo').style.display = 'block';
+                    let imgLink = post.urlImmagine || post.immagine || '';
+                    if (imgLink.includes('<img')) {
+                        const m = imgLink.match(/src="([^"]+)"/);
+                        if (m) imgLink = m[1];
                     }
-                    
+
                     const card = document.createElement('div');
-                    card.className = idDaAprire ? "box-articolo singolo-aperto" : "box-articolo";
-                    if (!idDaAprire) card.onclick = function() { window.location.href = 'carlo.html?id=' + id; };
+                    card.className = 'box-articolo';
+                    card.onclick = function() {
+                        apriModal(id, post.titolo, post.testo, imgLink, post.data);
+                    };
                     
-                    let contenutoHtml = "";
-                    let imgDaUsare = art.urlImmagine || art.immagine;
-                    if (imgDaUsare) {
-                        let trovato = imgDaUsare.match(/https?:\/\/[^"'>\s]+\.(?:jpg|jpeg|gif|png|webp)/i);
-                        let urlPulito = trovato ? trovato[0] : imgDaUsare;
-                        contenutoHtml += '<img src="' + urlPulito + '" class="img-articolo" onerror="this.style.display=\'none\'">';
+                    let contenutoCard = "";
+                    if (imgLink) {
+                        contenutoCard += '<img src="' + imgLink + '" class="img-articolo" onerror="this.style.display=\'none\'">';
                     }
-                    contenutoHtml += '<span style="font-size:0.8rem; color:#777; font-weight:bold; margin-bottom:5px; display:block; text-align:left;">DATA: ' + (art.data || '') + '</span>';
-                    contenutoHtml += '<h1>' + art.titolo + '</h1>';
-                    contenutoHtml += '<div class="testo-articolo">' + art.testo + '</div>';
+                    contenutoCard += '<span style="font-size:0.8rem; color:#777; font-weight:bold; margin-bottom:5px; display:block; text-align:left;">DATA: ' + (post.data || '') + '</span>';
+                    contenutoCard += '<h1>' + post.titolo + '</h1>';
+                    contenutoCard += '<div class="testo-articolo">' + post.testo + '</div>';
                     
-                    card.innerHTML = contenutoHtml;
+                    card.innerHTML = contenutoCard;
                     container.appendChild(card);
-                }); 
+                });
+
+                if (idDaAprire && dati[idDaAprire]) {
+                    const pEsterno = dati[idDaAprire];
+                    let imgEsterna = pEsterno.urlImmagine || pEsterno.immagine || '';
+                    if (imgEsterna.includes('<img')) {
+                        const m = imgEsterna.match(/src="([^"]+)"/);
+                        if (m) imgEsterna = m[1];
+                    }
+                    apriModal(idDaAprire, pEsterno.titolo, pEsterno.testo, imgEsterna, pEsterno.data);
+                }
             }
         });
+
+        window.apriModal = function(id, titolo, testo, immagine, dataPost) {
+            document.getElementById('struttura-visibile-carlo').style.display = 'none';
+
+            document.getElementById("modal-data").innerText = "DATA: " + (dataPost || "");
+            document.getElementById("modal-titolo").innerText = titolo;
+            document.getElementById("modal-testo").innerText = testo || "";
+            
+            const mediaBox = document.getElementById("modal-media");
+            if (immagine) {
+                mediaBox.innerHTML = '<img src="' + immagine + '">';
+            } else {
+                mediaBox.innerHTML = '';
+            }
+            
+            const urlSito = window.location.origin + window.location.pathname + "?id=" + id;
+            const msgTutti = encodeURIComponent("🚀 *VIENI A VEDERE IL POST:*\n📖 *" + titolo + "*\n🔗 " + urlSito);
+            const msgMe = encodeURIComponent("📌 ARCHIVIO PERSONALE:\nPost: " + titolo + "\nLink: " + urlSito);
+
+            document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + msgTutti;
+            document.getElementById('link-tutti').href = "https://api.whatsapp.com/send?text=" + msgTutti;
+            document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + msgMe;
+
+            document.getElementById("myModal").style.display = "block";
+            window.scrollTo(0, 0);
+        }
+
+        window.chiudiModal = function() {
+            document.getElementById("myModal").style.display = "none";
+            document.getElementById('struttura-visibile-carlo').style.display = 'block';
+            
+            if (window.location.search) {
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("myModal")) { chiudiModal(); }
+        }
     </script>
 </body>
 </html>
