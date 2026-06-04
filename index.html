@@ -372,16 +372,16 @@
             return null;
         }
 
-        // --- ASCOLTATORE CANALE PRIMA PAGINA (CORRETTO) ---
-        db.ref('ultimoArticolo').on('value', function(snapshot) {
+        // --- COLLEGAMENTO DINAMICO ALLA REGIA FRANCESCO DI FIREBASE ---
+        db.ref('regiaFrancesco/primoPiano').on('value', function(snapshot) {
             const art = snapshot.val();
             const vetrina = document.getElementById('vetrina-regia');
+            
+            // Se la regia contiene dati validi, mostra il blocco
             if(art && art.titolo) {
                 document.getElementById('vetrina-titolo').innerText = art.titolo;
                 document.getElementById('vetrina-testo').innerText = art.testo || "";
-                
-                // CORREZIONE CHIRURGICA: Mostra l'autore inviato dalla cabina di regia invece della parola fissa Redazione
-                document.getElementById('vetrina-autore').innerText = 'A cura di: ' + (art.autore || 'Redazione') + ' • ' + (art.data || '');
+                document.getElementById('vetrina-autore').innerText = 'A cura di: ' + (art.sorgente === 'archivioFausto' ? 'FAUSTO' : 'FRANCESCO') + ' • ' + (art.data || '');
                 
                 const mediaBox = document.getElementById('vetrina-media');
                 mediaBox.innerHTML = "";
@@ -403,8 +403,10 @@
                 } else {
                     mediaBox.style.display = 'none';
                 }
+                // ACCENSIONE GEOMETRICA DEL BLOCCO
                 vetrina.style.display = 'block';
             } else {
+                // SPEGNIMENTO TOTALE: SPERISCE IL MANIFESTO E LO SPAZIO VUOTO
                 vetrina.style.display = 'none';
             }
         });
@@ -425,7 +427,7 @@
                 listEl.innerHTML = "";
                 let articoli = [];
                 snap.forEach(function(c) { articoli.push(Object.assign({ id: c.key }, c.val())); });
-                articoli.reverse(); // Corretto il piccolo refuso 'articles' con 'articoli' per stabilità generale
+                articoli.reverse();
 
                 const setMonitor = function(post, targetImg) {
                     const monitor = document.getElementById(targetImg);

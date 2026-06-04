@@ -3,199 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REGIA EDITORIALE - FRANCESCO</title>
+    <title>GESTIONE PRIMA PAGINA - FRANCESCO</title>
     <style>
-        body { 
-            font-family: sans-serif; 
-            background-color: #ffffff; /* Fondale bianco professionale */
-            color: #000000; /* Testo nero */
-            text-align: center; 
-            padding: 20px; 
-            margin: 0; 
-            line-height: 1.6;
-        }
+        body { font-family: sans-serif; background: #f5f7fa; padding: 20px; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #eaeaea; }
+        .header-regia { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        h1 { margin: 0; color: #111; text-transform: uppercase; font-size: 1.8rem; }
+        .btn-esci { padding: 8px 18px; background: #34495e; color: white !important; text-decoration: none !important; border-radius: 6px; font-weight: bold; font-size: 0.85rem; text-transform: uppercase; }
+        .btn-esci:hover { background: #2c3e50; }
+        .sottotitolo { color: #666; margin-bottom: 30px; font-size: 0.95rem; margin-top: 5px; }
+        .status-box { background: #f0f4f8; padding: 15px; border-radius: 8px; text-align: center; font-weight: bold; margin-bottom: 30px; border: 1px solid #d0dbe5; }
+        .status-box span { color: #143ca0; }
         
-        .box-regia { 
-            width: 95%; 
-            max-width: 850px; 
-            margin: 20px auto; 
-            background: #ffffff; 
-            padding: 30px 20px; 
-            border-radius: 12px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
-            border: 1px solid #eaeaea; 
-        }
-        
-        /* RIGHE DEL FLUSSO REDAZIONALE APERTE E MODERNE */
-        .riga-post { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 15px 10px; 
-            border-bottom: 1px solid #eaeaea; 
-            background: #ffffff; 
-            margin-bottom: 5px; 
-        }
-        
-        .info-post { text-align: left; flex-grow: 1; }
-        .autore-label { font-size: 0.8rem; font-weight: bold; color: #143ca0; text-transform: uppercase; display: block; margin-bottom: 2px; }
-        .titolo-post { font-size: 1.1rem; font-weight: bold; color: #000000; display: block; }
-        .data-label { font-size: 0.8rem; color: #777777; font-weight: bold; }
-        
-        .area-bottoni { display: flex; gap: 25px; align-items: center; }
-        
-        /* SEZIONE BADGE PRIMA PAGINA MINIMALISTA */
-        .badge-home { 
-            font-size: 1rem;
-            color: #000000; 
-            padding: 15px; 
-            border-radius: 8px; 
-            font-weight: bold; 
-            margin-bottom: 35px; 
-            display: block; 
-            border: 1px solid #eaeaea;
-            background-color: #f9f9f9;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        #titolo-attuale { color: #143ca0; }
-        
-        /* PULSANTI DI COMANDO IN PURO TESTO SENZA SCATOLETTE COLORATE */
-        .puro-testo-cmd {
-            background: none !important;
-            border: none !important;
-            box-shadow: none !important;
-            padding: 5px 0 !important;
-            font-size: 0.9rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            text-decoration: none !important;
-            color: #000000 !important;
-            cursor: pointer;
-            font-family: sans-serif;
-            letter-spacing: 0.5px;
-            transition: color 0.2s;
-        }
-        .puro-testo-cmd.lancia:hover { color: #27ae60 !important; } /* Verde quando si lancia */
-        .puro-testo-cmd.cancella:hover { color: #ff4d4d !important; } /* Rosso quando si elimina */
-        .puro-testo-cmd.navigazione:hover { color: #143ca0 !important; } /* Blu quando si torna alla home */
+        .btn-reset { background: #e74c3c; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 12px; font-size: 0.9rem; text-transform: uppercase; }
+        .btn-reset:hover { background: #c0392b; }
+
+        .sezione-titolo { text-align: center; font-weight: bold; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 0.5px; }
+        .lista-post { display: flex; flex-direction: column; gap: 15px; }
+        .post-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #eaeaea; }
+        .post-info { display: flex; flex-direction: column; gap: 3px; }
+        .autore { color: #143ca0; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; }
+        .titolo { font-weight: bold; font-size: 1.1rem; }
+        .data { color: #777; font-size: 0.75rem; }
+        .post-actions { display: flex; gap: 20px; }
+        .action-btn { background: none; border: none; font-weight: bold; font-size: 0.85rem; text-transform: uppercase; cursor: pointer; }
+        .btn-home { color: #000000; }
+        .btn-home:hover { color: #143ca0; }
+        .btn-elimina { color: #000000; }
+        .btn-elimina:hover { color: #e74c3c; }
     </style>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 </head>
 <body>
 
-<div class="box-regia">
-    <h1 style="color:#000000; font-weight: bold; text-transform: uppercase; margin: 0 0 5px 0; font-size: 2.2rem;">⚓ Regia di Francesco</h1>
-    <p style="color:#555555; font-weight: 500; margin-bottom: 30px;">Gestione flussi redazionali e Prima Pagina</p>
-    
-    <div id="stato-home">
-        <div class="badge-home">ATTUALMENTE IN PRIMA PAGINA: <span id="titolo-attuale">Caricamento...</span></div>
+    <div class="container">
+        <div class="header-regia">
+            <h1>⚓ GESTIONE PRIMA PAGINA</h1>
+            <a href="index.html" class="btn-esci">⬅ ESCI</a>
+        </div>
+        <div class="sottotitolo">Gestione flussi redazionali e Prima Pagina</div>
+
+        <div class="status-box">
+            ATTUALMENTE IN PRIMA PAGINA: <span id="current-home">CARICAMENTO...</span><br>
+            <button class="btn-reset" onclick="rimuoviDaHome()">❌ TOGLIERE IL MANIFESTO/LOCANDINA IN PRIMA PAGINA</button>
+        </div>
+
+        <div class="sezione-titolo">ULTIMI POST DALLA REDAZIONE</div>
+        <div id="lista-post" class="lista-post"></div>
     </div>
 
-    <div id="flusso-totale">
-        <h3 style="border-bottom: 1px solid #eaeaea; padding-bottom: 15px; color: #000000; text-transform: uppercase; font-size: 1.1rem; letter-spacing: 0.5px;">ULTIMI POST DALLA REDAZIONE</h3>
-        <div id="lista-globale"></div>
-    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script>
+        const firebaseConfig = { 
+            apiKey: "AIzaSyDoVrE-Tx0NL2UqDXAK0Z9EnZdjEVxZLIc",
+            databaseURL: "https://sito-sergio-b19ce-default-rtdb.europe-west1.firebasedatabase.app/" 
+        };
+        if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
+        const database = firebase.database();
 
-    <div style="margin-top: 40px; border-top: 1px solid #eaeaea; padding-top: 20px;">
-        <button class="puro-testo-cmd navigazione" style="font-size: 1rem;" onclick="location.href='index.html'">VAI ALLA HOME DEL SITO</button>
-    </div>
-</div>
+        let postLocali = {};
 
-<script>
-    const firebaseConfig = {
-        apiKey: "AIzaSyDoVrE-Tx0NL2UqDXAK0Z9EnZdjEVxZLIc",
-        authDomain: "sito-sergio-b19ce.firebaseapp.com",
-        databaseURL: "https://sito-sergio-b19ce-default-rtdb.europe-west1.firebasedatabase.app/",
-        projectId: "sito-sergio-b19ce"
-    };
-    if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
-    const database = firebase.database();
-
-    // 1. LEGGI COSA C'È IN PRIMA PAGINA ADESSO
-    database.ref('ultimoArticolo').on('value', function(snapshot) {
-        const d = snapshot.val();
-        document.getElementById('titolo-attuale').innerText = d ? d.titolo : "Nessun articolo";
-    });
-
-    // 2. MONITORAGGIO DI TUTTI GLI ARCHIVI (Sistemata S maiuscola su Sergio)
-    const archivi = [
-        { nome: 'archivio_francesco', etichetta: 'Francesco' },
-        { nome: 'archivioSergio', etichetta: 'Sergio' },
-        { nome: 'archivioCinzia', etichetta: 'Cinzia' },
-        { nome: 'archivioCarlo', etichetta: 'Carlo' },
-        { nome: 'archivioFausto', etichetta: 'Fausto' }
-    ];
-
-    function caricaFlusso() {
-        const contenitore = document.getElementById('lista-globale');
-        contenitore.innerHTML = "";
-
-        archivi.forEach(function(arc) {
-            database.ref(arc.nome).limitToLast(5).on('value', function(snapshot) {
-                snapshot.forEach(function(child) {
-                    const post = child.val();
-                    const id = child.key;
-                    
-                    const riga = document.createElement('div');
-                    riga.className = 'riga-post';
-                    riga.id = 'post-' + id;
-                    
-                    riga.innerHTML = '<div class="info-post">' +
-                                         '<span class="autore-label">' + arc.etichetta + '</span>' +
-                                         '<span class="titolo-post">' + post.titolo + '</span>' +
-                                         '<span class="data-label">' + (post.data || '') + '</span>' +
-                                     '</div>' +
-                                     '<div class="area-bottoni">' +
-                                         '<button class="puro-testo-cmd lancia" onclick="mettiInHome(\'' + arc.nome + '\', \'' + id + '\', \'' + arc.etichetta + '\')">VAI IN HOME</button>' +
-                                         '<button class="puro-testo-cmd cancella" onclick="eliminaPost(\'' + arc.nome + '\', \'' + id + '\')">ELIMINA 🗑️</button>' +
-                                     '</div>';
-                                     
-                    contenitore.insertBefore(riga, contenitore.firstChild);
-                });
-            });
-        });
-    }
-
-    // 3. FUNZIONE PER PORTARE IN PRIMA PAGINA CORRETTA E COORDINATA
-    window.mettiInHome = function(archivio, id, etichettaFlusso) {
-        database.ref(archivio + '/' + id).once('value').then(function(snapshot) {
-            const dati = snapshot.val();
-            
-            // Pulizia link immagine per la Home Page
-            let imgLink = dati.immagine || dati.urlImmagine || "";
-            if (imgLink.includes('<img')) {
-                const m = imgLink.match(/src="([^"]+)"/);
-                if (m) imgLink = m[1];
+        // Monitoraggio stato prima pagina
+        database.ref('regiaFrancesco/primoPiano').on('value', function(snap) {
+            const info = snap.val();
+            const textEl = document.getElementById('current-home');
+            if(info && info.titolo) {
+                textEl.innerText = info.titolo.toUpperCase();
+            } else {
+                textEl.innerText = "NESSUNO (CONFIGURAZIONE CLASSICA)";
             }
-
-            // CORREZIONE CHIRURGICA AUTORE: Se dati.autore non esiste, prende il nome dell'archivio (Cinzia, Sergio, Carlo, ecc.)
-            let autoreReale = dati.autore || etichettaFlusso || "Redazione";
-
-            database.ref('ultimoArticolo').set({
-                titolo: dati.titolo,
-                testo: dati.testo,
-                immagine: imgLink,       // Sincronizzato con la index
-                urlImmagine: imgLink,    // Doppia sicurezza per Carlo e Sergio
-                autore: autoreReale,     // Ora passerà il nome corretto di chi ha scritto il post!
-                data: dati.data || new Date().toLocaleString('it-IT'),
-                video: dati.video || ""
-            }).then(function() {
-                alert("🚀 NOTIZIA LANCIATA IN PRIMA PAGINA CON SUCCESSO!");
-            });
         });
-    }
 
-    // 4. ELIMINAZIONE DEL POST DALL'ARCHIVIO SPECIFICO
-    window.eliminaPost = function(archivio, id) {
-        if(confirm("Vuoi cancellare definitivamente questo post da " + archivio + "?")) {
-            database.ref(archivio + '/' + id).remove();
-            location.reload();
-        }
-    }
+        // Scaricamento lista post e memorizzazione sicura
+        database.ref('archivioFausto').on('value', function(snap) {
+            const container = document.getElementById('lista-post');
+            const dati = snap.val();
+            container.innerHTML = "";
+            
+            if(dati) {
+                postLocali = dati; 
+                Object.keys(dati).reverse().forEach(function(id) {
+                    const post = dati[id];
+                    const row = document.createElement('div');
+                    row.className = 'post-row';
+                    
+                    row.innerHTML = `
+                        <div class="post-info">
+                            <span class="autore">FAUSTO</span>
+                            <span class="titolo">${post.titolo}</span>
+                            <span class="data">${post.data || ''}</span>
+                        </div>
+                        <div class="post-actions">
+                            <button class="action-btn btn-home" onclick="mettiInHome('${id}')">VAI IN HOME</button>
+                            <button class="action-btn btn-elimina" onclick="eliminaPost('${id}')">ELIMINA 🗑️</button>
+                        </div>
+                    `;
+                    container.appendChild(row);
+                });
+            }
+        });
 
-    caricaFlusso();
-</script>
+        // Invio protetto senza conflitti di testo
+        window.mettiInHome = function(id) {
+            const postSelezionato = postLocali[id];
+            if (postSelezionato) {
+                database.ref('regiaFrancesco/primoPiano').set({
+                    idPost: id,
+                    titolo: postSelezionato.titolo || "",
+                    testo: postSelezionato.testo || "",
+                    immagine: postSelezionato.immagine || postSelezionato.urlImmagine || postSelezionato.foto || "",
+                    data: postSelezionato.data || "",
+                    sorgente: 'archivioFausto'
+                });
+            }
+        };
+
+        window.rimuoviDaHome = function() {
+            database.ref('regiaFrancesco/primoPiano').set(null);
+        };
+
+        window.eliminaPost = function(id) {
+            if(confirm("Vuoi davvero eliminare questo post dall'archivio?")) {
+                database.ref('archivioFausto').child(id).remove();
+            }
+        };
+    </script>
 </body>
 </html>
