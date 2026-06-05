@@ -16,13 +16,13 @@
             font-family: sans-serif; 
             margin: 0; 
             padding: 0;
-            background-color: #ffffff; /* Fondale bianco puro professionale */
+            background-color: #ffffff; 
             color: #000000; 
             line-height: 1.5; 
             overflow-x: hidden; 
         }
         
-        /* TESTATA PULITA SENZA ANIMAZIONI PESANTI */
+        /* TESTATA PULITA */
         .copertina-container { 
             position: relative; 
             width: 100%; 
@@ -42,7 +42,6 @@
             opacity: 0.7; 
         }
         
-        /* POSIZIONAMENTO RIBASSATO AL PIEDE PER SFIORARE IL BORDO BLU */
         #contenitore-titolo-home { 
             position: absolute; 
             bottom: 5px; 
@@ -53,7 +52,6 @@
             width: 100%; 
         }
         
-        /* UNIFORMATE ENTRAMBE LE RIGHE AL PARISIENNE COORDINTATO */
         .titolo-stampato-home { 
             font-family: 'Parisienne', cursive;
             font-size: 1.8rem; 
@@ -61,7 +59,7 @@
             text-shadow: 2px 2px 5px rgba(0,0,0,0.9); 
             font-weight: normal; 
             letter-spacing: 2px;
-            margin-bottom: -15px; /* Avvicina le due parole nello stile grafia antica */
+            margin-bottom: -15px; 
         }
         
         .firma-home { 
@@ -72,11 +70,8 @@
             margin-top: 0;
         }
 
-        /* TRUCCO PER IL CELLULARE: Rimpicciolisce Scarabelliamente se lo schermo è stretto */
         @media (max-width: 600px) {
-            .firma-home {
-                font-size: 2.6rem;
-            }
+            .firma-home { font-size: 2.6rem; }
         }
 
         /* VETRINA PRIMA PAGINA LANCIATA DALLA REGIA */
@@ -117,7 +112,6 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.06);
         }
         
-        /* CORREZIONE: Mantiene l'immagine della Vetrina intera e proporzionata */
         .media-prima-pagina img, .media-prima-pagina iframe {
             width: 100%;
             height: auto;
@@ -136,7 +130,7 @@
             line-height: 1.6;
         }
         
-        /* DISPOSIZIONE COLONNE PULITA PER PC */
+        /* STRUTTURA BLINDATA DELLE 3 COLONNE PER EVITARE SPOSTAMENTI */
         .main-container { 
             max-width: 1300px; 
             margin: 25px auto 30px auto; 
@@ -187,9 +181,7 @@
             cursor: pointer; 
             color: #333333; 
         }
-        .riga-titolo:hover {
-            color: #143ca0;
-        }
+        .riga-titolo:hover { color: #143ca0; }
         
         .foto-profilo { width: 80px; height: 100px; object-fit: cover; border-radius: 6px; border: 1px solid #eaeaea; }
         
@@ -207,7 +199,6 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
         
-        /* Mantiene l'immagine delle anteprime proporzionata senza tagliarla */
         .monitor-anteprima img { 
             width: 100%; 
             height: 100%; 
@@ -238,9 +229,7 @@
             cursor: pointer;
             transition: color 0.2s; 
         }
-        .btn-link:hover { 
-            color: #143ca0 !important; 
-        }
+        .btn-link:hover { color: #143ca0 !important; }
         
         footer { 
             margin-top: 60px; 
@@ -252,18 +241,11 @@
             border-top: 1px solid #eaeaea;
         }
 
-        /* ========================================================
-           CORREZIONE SEZIONE CELLULARE (ORDINE GERARCHICO ATTIVO)
-           ======================================================== */
         @media (max-width: 899px) {
-            .main-container {
-                display: flex;
-                flex-direction: column; /* Diventa colonna unica verticale sul telefono */
-            }
-            /* Definiamo le precedenze esatte per il cellulare */
-            .colonna-centro { order: 1; }    /* 1. Francesco */
-            .colonna-sinistra { order: 2; }  /* Contiene Fausto (2) e Cinzia (3) */
-            .colonna-destra { order: 3; }    /* Contiene Carlo (4) e Sergio (5) */
+            .main-container { display: flex; flex-direction: column; }
+            .colonna-centro { order: 1; }    
+            .colonna-sinistra { order: 2; }  
+            .colonna-destra { order: 3; }    
         }
     </style>
 </head>
@@ -288,25 +270,8 @@
     </div>
 
     <div class="main-container">
-        <div class="colonna-centro">
-            <div class="box" style="min-height: 550px;">
-                <div class="titolo-sezione">Pres. Francesco Mariani</div>
-                <div style="display:flex; gap:15px; align-items: flex-start; margin-bottom: 15px;">
-                    <img src="immagini/francesco.jpg" class="foto-profilo">
-                    <div style="background: #ffffff; border: 1px solid #eaeaea; border-radius: 6px; padding: 8px; flex-grow: 1; height: 120px; overflow-y: auto;">
-                        <ul id="lista-home-francesco" style="list-style:none; padding:0; margin:0;"></ul>
-                    </div>
-                </div>
-                <div class="monitor-anteprima">
-                    <img id="img-francesco-dinamica" src="immagini/francesco.jpg">
-                </div>
-                <div class="container-pulsanti">
-                    <a href="francesco.html" class="btn-link">ARCHIVIO</a>
-                    <a href="gestione_francesco.html" class="btn-link">GESTIONE</a>
-                </div>
-            </div>
-        </div>
-
+        
+        <!-- COLONNA DI SINISTRA: METEO & SCUOLA E LAVORO -->
         <div class="colonna-sinistra">
             <div class="box">
                 <div class="titolo-sezione">Meteo & Satellite</div>
@@ -343,14 +308,43 @@
             </div>
         </div>
 
+        <!-- COLONNA CENTRALE: FRANCESCO MARIANI -->
+        <div class="colonna-centro">
+            <div class="box" style="min-height: 550px;">
+                <div class="titolo-sezione">Pres. Francesco Mariani</div>
+                <div style="display:flex; gap:15px; align-items: flex-start; margin-bottom: 15px;">
+                    <img src="immagini/francesco.jpg" class="foto-profilo">
+                    <div style="background: #ffffff; border: 1px solid #eaeaea; border-radius: 6px; padding: 8px; flex-grow: 1; height: 120px; overflow-y: auto;">
+                        <ul id="lista-home-francesco" style="list-style:none; padding:0; margin:0;"></ul>
+                    </div>
+                </div>
+                <div class="monitor-anteprima">
+                    <img id="img-francesco-dinamica" src="immagini/francesco.jpg">
+                </div>
+                <div class="container-pulsanti">
+                    <a href="francesco.html" class="btn-link">ARCHIVIO</a>
+                    <a href="gestione_francesco.html" class="btn-link">GESTIONE</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- COLONNA DI DESTRA BLINDATA: CARLO SEMPRE SOPRA E SERGIO SEMPRE SOTTO -->
         <div class="colonna-destra">
+            
+            <!-- 1. CARLO (ECONOMIA) -->
             <div class="box">
                 <div class="titolo-sezione">Economia</div>
-                <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
-                    <img src="immagini/carlo.jpg" class="foto-profilo">
-                    <div style="background: #ffffff; border: 1px solid #eaeaea; border-radius: 6px; padding: 8px; flex-grow: 1; height: 100px; overflow-y: auto;">
-                        <ul id="lista-titoli-carlo" style="list-style: none; padding: 0; margin:0;"></ul>
+                <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px;">
+                    <div style="display: flex; justify-content: flex-start;">
+                        <img src="immagini/carlo.jpg" class="foto-profilo">
                     </div>
+                    <!-- GRAFICO RE-INSERITO A TUTTA LARGHEZZA SOTTO LA FOTO -->
+                    <div style="width: 100%; border: 1px solid #eaeaea; border-radius: 12px; overflow: hidden; height: 150px; background:#f9f9f9; cursor: pointer;" onclick="window.location.href='carlo.html'">
+                        <iframe src="https://s.tradingview.com/embed-widget/mini-symbol-overview/?locale=it&symbol=FX%3AEURUSD&width=100%25&height=100%25&dateRange=12M&showChart=true&underLineColor=rgba(20, 60, 160, 0.15)&chartLineColor=rgba(20, 60, 160, 1)&textColor=000000&gridLineColor=rgba(0, 0, 0, 0)" style="width: 100%; height: 100%; border: none; pointer-events: none;" scrolling="no"></iframe>
+                    </div>
+                </div>
+                <div style="background: #ffffff; border: 1px solid #eaeaea; border-radius: 6px; padding: 8px; height: 100px; overflow-y: auto;">
+                    <ul id="lista-titoli-carlo" style="list-style: none; padding: 0; margin:0;"></ul>
                 </div>
                 <div class="container-pulsanti">
                     <a href="carlo.html" class="btn-link">ARCHIVIO</a>
@@ -358,6 +352,7 @@
                 </div>
             </div>
 
+            <!-- 2. SERGIO (ARCHIVIO SERGIO) INCHIODATO SOTTO A CARLO -->
             <div class="box">
                 <div class="titolo-sezione">Archivio Sergio</div>
                 <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
@@ -374,7 +369,9 @@
                     <a href="gestione_sergio.html" class="btn-link">GESTIONE</a>
                 </div>
             </div>
+            
         </div>
+        
     </div>
 
     <footer><p>© 2026 Progetto Scarabelliamente</p></footer>
@@ -396,35 +393,26 @@
             return null;
         }
 
-        // --- COLLEGAMENTO DINAMICO ALLA REGIA FRANCESCO DI FIREBASE ---
         db.ref('regiaFrancesco/primoPiano').on('value', function(snapshot) {
             const art = snapshot.val();
             const vetrina = document.getElementById('vetrina-regia');
-            
             if(art && art.titolo) {
                 document.getElementById('vetrina-titolo').innerText = art.titolo;
                 document.getElementById('vetrina-testo').innerText = art.testo || "";
                 document.getElementById('vetrina-autore').innerText = 'A cura di: ' + (art.sorgente === 'archivioFausto' ? 'FAUSTO' : 'FRANCESCO') + ' • ' + (art.data || '');
-                
                 const mediaBox = document.getElementById('vetrina-media');
                 mediaBox.innerHTML = "";
-                
                 let sorgente = art.immagine || art.urlImmagine || art.foto || "";
                 if (sorgente.includes('<img')) {
                     const match = sorgente.match(/src="([^"]+)"/);
                     if (match) sorgente = match[1];
                 }
                 sorgente = sorgente.trim();
-
                 if(sorgente.includes('youtube.com') || sorgente.includes('youtu.be')) {
                     let vid = sorgente.includes('v=') ? sorgente.split('v=')[1].split('&')[0] : sorgente.split('/').pop();
                     mediaBox.innerHTML = '<iframe height="350" src="https://www.youtube.com/embed/' + vid + '" frameborder="0" allowfullscreen style="width:100%; border-radius:8px;"></iframe>';
-                    mediaBox.style.display = 'block';
                 } else if(sorgente.length > 10) {
                     mediaBox.innerHTML = '<img src="' + sorgente + '">';
-                    mediaBox.style.display = 'block';
-                } else {
-                    mediaBox.style.display = 'none';
                 }
                 vetrina.style.display = 'block';
             } else {
@@ -432,7 +420,6 @@
             }
         });
 
-        // --- CANALI DEGLI ARCHIVI IN COLONNA ---
         const archivi = [
             { ref: 'archivio_francesco', lista: 'lista-home-francesco', monitor: 'img-francesco-dinamica', def: 'immagini/francesco.jpg', link: 'francesco.html' },
             { ref: 'archivioCinzia', lista: 'lista-home-cinzia', monitor: 'img-cinzia-dinamica', def: 'immagini/cinzia.jpg', link: 'cinzia.html' },
@@ -461,35 +448,18 @@
                     }
                     sorgente = sorgente.trim();
                     const yt = getYTThumb(sorgente);
-                    if (yt) {
-                        monitor.src = yt;
-                    } else if (sorgente.length > 10) {
-                        monitor.src = sorgente;
-                    } else {
-                        monitor.src = area.def;
-                    }
+                    if (yt) { monitor.src = yt; } 
+                    else if (sorgente.length > 10) { monitor.src = sorgente; } 
+                    else { monitor.src = area.def; }
                 };
 
-                if (articoli.length > 0 && area.monitor) {
-                    setMonitor(articoli[0], area.monitor);
-                }
-
+                if (articoli.length > 0 && area.monitor) { setMonitor(articoli[0], area.monitor); }
                 articoli.forEach(function(art) {
                     const li = document.createElement('li');
                     li.className = 'riga-titolo';
                     li.innerHTML = art.titolo;
-                    
-                    li.onclick = function() { 
-                        if (art.id) {
-                            window.location.href = area.link + '?id=' + art.id; 
-                        } else {
-                            window.location.href = area.link;
-                        }
-                    };
-                    
-                    if(area.monitor) {
-                        li.onmouseenter = function() { setMonitor(art, area.monitor); };
-                    }
+                    li.onclick = function() { window.location.href = area.link + (art.id ? '?id=' + art.id : ''); };
+                    if(area.monitor) { li.onmouseenter = function() { setMonitor(art, area.monitor); }; }
                     listEl.appendChild(li);
                 });
             });
