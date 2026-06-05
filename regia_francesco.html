@@ -40,14 +40,14 @@
             <h1>⚓ GESTIONE PRIMA PAGINA</h1>
             <a href="index.html" class="btn-esci">⬅ ESCI</a>
         </div>
-        <div class="sottotitolo">Gestione flussi redazionali e Prima Pagina</div>
+        <div class="sottotitolo">Gestione flussi redazionali e Prima Pagina universale</div>
 
         <div class="status-box">
             ATTUALMENTE IN PRIMA PAGINA: <span id="current-home">CARICAMENTO...</span><br>
             <button class="btn-reset" onclick="rimuoviDaHome()">❌ TOGLIERE IL MANIFESTO/LOCANDINA IN PRIMA PAGINA</button>
         </div>
 
-        <div class="sezione-titolo">ULTIMI POST DALLA REDAZIONE</div>
+        <div class="sezione-titolo">ULTIMI POST DA TUTTE LE REDAZIONI</div>
         <div id="lista-post" class="lista-post"></div>
     </div>
 
@@ -61,51 +61,104 @@
         if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
         const database = firebase.database();
 
-        let postLocali = {};
+        // Strutture di memoria per aggregare i dati
+        let tuttiIPost = {};
+        const canaliArchivio = [
+            { id: 'archivio_francesco', nomeAutore: 'FRANCESCO' },
+            { id: 'archivioCinzia', nomeAutore: 'CINZIA' },
+            { id: 'archivioFausto', nomeAutore: 'FAUSTO' },
+            { id: 'archivioCarlo', nomeAutore: 'CARLO' },
+            { id: 'archivioSergio', nomeAutore: 'SERGIO' }
+        ];
 
-        // Monitoraggio stato prima pagina
-        database.ref('regiaFrancesco/primoPiano').on('value', function(snap) {
-            const info = snap.val();
-            const textEl = document.getElementById('current-home');
-            if(info && info.titolo) {
-                textEl.innerText = info.titolo.toUpperCase();
-            } else {
-                textEl.innerText = "NESSUNO (CONFIGURAZIONE CLASSICA)";
-            }
-        });
+       // Monitoraggio stato prima pagina con cambio colore intelligente del pulsante
+database.ref('regiaFrancesco/primoPiano').on('value', function(snap) {
+    const info = snap.val();
+    const textEl = document.getElementById('current-home');
+    const btnReset = document.querySelector('.btn-reset'); // Prende il pulsante rosso
+    
+    if(info && info.titolo) {
+        textEl.innerText = info.titolo.toUpperCase();
+        
+        // C'È UN MANIFESTO: Il pulsante diventa Rosso Acceso ed è attivo
+        if(btnReset) {
+            btnReset.style.background = '#e74c3c';
+            btnReset.style.color = 'white';
+            btnReset.style.cursor = 'pointer';
+            btnReset.style.opacity = '1';
+        }
+    } else {
+        textEl.innerText = "NESSUNO (CONFIGURAZIONE CLASSICA)";
+        
+        // PAGINA LIBERA: Il pulsante si "spegne" in grigio chiaro
+        if(btnReset) {
+            btnReset.style.background = '#bdc3c7';
+            btnReset.style.color = '#7f8c8d';
+            btnReset.style.cursor = 'default';
+            btnReset.style.opacity = '0.7';
+        }
+    }
+});
 
-        // Scaricamento lista post e memorizzazione sicura
-        database.ref('archivioFausto').on('value', function(snap) {
-            const container = document.getElementById('lista-post');
-            const dati = snap.val();
-            container.innerHTML = "";
-            
-            if(dati) {
-                postLocali = dati; 
-                Object.keys(dati).reverse().forEach(function(id) {
-                    const post = dati[id];
-                    const row = document.createElement('div');
-                    row.className = 'post-row';
+        // 2. Funzione centrale per unire ed ordinare i post di tutti i canali
+        function caricaEUnisciArchivi() {
+            tuttiIPost = {}; // Reset memoria locale temporanea
+            let conteggioCanaliCaricati = 0;
+
+            canaliArchivio.forEach(function(canale) {
+                database.ref(canale.id).once('value', function(snap) {
+                    const dati = snap.val();
+                    if(dati) {
+                        Object.keys(dati).forEach(function(keyId) {
+                            // Copiamo il post aggiungendo l'informazione di chi lo ha scritto e da dove viene
+                            tuttiIPost[keyId] = Object.assign({}, dati[keyId], {
+                                idOriginale: keyId,
+                                autoreSito: canale.nomeAutore,
+                                nodoSorgente: canale.id
+                            });
+                        });
+                    }
                     
-                    row.innerHTML = `
-                        <div class="post-info">
-                            <span class="autore">FAUSTO</span>
-                            <span class="titolo">${post.titolo}</span>
-                            <span class="data">${post.data || ''}</span>
-                        </div>
-                        <div class="post-actions">
-                            <button class="action-btn btn-home" onclick="mettiInHome('${id}')">VAI IN HOME</button>
-                            <button class="action-btn btn-elimina" onclick="eliminaPost('${id}')">ELIMINA 🗑️</button>
-                        </div>
-                    `;
-                    container.appendChild(row);
+                    conteggioCanaliCaricati++;
+                    // Quando tutti e 5 i canali hanno risposto, generiamo la lista visibile
+                    if(conteggioCanaliCaricati === canaliArchivio.length) {
+                        disegnaListaUnificata();
+                    }
                 });
-            }
-        });
+            });
+        }
 
-        // Invio protetto senza conflitti di testo
+        // 3. Genera la struttura grafica dei post mischiati dal più recente
+        function disegnaListaUnificata() {
+            const container = document.getElementById('lista-post');
+            container.innerHTML = "";
+
+            // Ordiniamo le chiavi dei post (Firebase genera le chiavi in ordine temporale nativo)
+            const chiaviOrdinate = Object.keys(tuttiIPost).sort().reverse();
+
+            chiaviOrdinate.forEach(function(id) {
+                const post = tuttiIPost[id];
+                const row = document.createElement('div');
+                row.className = 'post-row';
+                
+                row.innerHTML = `
+                    <div class="post-info">
+                        <span class="autore">${post.autoreSito}</span>
+                        <span class="titolo">${post.titolo || 'Senza Titolo'}</span>
+                        <span class="data">${post.data || ''}</span>
+                    </div>
+                    <div class="post-actions">
+                        <button class="action-btn btn-home" onclick="mettiInHome('${id}')">VAI IN HOME</button>
+                        <button class="action-btn btn-elimina" onclick="eliminaPost('${post.nodoSorgente}', '${id}')">ELIMINA 🗑️</button>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+        }
+
+        // 4. Invia alla Home Page il post selezionato (da qualsiasi autore provenga)
         window.mettiInHome = function(id) {
-            const postSelezionato = postLocali[id];
+            const postSelezionato = tuttiIPost[id];
             if (postSelezionato) {
                 database.ref('regiaFrancesco/primoPiano').set({
                     idPost: id,
@@ -113,7 +166,7 @@
                     testo: postSelezionato.testo || "",
                     immagine: postSelezionato.immagine || postSelezionato.urlImmagine || postSelezionato.foto || "",
                     data: postSelezionato.data || "",
-                    sorgente: 'archivioFausto'
+                    sorgente: postSelezionato.nodoSorgente
                 });
             }
         };
@@ -122,11 +175,29 @@
             database.ref('regiaFrancesco/primoPiano').set(null);
         };
 
-        window.eliminaPost = function(id) {
-            if(confirm("Vuoi davvero eliminare questo post dall'archivio?")) {
-                database.ref('archivioFausto').child(id).remove();
+        window.eliminaPost = function(nodoSorgente, id) {
+            if(confirm("Vuoi davvero eliminare questo post dall'archivio originale?")) {
+                database.ref(nodoSorgente).child(id).remove().then(function() {
+                    // Ricarica la lista per mostrare i dati aggiornati
+                    caricaEUnisciArchivi();
+                });
             }
         };
+
+        // Avvio automatico al caricamento della pagina
+        caricaEUnisciArchivi();
+        
+        // Ascolta in tempo reale se qualcuno aggiunge nuovi post
+        canaliArchivio.forEach(function(canale) {
+            database.ref(canale.id).on('child_changed', caricaEUnisciArchivi);
+            database.ref(canale.id).on('child_added', caricaETransit);
+        });
+        
+        let inizializzato = false;
+        function caricaETransit() {
+            if(!inizializzato) { inizializzato = true; return; }
+            caricaEUnisciArchivi();
+        }
     </script>
 </body>
 </html>
