@@ -150,6 +150,23 @@
         }
         .modal-media iframe { width: 100%; height: 350px; border-radius: 8px; margin: 20px auto; display: block; border: none; }
         
+        /* IL BOTTONE ROSSO DI YOUTUBE STILE VECCHIO MODAL */
+        .btn-youtube-diretto {
+            display: inline-block;
+            background: #ff0000;
+            color: white !important;
+            text-decoration: none !important;
+            padding: 20px 40px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            border-radius: 50px;
+            margin: 40px auto;
+            box-shadow: 0 4px 15px rgba(255,0,0,0.3);
+            transition: transform 0.2s;
+            text-transform: uppercase;
+        }
+        .btn-youtube-diretto:hover { transform: scale(1.05); background: #cc0000; }
+
         .modal-text { 
             text-align: justify; 
             line-height: 1.7; 
@@ -226,6 +243,13 @@
         if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
         const database = firebase.database();
 
+        function estraiIdYouTube(url) {
+            if (!url) return null;
+            var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            var match = url.match(regExp);
+            return (match && match[2].length === 11) ? match[2] : null;
+        }
+
         function ottieniAnteprimaMedia(postData) {
             let stringaMedia = (postData.urlImmagine || postData.immagine || postData.foto || "").trim();
             if (stringaMedia.includes('<img')) {
@@ -235,9 +259,7 @@
             stringaMedia = stringaMedia.trim();
 
             if (stringaMedia.includes('youtube.com') || stringaMedia.includes('youtu.be')) {
-                const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-                const match = stringaMedia.match(regExp);
-                const vId = (match && match[2].length === 11) ? match[2] : null;
+                const vId = estraiIdYouTube(stringaMedia);
                 if (vId) {
                     return 'https://img.youtube.com/vi/' + vId + '/hqdefault.jpg';
                 }
@@ -288,8 +310,8 @@
                 media = media.trim();
 
                 if (media.includes('youtube.com') || media.includes('youtu.be')) {
-                    let vid = media.includes('v=') ? media.split('v=')[1].split('&')[0] : media.split('/').pop();
-                    mMedia.innerHTML = '<iframe src="https://www.youtube.com/embed/' + vid + '" frameborder="0" allowfullscreen></iframe>';
+                    // ECCO IL RIMEDIO STORICO: SE È UN VIDEO BLOCCATO, CREA IL SUPER PULSANTE DI APERTURA ESTERNA
+                    mMedia.innerHTML = '<a href="' + media + '" target="_blank" class="btn-youtube-diretto">📺 CLICCA QUI PER GUARDARE IL VIDEO SU YOUTUBE</a>';
                 } else if (media.length > 10) {
                     mMedia.innerHTML = '<img src="' + media + '" onerror="this.style.display=\'none\'">';
                 } else {
