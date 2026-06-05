@@ -67,19 +67,21 @@
         .btn-nav { 
             position: absolute; 
             top: 15px; 
-            padding: 8px 18px; 
-            border-radius: 5px; 
+            padding: 10px 18px; 
+            border-radius: 30px; 
             text-decoration: none; 
             font-weight: bold; 
-            font-size: 0.75rem; 
-            z-index: 20; 
-            border: none; 
-            cursor: pointer; 
+            font-size: 0.7rem; 
+            z-index: 1001; 
+            display: flex; 
+            align-items: center; 
+            gap: 5px; 
         }
         .btn-home { 
             left: 15px; 
-            background: rgba(0,0,0,0.6); 
+            background: rgba(255,255,255,0.2); 
             color: white; 
+            border: 1px solid white;
         }
         
         .main-wrapper { max-width: 1200px; margin: 30px auto; padding: 0 15px; }
@@ -101,12 +103,27 @@
             transform: translateY(-4px); 
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
-        .card img { width: 100%; height: 180px; object-fit: cover; }
-        .card-content { padding: 16px; flex-grow: 1; text-align: left; }
-        .card-content h3 { margin: 0 0 8px; color: #143ca0; font-size: 1.05rem; font-weight: bold; text-transform: uppercase; }
-        .card-content p { color: #444444; font-size: 0.95rem; margin: 0; height: 45px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.4; }
+        
+        .card-media-box {
+            width: 100%;
+            height: 180px;
+            background: #f9f9f9; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
 
-        /* MODALE: Immagine a larghezza piena, intera e nitida */
+        .card-media-box img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain; 
+        }
+        
+        .card-content { padding: 16px; flex-grow: 1; text-align: center; }
+        .card-content h3 { margin: 0 0 8px; color: #143ca0; font-size: 1.05rem; font-weight: bold; text-transform: uppercase; }
+        .card-content p { color: #444444; font-size: 0.95rem; margin: 0; height: 45px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.4; text-align: justify; }
+
         .modal { 
             display: none; 
             position: fixed; 
@@ -121,16 +138,17 @@
         .modal-content { max-width: 800px; margin: auto; text-align: center; }
         
         .modal-media img { 
-            width: 100% !important; 
-            max-width: 100% !important; 
-            height: auto !important; 
+            width: auto; 
+            max-width: 100%; 
+            height: auto; 
             max-height: 70vh !important; 
             object-fit: contain; 
             margin: 20px auto; 
             display: block;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08); 
+            background: #ffffff;
         }
-        .modal-media iframe { width: 100%; height: 300px; border-radius: 8px; margin: 20px auto; display: block; }
+        .modal-media iframe { width: 100%; height: 350px; border-radius: 8px; margin: 20px auto; display: block; border: none; }
         
         .modal-text { 
             text-align: justify; 
@@ -208,25 +226,43 @@
         if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
         const database = firebase.database();
 
+        function ottieniAnteprimaMedia(postData) {
+            let stringaMedia = (postData.urlImmagine || postData.immagine || postData.foto || "").trim();
+            if (stringaMedia.includes('<img')) {
+                const match = stringaMedia.match(/src="([^"]+)"/);
+                if (match) stringaMedia = match[1];
+            }
+            stringaMedia = stringaMedia.trim();
+
+            if (stringaMedia.includes('youtube.com') || stringaMedia.includes('youtu.be')) {
+                const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+                const match = stringaMedia.match(regExp);
+                const vId = (match && match[2].length === 11) ? match[2] : null;
+                if (vId) {
+                    return 'https://img.youtube.com/vi/' + vId + '/hqdefault.jpg';
+                }
+            }
+            return stringaMedia || 'immagini/francesco.jpg';
+        }
+
         function caricaArchivio() {
-            database.ref('archivioFrancesco').on('value', function(snap) {
+            database.ref('archivio_francesco').on('value', function(snap) {
                 const grid = document.getElementById('archivio-grid');
                 grid.innerHTML = "";
                 const dati = snap.val();
+                
                 if (dati) {
                     Object.keys(dati).reverse().forEach(function(id) {
                         const post = dati[id];
-                        let imgPura = post.urlImmagine || post.immagine || "";
-                        if (imgPura.includes('<img')) {
-                            const m = imgPura.match(/src="([^"]+)"/);
-                            if (m) imgPura = m[1];
-                        }
+                        const miniaturaCorretta = ottieniAnteprimaMedia(post);
+                        
                         const card = document.createElement('div');
                         card.className = 'card';
-                        card.onclick = function() { apriModal(id, post.titolo, post.testo, imgPura); };
-                        card.innerHTML = '<img src="' + imgPura + '" onerror="this.src=\'immagini/francesco.jpg\'">' +
+                        card.onclick = function() { apriModal(id); };
+                        
+                        card.innerHTML = '<div class="card-media-box"><img src="' + miniaturaCorretta + '" onerror="this.src=\'immagini/francesco.jpg\'"></div>' +
                                          '<div class="card-content">' +
-                                             '<h3>' + post.titolo + '</h3>' +
+                                             '<h3>' + (post.titolo || 'Senza Titolo') + '</h3>' +
                                              '<p>' + (post.testo || "") + '</p>' +
                                          '</div>';
                         grid.appendChild(card);
@@ -235,28 +271,42 @@
             });
         }
 
-        window.apriModal = function(id, titolo, testo, media) {
-            const mMedia = document.getElementById("modal-media");
-            document.getElementById("modal-titolo").innerText = titolo;
-            document.getElementById("modal-text").innerText = testo || "";
+        window.apriModal = function(id) {
+            database.ref('archivio_francesco/' + id).once('value').then(function(snapshot) {
+                const post = snapshot.val();
+                if(!post) return;
 
-            if (media.includes('youtube.com') || media.includes('youtu.be')) {
-                let vid = media.includes('v=') ? media.split('v=')[1].split('&')[0] : media.split('/').pop();
-                mMedia.innerHTML = '<iframe src="https://www.youtube.com/embed/' + vid + '" frameborder="0" allowfullscreen></iframe>';
-            } else {
-                mMedia.innerHTML = '<img src="' + media + '" onerror="this.style.display=\'none\'">';
-            }
-            
-            const urlSito = window.location.origin + window.location.pathname + "?id=" + id;
-            const msgTutti = encodeURIComponent("🚀 *VIENI A VEDERE IL POST:*\n\n📖 *" + titolo + "*\n🔗 " + urlSito);
-            const msgMe = encodeURIComponent("📌 ARCHIVIO PERSONALE:\nPost: " + titolo + "\nLink: " + urlSito);
+                const mMedia = document.getElementById("modal-media");
+                document.getElementById("modal-titolo").innerText = post.titolo || "Senza Titolo";
+                document.getElementById("modal-text").innerText = post.testo || "";
 
-            document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + msgTutti;
-            document.getElementById('link-tutti').href = "https://api.whatsapp.com/send?text=" + msgTutti;
-            document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + msgMe;
+                let media = (post.urlImmagine || post.immagine || post.foto || "").trim();
+                if (media.includes('<img')) {
+                    const match = media.match(/src="([^"]+)"/);
+                    if (match) media = match[1];
+                }
+                media = media.trim();
 
-            document.getElementById("myModal").style.display = "block";
-            document.body.style.overflow = 'hidden';
+                if (media.includes('youtube.com') || media.includes('youtu.be')) {
+                    let vid = media.includes('v=') ? media.split('v=')[1].split('&')[0] : media.split('/').pop();
+                    mMedia.innerHTML = '<iframe src="https://www.youtube.com/embed/' + vid + '" frameborder="0" allowfullscreen></iframe>';
+                } else if (media.length > 10) {
+                    mMedia.innerHTML = '<img src="' + media + '" onerror="this.style.display=\'none\'">';
+                } else {
+                    mMedia.innerHTML = '';
+                }
+                
+                const urlSito = "https://scarabelli-portale.github.io/francesco.html?id=" + id;
+                const msgTutti = encodeURIComponent("🚀 *VIENI A VEDERE IL POST:*\n\n📖 *" + (post.titolo || "") + "*\n🔗 " + urlSito);
+                const msgMe = encodeURIComponent("📌 ARCHIVIO PERSONALE:\nPost: " + (post.titolo || "") + "\nLink: " + urlSito);
+
+                document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + msgTutti;
+                document.getElementById('link-tutti').href = "https://api.whatsapp.com/send?text=" + msgTutti;
+                document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + msgMe;
+
+                document.getElementById("myModal").style.display = "block";
+                document.body.style.overflow = 'hidden';
+            });
         }
 
         window.chiudiModal = function() {
