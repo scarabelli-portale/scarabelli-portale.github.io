@@ -13,7 +13,7 @@
         
         /* STRUTTURA PER LA BANDA BLU LATERALE ORIGINALE */
         .form-container { width: 98%; max-width: 550px; margin: 5px auto; background: white; color: #333; padding: 15px; border-radius: 12px; border-top: 6px solid #0056b3; box-sizing: border-box; min-height: 98vh; display: flex; flex-direction: column; text-align: left; }
-        h2 { color: #002244; margin-top: 0; text-align: center; display: none; } /* Nascosto h2 per aderenza visiva allo screenshot */
+        h2 { color: #002244; margin-top: 0; text-align: center; display: none; } 
         input[type="text"]#titolo { width: 100%; margin-bottom: 6px; padding: 8px; border-radius: 8px; border: 2px solid #ccc; box-sizing: border-box; font-size: 1rem; }
         textarea#testo { width: 100%; margin-bottom: 6px; padding: 8px; border-radius: 8px; border: 2px solid #ccc; box-sizing: border-box; font-size: 1rem; font-family: inherit; resize: none; }
         
@@ -48,7 +48,7 @@
         <button onclick="checkPass()" class="btn-login">ENTRA</button>
     </div>
 
-    <!-- PANNELLO FORM PRINCIPALE (CON I TESTI CORRETTI DA SCREENSHOT) -->
+    <!-- PANNELLO FORM PRINCIPALE -->
     <div id="main-content" class="form-container" style="display:none;">
         <input type="text" id="titolo" placeholder="TITOLO">
         <textarea id="testo" rows="2" placeholder="TESTO"></textarea>
@@ -64,7 +64,7 @@
         <div id="lista-cancella"></div>
     </div>
 
-    <!-- FOOTER NAVIGAZIONE CON ACCESSO DIRETTO ALLA REGIA -->
+    <!-- FOOTER NAVIGAZIONE -->
     <div class="footer-nav">
         <a href="index.html" class="btn-footer">🏠 Home</a>
         <a href="francesco.html" class="btn-footer">📚 Archivio</a>
@@ -100,7 +100,8 @@
         if (sessionStorage.getItem("accesso_francesco") === "ok") { mostraGestione(); }
 
         window.preparaModifica = function(id) {
-            database.ref('archivioFrancesco/' + id).once('value').then(function(snapshot) {
+            // CORRETTO: Ora punta ad 'archivio_francesco'
+            database.ref('archivio_francesco/' + id).once('value').then(function(snapshot) {
                 const post = snapshot.val();
                 document.getElementById('titolo').value = post.titolo;
                 document.getElementById('testo').value = post.testo;
@@ -126,14 +127,16 @@
             }
 
             if (idInModifica) {
-                database.ref('archivioFrancesco/' + idInModifica).update({
+                // CORRETTO: Ora aggiorna ad 'archivio_francesco'
+                database.ref('archivio_francesco/' + idInModifica).update({
                     titolo: tit, testo: tes, immagine: img, urlImmagine: img
                 }).then(function() { 
                     alert("Modifica salvata con successo!"); 
                     location.reload(); 
                 });
             } else {
-                database.ref('archivioFrancesco').push({
+                // CORRETTO: Ora inserisce in 'archivio_francesco'
+                database.ref('archivio_francesco').push({
                     titolo: tit, testo: tes, immagine: img, urlImmagine: img,
                     autore: "Francesco",
                     data: new Date().toLocaleString('it-IT')
@@ -145,8 +148,8 @@
         }
 
         function caricaLista() {
-            // STRUTTURA SICURA SENZA STRINGHE BACKTICK CONTRO L'ERRORE 13
-            database.ref('archivioFrancesco').on('value', function(snap) {
+            // CORRETTO: Ora ascolta da 'archivio_francesco'
+            database.ref('archivio_francesco').on('value', function(snap) {
                 const container = document.getElementById('lista-cancella');
                 container.innerHTML = "";
                 const dati = snap.val();
@@ -171,7 +174,8 @@
 
         window.elimina = function(id) {
             if (confirm("Attenzione! Sei sicuro di voler cancellare definitivamente questo post?")) {
-                database.ref('archivioFrancesco').child(id).remove();
+                // CORRETTO: Ora rimuove da 'archivio_francesco'
+                database.ref('archivio_francesco').child(id).remove();
             }
         }
     </script>
