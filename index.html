@@ -8,6 +8,8 @@
     <meta property="og:image" content="https://scarabelli-portale.github.io/scarabelliamente/immagini/scuola.jpg">
     <meta property="og:type" content="website">
     <title>SCARABELLIAMENTE - Home Page</title>
+    <!-- AGGIUNTO IL PACCHETTO PER I SIMBOLINI/ICONE -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* IMPORTAZIONE NUOVO FONT ELEGANTE PARISIENNE */
         @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
@@ -149,6 +151,10 @@
             letter-spacing: 0.8px;
             transition: color 0.2s ease;
         }
+        .puro-testo-vetrina-btn i {
+            color: #25D366; /* VERDE WHATSAPP PER IL SIMBOLINO */
+            margin-right: 4px;
+        }
         .puro-testo-vetrina-btn:hover { color: #143ca0 !important; }
         
         /* STRUTTURA BLINDATA DELLE 3 COLONNE PER EVITARE SPOSTAMENTI */
@@ -269,15 +275,43 @@
             .colonna-destra { order: 3; }    
         }
 
+        /* CURA DIMAGRANTE ULTRA SUI CELLULARI DI UN ALTRO 10% */
         @media (max-width: 600px) {
             .firma-home { font-size: 2.6rem; }
             
+            /* TITOLO RIMPICCIOUTI DI UN ULTERIORE 10% */
             #vetrina-titolo, .titolo-prima-pagina { 
-                font-size: 1.15rem !important; 
-                line-height: 1.4 !important;
-                padding: 0 5px;
+                font-size: 1.05rem !important; 
+                line-height: 1.2 !important;
+                margin: 0 0 6px 0 !important;
+                padding: 0 2px;
             }
-            .puro-testo-vetrina-btn { margin: 8px 10px; font-size: 13px; }
+
+            .info-prima-pagina { margin-bottom: 6px !important; font-size: 0.78rem !important; }
+            .container-vetrina-home { margin: 8px auto 0 auto !important; }
+            .box-prima-pagina { padding: 10px !important; }
+            .media-prima-pagina { margin: 4px auto !important; }
+            .testo-prima-pagina { margin: 8px auto 0 auto !important; font-size: 0.95rem !important; line-height: 1.35 !important; }
+            
+            /* COSTRUTTORE PER SPIANARE I BOTTONI IN UNA SOLA RIGA */
+            .piede-pulsantiera-vetrina { 
+                margin-top: 10px !important; 
+                padding-top: 10px !important; 
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: nowrap !important;
+                justify-content: space-between !important; 
+                gap: 2px !important;
+            }
+            .puro-testo-vetrina-btn { 
+                margin: 0 !important; 
+                font-size: 10px !important; 
+                letter-spacing: 0.2px !important;
+                white-space: nowrap !important;
+                flex: 1;
+                text-align: center;
+            }
+            .puro-testo-vetrina-btn i { font-size: 11px !important; margin-right: 2px !important; }
         }
     </style>
 </head>
@@ -299,11 +333,11 @@
             <div id="vetrina-media" class="media-prima-pagina"></div>
             <div id="vetrina-testo" class="testo-prima-pagina"></div>
             
-            <!-- NUOVA PULSANTIERA AGGIUNTA SOTTO LA VETRINA IN HOME -->
+            <!-- PULSANTIERA INSERITA CON I SIMBOLINI E SENZA SCRITTA WZ -->
             <div class="piede-pulsantiera-vetrina">
-                <a id="vetrina-link-consiglio" href="#" target="_blank" class="puro-testo-vetrina-btn">WZ CONSIGLIO</a>
-                <a id="vetrina-link-tutti" href="#" target="_blank" class="puro-testo-vetrina-btn">WZ TUTTI EX ALLIEVI</a>
-                <a id="vetrina-link-privato" href="#" target="_blank" class="puro-testo-vetrina-btn">WZ ARCHIVIO PERSONALE</a>
+                <a id="vetrina-link-consiglio" href="#" target="_blank" class="puro-testo-vetrina-btn"><i class="fab fa-whatsapp"></i>CONSIGLIO</a>
+                <a id="vetrina-link-tutti" href="#" target="_blank" class="puro-testo-vetrina-btn"><i class="fab fa-whatsapp"></i>EX ALLIEVI</a>
+                <a id="vetrina-link-privato" href="#" target="_blank" class="puro-testo-vetrina-btn"><i class="fab fa-whatsapp"></i>PERSONALE</a>
             </div>
         </div>
     </div>
@@ -453,7 +487,6 @@
                     mediaBox.innerHTML = '<img src="' + sorgente + '">';
                 }
 
-                // LOGICA PER CREARE I LINK WHATSAPP DELLA VETRINA DIRETTAMENTE SULLA HOME
                 const nomeFileDestinazione = (art.sorgente === 'archivioFausto') ? 'fausto.html' : 'francesco.html';
                 const idPost = art.idOriginale || "";
                 const urlSitoVetrina = "https://scarabelli-portale.github.io/" + nomeFileDestinazione + (idPost ? "?id=" + idPost : "");
