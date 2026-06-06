@@ -150,23 +150,6 @@
         }
         .modal-media iframe { width: 100%; height: 350px; border-radius: 8px; margin: 20px auto; display: block; border: none; }
         
-        /* IL BOTTONE ROSSO DI YOUTUBE STILE VECCHIO MODAL */
-        .btn-youtube-diretto {
-            display: inline-block;
-            background: #ff0000;
-            color: white !important;
-            text-decoration: none !important;
-            padding: 20px 40px;
-            font-weight: bold;
-            font-size: 1.3rem;
-            border-radius: 50px;
-            margin: 40px auto;
-            box-shadow: 0 4px 15px rgba(255,0,0,0.3);
-            transition: transform 0.2s;
-            text-transform: uppercase;
-        }
-        .btn-youtube-diretto:hover { transform: scale(1.05); background: #cc0000; }
-
         .modal-text { 
             text-align: justify; 
             line-height: 1.7; 
@@ -278,9 +261,17 @@
                         const post = dati[id];
                         const miniaturaCorretta = ottieniAnteprimaMedia(post);
                         
+                        let mediaRaw = (post.urlImmagine || post.immagine || post.foto || "").trim();
+                        
                         const card = document.createElement('div');
                         card.className = 'card';
-                        card.onclick = function() { apriModal(id); };
+                        
+                        // SE È YOUTUBE, IL CLIC PORTA DIRETTAMENTE AL VIDEO IN UNA NUOVA SCHEDA
+                        if (mediaRaw.includes('youtube.com') || mediaRaw.includes('youtu.be')) {
+                            card.onclick = function() { window.open(mediaRaw, '_blank'); };
+                        } else {
+                            card.onclick = function() { apriModal(id); };
+                        }
                         
                         card.innerHTML = '<div class="card-media-box"><img src="' + miniaturaCorretta + '" onerror="this.src=\'immagini/francesco.jpg\'"></div>' +
                                          '<div class="card-content">' +
@@ -309,10 +300,7 @@
                 }
                 media = media.trim();
 
-                if (media.includes('youtube.com') || media.includes('youtu.be')) {
-                    // ECCO IL RIMEDIO STORICO: SE È UN VIDEO BLOCCATO, CREA IL SUPER PULSANTE DI APERTURA ESTERNA
-                    mMedia.innerHTML = '<a href="' + media + '" target="_blank" class="btn-youtube-diretto">📺 CLICCA QUI PER GUARDARE IL VIDEO SU YOUTUBE</a>';
-                } else if (media.length > 10) {
+                if (media.length > 10 && !media.includes('youtube.com') && !media.includes('youtu.be')) {
                     mMedia.innerHTML = '<img src="' + media + '" onerror="this.style.display=\'none\'">';
                 } else {
                     mMedia.innerHTML = '';
