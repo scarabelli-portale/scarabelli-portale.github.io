@@ -126,6 +126,31 @@
             line-height: 1.6;
         }
         
+        /* PULSANTIERA WHATSAPP PER LA PRIMA PAGINA */
+        .piede-pulsantiera-vetrina {
+            margin-top: 25px;
+            text-align: center;
+            border-top: 1px solid #eaeaea;
+            padding-top: 20px;
+            width: 100%;
+        }
+        .puro-testo-vetrina-btn {
+            background: none !important;
+            border: none !important;
+            margin: 10px 15px;
+            font-size: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none !important; 
+            color: #000000 !important; 
+            cursor: pointer;
+            display: inline-block;
+            font-family: sans-serif;
+            letter-spacing: 0.8px;
+            transition: color 0.2s ease;
+        }
+        .puro-testo-vetrina-btn:hover { color: #143ca0 !important; }
+        
         /* STRUTTURA BLINDATA DELLE 3 COLONNE PER EVITARE SPOSTAMENTI */
         .main-container { 
             max-width: 1300px; 
@@ -244,16 +269,15 @@
             .colonna-destra { order: 3; }    
         }
 
-        /* REGOLA PER CELLULARI COMPATTATA E OTTIMIZZATA */
         @media (max-width: 600px) {
             .firma-home { font-size: 2.6rem; }
             
-            /* QUI RIDUCIAMO IL TITOLO IN PRIMA PAGINA DI OLTRE IL 50% EVITANDO TRONCAMENTI */
             #vetrina-titolo, .titolo-prima-pagina { 
                 font-size: 1.15rem !important; 
                 line-height: 1.4 !important;
                 padding: 0 5px;
             }
+            .puro-testo-vetrina-btn { margin: 8px 10px; font-size: 13px; }
         }
     </style>
 </head>
@@ -274,6 +298,13 @@
             <h1 id="vetrina-titolo" style="font-size: 2.2rem; font-weight: bold; text-transform: uppercase; margin: 0 0 15px 0; color: #000000;"></h1>
             <div id="vetrina-media" class="media-prima-pagina"></div>
             <div id="vetrina-testo" class="testo-prima-pagina"></div>
+            
+            <!-- NUOVA PULSANTIERA AGGIUNTA SOTTO LA VETRINA IN HOME -->
+            <div class="piede-pulsantiera-vetrina">
+                <a id="vetrina-link-consiglio" href="#" target="_blank" class="puro-testo-vetrina-btn">WZ CONSIGLIO</a>
+                <a id="vetrina-link-tutti" href="#" target="_blank" class="puro-testo-vetrina-btn">WZ TUTTI EX ALLIEVI</a>
+                <a id="vetrina-link-privato" href="#" target="_blank" class="puro-testo-vetrina-btn">WZ ARCHIVIO PERSONALE</a>
+            </div>
         </div>
     </div>
 
@@ -346,7 +377,6 @@
                     <div style="display: flex; justify-content: flex-start;">
                         <img src="immagini/carlo.jpg" class="foto-profilo">
                     </div>
-                    <!-- GRAFICO RE-INSERITO A TUTTA LARGHEZZA SOTTO LA FOTO -->
                     <div style="width: 100%; border: 1px solid #eaeaea; border-radius: 12px; overflow: hidden; height: 150px; background:#f9f9f9; cursor: pointer;" onclick="window.location.href='carlo.html'">
                         <iframe src="https://s.tradingview.com/embed-widget/mini-symbol-overview/?locale=it&symbol=FX%3AEURUSD&width=100%25&height=100%25&dateRange=12M&showChart=true&underLineColor=rgba(20, 60, 160, 0.15)&chartLineColor=rgba(20, 60, 160, 1)&textColor=000000&gridLineColor=rgba(0, 0, 0, 0)" style="width: 100%; height: 100%; border: none; pointer-events: none;" scrolling="no"></iframe>
                     </div>
@@ -422,6 +452,19 @@
                 } else if(sorgente.length > 10) {
                     mediaBox.innerHTML = '<img src="' + sorgente + '">';
                 }
+
+                // LOGICA PER CREARE I LINK WHATSAPP DELLA VETRINA DIRETTAMENTE SULLA HOME
+                const nomeFileDestinazione = (art.sorgente === 'archivioFausto') ? 'fausto.html' : 'francesco.html';
+                const idPost = art.idOriginale || "";
+                const urlSitoVetrina = "https://scarabelli-portale.github.io/" + nomeFileDestinazione + (idPost ? "?id=" + idPost : "");
+                
+                const msgTuttiVetrina = encodeURIComponent("🚀 *VIENI A VEDERE IL POST IN PRIMA PAGINA:*\n\n📖 *" + (art.titolo || "") + "*\n🔗 " + urlSitoVetrina);
+                const msgMeVetrina = encodeURIComponent("📌 ARCHIVIO PERSONALE (Dalla Vetrina):\nPost: " + (art.titolo || "") + "\nLink: " + urlSitoVetrina);
+
+                document.getElementById('vetrina-link-consiglio').href = "https://api.whatsapp.com/send?text=" + msgTuttiVetrina;
+                document.getElementById('vetrina-link-tutti').href = "https://api.whatsapp.com/send?text=" + msgTuttiVetrina;
+                document.getElementById('vetrina-link-privato').href = "https://wa.me/393398329580?text=" + msgMeVetrina;
+
                 vetrina.style.display = 'block';
             } else {
                 vetrina.style.display = 'none';
@@ -464,7 +507,7 @@
                 if (articoli.length > 0 && area.monitor) { setMonitor(articoli[0], area.monitor); }
                 articoli.forEach(function(art) {
                     const li = document.createElement('li');
-                    naviga = li.className = 'riga-titolo';
+                    li.className = 'riga-titolo';
                     li.innerHTML = art.titolo;
                     li.onclick = function() { window.location.href = area.link + (art.id ? '?id=' + art.id : ''); };
                     if(area.monitor) { li.onmouseenter = function() { setMonitor(art, area.monitor); }; }
