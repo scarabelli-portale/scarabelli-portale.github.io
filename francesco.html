@@ -148,7 +148,18 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.08); 
             background: #ffffff;
         }
-        .modal-media iframe { width: 100%; height: 350px; border-radius: 8px; margin: 20px auto; display: block; border: none; }
+        
+        /* CORREZIONE STRUTTURALE DEL LETTORE VIDEO DENTRO IL POPUP */
+        .modal-media iframe { 
+            width: 100%; 
+            max-width: 650px;
+            height: 360px; 
+            border-radius: 12px; 
+            margin: 20px auto; 
+            display: block; 
+            border: none; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
         
         .modal-text { 
             text-align: justify; 
@@ -184,6 +195,18 @@
             transition: color 0.2s ease;
         }
         .puro-testo-btn:hover { color: #143ca0 !important; }
+
+        @media screen and (max-width: 600px) {
+            #modal-titolo { 
+                font-size: 1.15rem !important; 
+                margin-bottom: 15px !important;
+                line-height: 1.4 !important;
+            }
+            .titolo-stampato { font-size: 2.2rem !important; }
+            .firma-francesco { font-size: 1.3rem !important; }
+            .copertina-container { height: 160px !important; }
+            .modal-media iframe { height: 210px; } /* Più basso sui telefoni */
+        }
     </style>
 </head>
 <body>
@@ -261,17 +284,11 @@
                         const post = dati[id];
                         const miniaturaCorretta = ottieniAnteprimaMedia(post);
                         
-                        let mediaRaw = (post.urlImmagine || post.immagine || post.foto || "").trim();
-                        
                         const card = document.createElement('div');
                         card.className = 'card';
                         
-                        // SE È YOUTUBE, IL CLIC PORTA DIRETTAMENTE AL VIDEO IN UNA NUOVA SCHEDA
-                        if (mediaRaw.includes('youtube.com') || mediaRaw.includes('youtu.be')) {
-                            card.onclick = function() { window.open(mediaRaw, '_blank'); };
-                        } else {
-                            card.onclick = function() { apriModal(id); };
-                        }
+                        // TUTTI I CLIC APRONO IL POPUP BIANCO CON I PULSANTI WHATSAPP
+                        card.onclick = function() { apriModal(id); };
                         
                         card.innerHTML = '<div class="card-media-box"><img src="' + miniaturaCorretta + '" onerror="this.src=\'immagini/francesco.jpg\'"></div>' +
                                          '<div class="card-content">' +
@@ -300,7 +317,13 @@
                 }
                 media = media.trim();
 
-                if (media.length > 10 && !media.includes('youtube.com') && !media.includes('youtu.be')) {
+                // SE IL POST È UN VIDEO DI YOUTUBE, LO INSERIAMO DIRETTAMENTE NEL POPUP
+                if (media.includes('youtube.com') || media.includes('youtu.be')) {
+                    const vId = estraiIdYouTube(media);
+                    mMedia.innerHTML = '<iframe src="https://www.youtube.com/embed/' + vId + '" frameborder="0" allowfullscreen></iframe>';
+                } 
+                // SE È UNA FOTO NORMALE, MOSTRIAMO LA FOTO
+                else if (media.length > 10) {
                     mMedia.innerHTML = '<img src="' + media + '" onerror="this.style.display=\'none\'">';
                 } else {
                     mMedia.innerHTML = '';
