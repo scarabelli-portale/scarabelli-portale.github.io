@@ -70,10 +70,6 @@
             margin-top: 0;
         }
 
-        @media (max-width: 600px) {
-            .firma-home { font-size: 2.6rem; }
-        }
-
         /* VETRINA PRIMA PAGINA LANCIATA DALLA REGIA */
         .container-vetrina-home {
             max-width: 1270px;
@@ -246,6 +242,18 @@
             .colonna-centro { order: 1; }    
             .colonna-sinistra { order: 2; }  
             .colonna-destra { order: 3; }    
+        }
+
+        /* REGOLA PER CELLULARI COMPATTATA E OTTIMIZZATA */
+        @media (max-width: 600px) {
+            .firma-home { font-size: 2.6rem; }
+            
+            /* QUI RIDUCIAMO IL TITOLO IN PRIMA PAGINA DI OLTRE IL 50% EVITANDO TRONCAMENTI */
+            #vetrina-titolo, .titolo-prima-pagina { 
+                font-size: 1.15rem !important; 
+                line-height: 1.4 !important;
+                padding: 0 5px;
+            }
         }
     </style>
 </head>
@@ -456,7 +464,7 @@
                 if (articoli.length > 0 && area.monitor) { setMonitor(articoli[0], area.monitor); }
                 articoli.forEach(function(art) {
                     const li = document.createElement('li');
-                    li.className = 'riga-titolo';
+                    naviga = li.className = 'riga-titolo';
                     li.innerHTML = art.titolo;
                     li.onclick = function() { window.location.href = area.link + (art.id ? '?id=' + art.id : ''); };
                     if(area.monitor) { li.onmouseenter = function() { setMonitor(art, area.monitor); }; }
