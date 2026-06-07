@@ -151,9 +151,13 @@
             letter-spacing: 0.8px;
             transition: color 0.2s ease;
         }
+        
+        /* ICONA MODIFICATA: VERDE SCURO E COMPATTA PER PC */
         .puro-testo-vetrina-btn i {
-            color: #25D366; /* VERDE WHATSAPP PER IL SIMBOLINO */
-            margin-right: 4px;
+            color: #0f8b3c !important; 
+            font-size: 16px;
+            margin-right: 5px;
+            vertical-align: middle;
         }
         .puro-testo-vetrina-btn:hover { color: #143ca0 !important; }
         
@@ -275,11 +279,10 @@
             .colonna-destra { order: 3; }    
         }
 
-        /* CURA DIMAGRANTE ULTRA SUI CELLULARI DI UN ALTRO 10% */
+        /* CURA DIMAGRANTE ULTRA + ICONE GIGANTI AD ALTO CONTRASTO PER CELLULARI */
         @media (max-width: 600px) {
             .firma-home { font-size: 2.6rem; }
             
-            /* TITOLO RIMPICCIOUTI DI UN ULTERIORE 10% */
             #vetrina-titolo, .titolo-prima-pagina { 
                 font-size: 1.05rem !important; 
                 line-height: 1.2 !important;
@@ -293,7 +296,6 @@
             .media-prima-pagina { margin: 4px auto !important; }
             .testo-prima-pagina { margin: 8px auto 0 auto !important; font-size: 0.95rem !important; line-height: 1.35 !important; }
             
-            /* COSTRUTTORE PER SPIANARE I BOTTONI IN UNA SOLA RIGA */
             .piede-pulsantiera-vetrina { 
                 margin-top: 10px !important; 
                 padding-top: 10px !important; 
@@ -301,17 +303,26 @@
                 flex-direction: row !important;
                 flex-wrap: nowrap !important;
                 justify-content: space-between !important; 
-                gap: 2px !important;
+                gap: 4px !important;
             }
             .puro-testo-vetrina-btn { 
                 margin: 0 !important; 
-                font-size: 10px !important; 
-                letter-spacing: 0.2px !important;
+                font-size: 11px !important; 
+                font-weight: 800 !important;
                 white-space: nowrap !important;
                 flex: 1;
                 text-align: center;
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
             }
-            .puro-testo-vetrina-btn i { font-size: 11px !important; margin-right: 2px !important; }
+            
+            /* SIMBOLINI VERDE SCURO E RADDOPPIATI SUL TELEFONO */
+            .puro-testo-vetrina-btn i { 
+                font-size: 18px !important; 
+                margin-right: 4px !important; 
+                font-weight: bold !important;
+            }
         }
     </style>
 </head>
@@ -491,12 +502,12 @@
                 const idPost = art.idOriginale || "";
                 const urlSitoVetrina = "https://scarabelli-portale.github.io/" + nomeFileDestinazione + (idPost ? "?id=" + idPost : "");
                 
-                const msgTuttiVetrina = encodeURIComponent("🚀 *VIENI A VEDERE IL POST IN PRIMA PAGINA:*\n\n📖 *" + (art.titolo || "") + "*\n🔗 " + urlSitoVetrina);
-                const msgMeVetrina = encodeURIComponent("📌 ARCHIVIO PERSONALE (Dalla Vetrina):\nPost: " + (art.titolo || "") + "\nLink: " + urlSitoVetrina);
+                // LOGICA SALVA-VECCHIETTI: MESSAGGIO IN ITALIANO SUPER PULITO
+                const messaggioPulito = encodeURIComponent("Guarda questo contenuto su Scarabelliamente:\n\n" + (art.titolo || "") + "\n\nClicca qui per vederlo sul sito:\n" + urlSitoVetrina);
 
-                document.getElementById('vetrina-link-consiglio').href = "https://api.whatsapp.com/send?text=" + msgTuttiVetrina;
-                document.getElementById('vetrina-link-tutti').href = "https://api.whatsapp.com/send?text=" + msgTuttiVetrina;
-                document.getElementById('vetrina-link-privato').href = "https://wa.me/393398329580?text=" + msgMeVetrina;
+                document.getElementById('vetrina-link-consiglio').href = "https://api.whatsapp.com/send?text=" + messaggioPulito;
+                document.getElementById('vetrina-link-tutti').href = "https://api.whatsapp.com/send?text=" + messaggioPulito;
+                document.getElementById('vetrina-link-privato').href = "https://wa.me/393398329580?text=" + messaggioPulito;
 
                 vetrina.style.display = 'block';
             } else {

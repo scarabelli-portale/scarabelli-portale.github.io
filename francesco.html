@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Archivio Francesco - SCARABELLIAMENTE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* IMPORTAZIONE FONT ELEGANTE PARISIENNE */
         @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
@@ -194,8 +195,17 @@
             letter-spacing: 0.8px;
             transition: color 0.2s ease;
         }
+        
+        /* ICONA MODALITÀ VERDE SCURO E COMPATTA PER PC */
+        .puro-testo-btn i {
+            color: #0f8b3c !important; 
+            font-size: 16px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
         .puro-testo-btn:hover { color: #143ca0 !important; }
 
+        /* PULSANTIERA ULTRA-COMPATTA CON ICONE GIGANTI PER CELLULARI */
         @media screen and (max-width: 600px) {
             #modal-titolo { 
                 font-size: 1.15rem !important; 
@@ -205,7 +215,34 @@
             .titolo-stampato { font-size: 2.2rem !important; }
             .firma-francesco { font-size: 1.3rem !important; }
             .copertina-container { height: 160px !important; }
-            .modal-media iframe { height: 210px; } /* Più basso sui telefoni */
+            .modal-media iframe { height: 210px; } 
+            
+            .piede-pulsantiera-francesco { 
+                display: flex !important; 
+                flex-direction: row !important; 
+                flex-wrap: nowrap !important; 
+                justify-content: space-between !important; 
+                gap: 4px !important; 
+                margin-top: 25px !important; 
+                padding-top: 15px !important; 
+            }
+            .puro-testo-btn { 
+                margin: 0 !important; 
+                font-size: 11px !important; 
+                font-weight: 800 !important; 
+                white-space: nowrap !important; 
+                flex: 1; 
+                text-align: center; 
+                display: flex !important; 
+                align-items: center; 
+                justify-content: center; 
+            }
+            
+            /* ICONE GIGANTI AD ALTO CONTRASTO SUL TELEFONO */
+            .puro-testo-btn i { 
+                font-size: 18px !important; 
+                margin-right: 4px !important; 
+            }
         }
     </style>
 </head>
@@ -230,9 +267,9 @@
             <div id="modal-media" class="modal-media"></div>
             <div id="modal-text" class="modal-text"></div>
             <div class="piede-pulsantiera-francesco">
-                <a id="link-consiglio" href="#" target="_blank" class="puro-testo-btn">WZ CONSIGLIO</a>
-                <a id="link-tutti" href="#" target="_blank" class="puro-testo-btn">WZ TUTTI EX ALLIEVI</a>
-                <a id="link-privato" href="#" target="_blank" class="puro-testo-btn">WZ ARCHIVIO PERSONALE</a>
+                <a id="link-consiglio" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>CONSIGLIO</a>
+                <a id="link-tutti" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>EX ALLIEVI</a>
+                <a id="link-privato" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>PERSONALE</a>
                 <button class="puro-testo-btn" onclick="chiudiModal()">CHIUDI X</button>
             </div>
         </div>
@@ -286,8 +323,6 @@
                         
                         const card = document.createElement('div');
                         card.className = 'card';
-                        
-                        // TUTTI I CLIC APRONO IL POPUP BIANCO CON I PULSANTI WHATSAPP
                         card.onclick = function() { apriModal(id); };
                         
                         card.innerHTML = '<div class="card-media-box"><img src="' + miniaturaCorretta + '" onerror="this.src=\'immagini/francesco.jpg\'"></div>' +
@@ -317,12 +352,10 @@
                 }
                 media = media.trim();
 
-                // SE IL POST È UN VIDEO DI YOUTUBE, LO INSERIAMO DIRETTAMENTE NEL POPUP
                 if (media.includes('youtube.com') || media.includes('youtu.be')) {
                     const vId = estraiIdYouTube(media);
                     mMedia.innerHTML = '<iframe src="https://www.youtube.com/embed/' + vId + '" frameborder="0" allowfullscreen></iframe>';
                 } 
-                // SE È UNA FOTO NORMALE, MOSTRIAMO LA FOTO
                 else if (media.length > 10) {
                     mMedia.innerHTML = '<img src="' + media + '" onerror="this.style.display=\'none\'">';
                 } else {
@@ -330,12 +363,13 @@
                 }
                 
                 const urlSito = "https://scarabelli-portale.github.io/francesco.html?id=" + id;
-                const msgTutti = encodeURIComponent("🚀 *VIENI A VEDERE IL POST:*\n\n📖 *" + (post.titolo || "") + "*\n🔗 " + urlSito);
-                const msgMe = encodeURIComponent("📌 ARCHIVIO PERSONALE:\nPost: " + (post.titolo || "") + "\nLink: " + urlSito);
+                
+                // LOGICA SALVA-VECCHIETTI ATTIVATA: MESSAGGIO PULITO IN ITALIANO
+                const messaggioPulito = encodeURIComponent("Guarda questo contenuto su Scarabelliamente:\n\n" + (post.titolo || "") + "\n\nClicca qui per vederlo sul sito:\n" + urlSito);
 
-                document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + msgTutti;
-                document.getElementById('link-tutti').href = "https://api.whatsapp.com/send?text=" + msgTutti;
-                document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + msgMe;
+                document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + messaggioPulito;
+                document.getElementById('link-tutti').href = "https://api.whatsapp.com/send?text=" + messaggioPulito;
+                document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + messaggioPulito;
 
                 document.getElementById("myModal").style.display = "block";
                 document.body.style.overflow = 'hidden';
