@@ -24,7 +24,7 @@
             overflow-x: hidden; 
         }
         
-        /* TESTATA PULITA */
+        /* TESTATA PULITA SU PC */
         .copertina-container { 
             position: relative; 
             width: 100%; 
@@ -151,10 +151,8 @@
             letter-spacing: 0.8px;
             transition: color 0.2s ease;
         }
-        
-        /* ICONA MODIFICATA: VERDE SCURO E COMPATTA PER PC */
         .puro-testo-vetrina-btn i {
-            color: #0f8b3c !important; 
+            color: #0f8b3c !important; /* VERDE SCURO AD ALTO CONTRASTO */
             font-size: 16px;
             margin-right: 5px;
             vertical-align: middle;
@@ -279,9 +277,12 @@
             .colonna-destra { order: 3; }    
         }
 
-        /* CURA DIMAGRANTE ULTRA + ICONE GIGANTI AD ALTO CONTRASTO PER CELLULARI */
+        /* STRUTTURA AD ALTISSIMO RENDIMENTO PER SNELLIRET IL CELLULARE */
         @media (max-width: 600px) {
-            .firma-home { font-size: 2.6rem; }
+            /* REVISIONE DEL LOGO/TESTATA: TAGLIATA DEL 50% SU TELEFONO */
+            .copertina-container { height: 125px !important; }
+            .titolo-stampato-home { font-size: 1.1rem !important; margin-bottom: -8px !important; }
+            .firma-home { font-size: 2.3rem !important; }
             
             #vetrina-titolo, .titolo-prima-pagina { 
                 font-size: 1.05rem !important; 
@@ -296,6 +297,7 @@
             .media-prima-pagina { margin: 4px auto !important; }
             .testo-prima-pagina { margin: 8px auto 0 auto !important; font-size: 0.95rem !important; line-height: 1.35 !important; }
             
+            /* BOTTONI SU UNA SOLA RIGA COMPATTA */
             .piede-pulsantiera-vetrina { 
                 margin-top: 10px !important; 
                 padding-top: 10px !important; 
@@ -317,7 +319,7 @@
                 justify-content: center;
             }
             
-            /* SIMBOLINI VERDE SCURO E RADDOPPIATI SUL TELEFONO */
+            /* SIMBOLINI WZ RADDOPPIATI E SCURITI SUL CELLULARE */
             .puro-testo-vetrina-btn i { 
                 font-size: 18px !important; 
                 margin-right: 4px !important; 
@@ -344,7 +346,6 @@
             <div id="vetrina-media" class="media-prima-pagina"></div>
             <div id="vetrina-testo" class="testo-prima-pagina"></div>
             
-            <!-- PULSANTIERA INSERITA CON I SIMBOLINI E SENZA SCRITTA WZ -->
             <div class="piede-pulsantiera-vetrina">
                 <a id="vetrina-link-consiglio" href="#" target="_blank" class="puro-testo-vetrina-btn"><i class="fab fa-whatsapp"></i>CONSIGLIO</a>
                 <a id="vetrina-link-tutti" href="#" target="_blank" class="puro-testo-vetrina-btn"><i class="fab fa-whatsapp"></i>EX ALLIEVI</a>
@@ -354,8 +355,6 @@
     </div>
 
     <div class="main-container">
-        
-        <!-- COLONNA DI SINISTRA: METEO & SCUOLA E LAVORO -->
         <div class="colonna-sinistra">
             <div class="box">
                 <div class="titolo-sezione">Meteo & Satellite</div>
@@ -392,7 +391,6 @@
             </div>
         </div>
 
-        <!-- COLONNA CENTRALE: FRANCESCO MARIANI -->
         <div class="colonna-centro">
             <div class="box" style="min-height: 550px;">
                 <div class="titolo-sezione">Pres. Francesco Mariani</div>
@@ -412,10 +410,7 @@
             </div>
         </div>
 
-        <!-- COLONNA DI DESTRA BLINDATA: CARLO SEMPRE SOPRA E SERGIO SEMPRE SOTTO -->
         <div class="colonna-destra">
-            
-            <!-- 1. CARLO (ECONOMIA) -->
             <div class="box">
                 <div class="titolo-sezione">Economia</div>
                 <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px;">
@@ -435,7 +430,6 @@
                 </div>
             </div>
 
-            <!-- 2. SERGIO (ARCHIVIO SERGIO) INCHIODATO SOTTO A CARLO -->
             <div class="box">
                 <div class="titolo-sezione">Archivio Sergio</div>
                 <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
@@ -452,9 +446,7 @@
                     <a href="gestione_sergio.html" class="btn-link">GESTIONE</a>
                 </div>
             </div>
-            
         </div>
-        
     </div>
 
     <footer><p>© 2026 Progetto Scarabelliamente</p></footer>
@@ -502,7 +494,7 @@
                 const idPost = art.idOriginale || "";
                 const urlSitoVetrina = "https://scarabelli-portale.github.io/" + nomeFileDestinazione + (idPost ? "?id=" + idPost : "");
                 
-                // LOGICA SALVA-VECCHIETTI: MESSAGGIO IN ITALIANO SUPER PULITO
+                // MESSAGGIO SALVA-VECCHIETTI IN ITALIANO SUPER PULITO
                 const messaggioPulito = encodeURIComponent("Guarda questo contenuto su Scarabelliamente:\n\n" + (art.titolo || "") + "\n\nClicca qui per vederlo sul sito:\n" + urlSitoVetrina);
 
                 document.getElementById('vetrina-link-consiglio').href = "https://api.whatsapp.com/send?text=" + messaggioPulito;
