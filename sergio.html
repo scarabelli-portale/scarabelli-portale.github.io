@@ -8,6 +8,7 @@
     <meta property="og:image" content="https://scarabelli-portale.github.io/scarabelliamente/immagini/scuola.jpg">
     <meta property="og:type" content="website">
     <title>ARCHIVIO STORICO - SERGIO SILVESTRINI</title>
+    <!-- PACCHETTO GRAFICO PER I SIMBOLINI WHATSAPP -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
@@ -206,61 +207,107 @@
             max-width: 750px;
         }
 
+        /* PIEDE PULSANTIERA */
         .piede-pulsantiera {
-            margin-top: 50px;
-            padding-bottom: 20px;
+            margin-top: 40px;
+            padding-bottom: 40px;
             text-align: center;
             border-top: 1px solid #eaeaea;
-            padding-top: 30px;
+            padding-top: 25px;
             width: 100%;
         }
 
+        /* STRUTTURA A RIGHE */
         .riga-testo-pulsanti {
             display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .sotto-riga {
+            display: flex;
             justify-content: center;
-            flex-wrap: wrap;
+            gap: 12px;
             width: 100%;
         }
 
+        /* PULSANTI SNELLI CON TITOLI COMPLETI ADATTATI ALL'INTERNO */
         .puro-testo-btn {
-            background: none !important;
-            border: none !important;
-            box-shadow: none !important;
-            margin: 10px 20px;
-            font-size: 16px;
+            background: #f2f2f2 !important; 
+            border: 1px solid #dcdcdc !important;
+            border-radius: 6px !important;
+            padding: 6px 14px !important; 
+            font-size: 15px !important; /* Ottimizzato per far stare le scritte lunghe su PC */
             font-weight: bold;
             text-transform: uppercase;
             text-decoration: none !important; 
             color: #000000 !important; 
             cursor: pointer;
-            display: inline-block;
+            flex: 1;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             font-family: sans-serif;
-            letter-spacing: 0.8px;
-            transition: color 0.2s ease;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+            transition: background 0.2s ease;
         }
 
-        /* PULSANTI PC - SIMBOLINI VERDE SCURO INTENSO */
+        /* ICONE WHATSAPP */
         .puro-testo-btn i {
             color: #0f8b3c !important; 
-            font-size: 16px;
-            margin-right: 5px;
+            font-size: 22px !important; 
             vertical-align: middle;
         }
 
         .puro-testo-btn:hover {
-            color: #143ca0 !important; 
+            background: #e5e5e5 !important;
         }
 
-        /* OTTIMIZZAZIONE STRUTTURALE RESPONSIVE PER CELLULARI */
+        /* BOTTONE CHIUDI X ROSSO SNELLO */
+        .btn-chiudi-rosso {
+            background: #dc3545 !important; 
+            color: #ffffff !important; 
+            border: 1px solid #bd2130 !important;
+            border-radius: 6px !important;
+            padding: 6px 14px !important; 
+            font-size: 15px !important; /* Allineato ai pulsanti WZ */
+            font-weight: bold;
+            cursor: pointer;
+            flex: 1;
+            font-family: sans-serif;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        }
+
+        .btn-chiudi-rosso:hover {
+            background: #c82333 !important;
+        }
+
+        /* ASSETTO RESPONSIVE SU TELEFONINO */
         @media screen and (max-width: 600px) {
             .copertina-container { height: 125px !important; }
             .titolo-stampato { font-size: 1.1rem !important; margin-bottom: -8px !important; }
             .firma-sergio { font-size: 2.3rem !important; }
             .sotto-firma-sergio { font-size: 1.2rem !important; margin-top: -4px !important; }
 
-            .riga-testo-pulsanti { display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; justify-content: space-between !important; gap: 4px !important; }
-            .puro-testo-btn { margin: 0 !important; font-size: 11px !important; font-weight: 800 !important; white-space: nowrap !important; flex: 1; text-align: center; display: flex !important; align-items: center; justify-content: center; }
-            .puro-testo-btn i { font-size: 18px !important; margin-right: 4px !important; }
+            .sotto-riga {
+                display: flex !important;
+                flex-direction: row !important;
+                width: 100% !important;
+                gap: 10px !important;
+            }
+            .puro-testo-btn, .btn-chiudi-rosso {
+                font-size: 12px !important; /* Adattato per far stare tutto su una riga sul display del telefono */
+                padding: 10px 6px !important; 
+            }
+            .puro-testo-btn i {
+                font-size: 18px !important;
+            }
         }
     </style>
 </head>
@@ -290,10 +337,16 @@
             
             <div class="piede-pulsantiera">
                 <div class="riga-testo-pulsanti">
-                    <a id="link-luoghi" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>LUOGHI SCARABELLI</a>
-                    <a id="link-consiglio" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>CONSIGLIO</a>
-                    <a id="link-privato" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>A ME PRIVATO</a>
-                    <button class="puro-testo-btn" onclick="chiudiTutto()">CHIUDI X</button>
+                    <!-- PRIMA RIGA CON LE SCRITTE INTEGRALI E CORRETTE -->
+                    <div class="sotto-riga">
+                        <a id="link-luoghi" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>LUOGHI SCARABELLI</a>
+                        <a id="link-consiglio" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>CONSIGLIO SCARABELLI</a>
+                    </div>
+                    <!-- SECONDA RIGA DELLO CHASSIS -->
+                    <div class="sotto-riga">
+                        <a id="link-privato" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>A ME PRIVATO</a>
+                        <button class="btn-chiudi-rosso" onclick="chiudiTutto()">CHIUDI X</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -375,9 +428,6 @@
                 }
 
                 const urlSito = "https://scarabelli-portale.github.io/sergio.html?id=" + id;
-                
-                // --- MODIFICA STRATEGICA: MESSAGGIO ULTRA SEMPLIFICATO "SALVA-VECCHIETTI" ---
-                // Il link blu viene messo subito all'inizio così WhatsApp genera la foto grande istantaneamente
                 const messaggioSemplice = encodeURIComponent(urlSito + "\n\nRicordo: " + (data.titolo || ""));
 
                 document.getElementById('link-luoghi').href = "https://api.whatsapp.com/send?text=" + messaggioSemplice;
