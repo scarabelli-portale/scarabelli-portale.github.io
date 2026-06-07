@@ -8,53 +8,81 @@
     <meta property="og:image" content="https://scarabelli-portale.github.io/immagini/scuola.jpg">
     <meta property="og:type" content="website">
     <title>Archivio - Cinzia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
         
         body { font-family: sans-serif; margin: 0; padding: 0; background-color: #ffffff; color: #000000; text-align: center; line-height: 1.6; }
         
-        .header-fissa { position: fixed; top: 0; width: 100%; height: 250px; z-index: 1000; background: #000; border-bottom: 5px solid #27ae60; overflow: hidden; }
+        /* TESTATA STRUTTURATA ED ALLINEATA ALL'INDEX */
+        .header-fissa { 
+            position: relative; 
+            width: 100%; 
+            max-width: 1300px;
+            margin: 0 auto;
+            height: 250px; 
+            z-index: 1000; 
+            background: #000; 
+            border-bottom: 5px solid #27ae60; 
+            overflow: hidden; 
+        }
         .foto-header { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; opacity: 0.7; }
         
-        #contenitore-titolo { position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); text-align: center; width: 100%; }
+        #contenitore-titolo { position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); text-align: center; width: 100%; z-index: 10; }
         
-        .titolo-stampato { font-family: 'Parisienne', cursive; font-size: 3.8rem; color: white; text-shadow: 3px 3px 8px rgba(0,0,0,1); font-weight: normal; margin-bottom: -15px; display: block; }
-        .firma-persona { font-family: 'Parisienne', cursive; font-size: 2.2rem; color: #ffffff; text-shadow: 3px 3px 8px rgba(0,0,0,1); margin-top: 0; display: block; }
+        .titolo-stampato { font-family: 'Parisienne', cursive; font-size: 1.8rem; color: white; text-shadow: 2px 2px 5px rgba(0,0,0,0.9); font-weight: normal; letter-spacing: 2px; margin-bottom: -15px; display: block; }
+        .firma-persona { font-family: 'Parisienne', cursive; font-size: 4.2rem; color: #ffffff; text-shadow: 3px 3px 8px rgba(0,0,0,1); margin-top: 0; display: block; }
         
+        /* SCRITTA SOTTO-TITOLO PER IDENTIFICARE L'ARCHIVIO */
+        .sotto-firma-persona {
+            font-family: 'Parisienne', cursive;
+            font-size: 2.2rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.9);
+            margin-top: -10px;
+            display: block;
+        }
+
         .btn-nav { position: absolute; top: 15px; padding: 10px 18px; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 0.7rem; z-index: 1001; display: flex; align-items: center; gap: 5px; }
         .btn-home { left: 15px; background: rgba(255,255,255,0.2); color: white; border: 1px solid white; }
         
-        .content-wrapper { margin-top: 270px; padding: 20px; text-align: center; }
+        /* RIPRISTINATO IL MARGINE STANDARD SENZA SOVRAPPOSIZIONI ANOMALE */
+        .content-wrapper { margin-top: 30px; padding: 20px; text-align: center; }
         .griglia-articoli { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: auto; }
         
         .card-didattica { background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); cursor: pointer; text-align: left; display: flex; flex-direction: column; border: 1px solid #eaeaea; transition: transform 0.2s; }
         .card-didattica:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        .card-didattica img { width: 100%; height: 180px; object-fit: cover; }
-        .card-info { padding: 16px; }
-        .card-titolo { font-weight: bold; color: #1e8449; font-size: 1.05rem; }
         
-        /* OVERLAY PROFESSIONALE: TUTTO BIANCO */
+        .card-media-box { width: 100%; height: 180px; background: #f9f9f9; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .card-media-box img { width: 100%; height: 100%; object-fit: contain; }
+        
+        .card-info { padding: 16px; text-align: center; }
+        .card-titolo { font-weight: bold; color: #1e8449; font-size: 0.95rem; text-transform: uppercase; }
+        
         #overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #ffffff; z-index: 2000; overflow-y: auto; padding: 40px 20px; box-sizing: border-box; }
         .content-view { max-width: 800px; margin: auto; text-align: center; }
         
-        /* CORREZIONE CHIRURGICA: Immagine nitida e intera */
-        .img-view { 
-            width: 100% !important; 
-            max-width: 100% !important; 
-            height: auto !important; 
-            max-height: 70vh !important; 
-            object-fit: contain !important; 
-            margin: 20px auto; 
-            display: block; 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08); 
-            border-radius: 8px;
-        }
-        
-        .testo-scritto { text-align: justify; white-space: pre-wrap; font-size: 1.15rem; padding: 10px; color: #000000; max-width: 750px; margin: 25px auto; }
+        .img-view { width: 100% !important; max-width: 100% !important; height: auto !important; max-height: 70vh !important; object-fit: contain !important; margin: 20px auto; display: block; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border-radius: 8px; background: #ffffff; }
+        .testo-scritto { text-align: justify; white-space: pre-wrap; font-size: 1.15rem; padding: 10px; color: #000000; max-width: 750px; margin: 25px auto; line-height: 1.7; }
 
         .area-pulsanti-sergio { margin-top: 50px; padding-bottom: 20px; text-align: center; border-top: 1px solid #eaeaea; padding-top: 30px; }
         .area-pulsanti-sergio a { color: #000000; font-weight: bold; text-decoration: none; text-transform: uppercase; margin: 10px 20px; display: inline-block; font-size: 16px; letter-spacing: 0.8px; transition: color 0.2s; }
+        
+        /* BOTTONI PC - ICONE WHATSAPP VERDE SCURO */
+        .area-pulsanti-sergio a i { color: #0f8b3c !important; font-size: 16px; margin-right: 5px; vertical-align: middle; }
         .area-pulsanti-sergio a:hover { color: #27ae60; }
+
+        /* CURA DIMAGRANTE IN ALTEZZA + SIMBOLINI WHATSAPP GRANDI PER CELLULARI */
+        @media screen and (max-width: 600px) {
+            .header-fissa { height: 125px !important; }
+            .titolo-stampato { font-size: 1.1rem !important; margin-bottom: -8px !important; }
+            .firma-persona { font-size: 2.3rem !important; }
+            .sotto-firma-persona { font-size: 1.2rem !important; margin-top: -4px !important; }
+
+            .area-pulsanti-sergio { display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; justify-content: space-between !important; gap: 4px !important; margin-top: 25px !important; padding-top: 15px !important; }
+            .area-pulsanti-sergio a { margin: 0 !important; font-size: 11px !important; font-weight: 800 !important; white-space: nowrap !important; flex: 1; text-align: center; display: flex !important; align-items: center; justify-content: center; }
+            .area-pulsanti-sergio a i { font-size: 18px !important; margin-right: 4px !important; }
+        }
     </style>
 </head>
 <body>
@@ -63,8 +91,9 @@
         <a href="index.html" class="btn-nav btn-home">⬅ HOME</a>
         <img src="immagini/scuola.jpg" class="foto-header">
         <div id="contenitore-titolo">
-            <span class="titolo-stampato">Scarabelliamente</span>
-            <span class="firma-persona">Archivio Cinzia</span>
+            <span class="titolo-stampato">Progetto</span>
+            <span class="firma-persona">Scarabelliamente</span>
+            <span class="sotto-firma-persona">Archivio Cinzia</span>
         </div>
     </div>
 
@@ -75,12 +104,12 @@
     <div id="overlay">
         <div class="content-view">
             <h2 id="titolo-view" style="color: #1e8449; font-family: sans-serif; font-size: 2.4rem; font-weight: bold; text-transform: uppercase; margin-bottom: 25px;"></h2>
-            <img id="img-view" src="" style="display:none;" class="img-view">
+            <div id="media-display"></div>
             <div id="testo-view" class="testo-scritto"></div>
             <div class="area-pulsanti-sergio">
-                <a id="link-consiglio" href="#" target="_blank">WZ CONSIGLIO SCARABELLI</a>
-                <a id="link-tutti" href="#" target="_blank">WZ TUTTI GLI EX ALLIEVI</a>
-                <a id="link-privato" href="#" target="_blank">WZ ARCHIVIO PERSONALE</a>
+                <a id="link-consiglio" href="#" target="_blank"><i class="fab fa-whatsapp"></i>CONSIGLIO</a>
+                <a id="link-tutti" href="#" target="_blank"><i class="fab fa-whatsapp"></i>EX ALLIEVI</a>
+                <a id="link-privato" href="#" target="_blank"><i class="fab fa-whatsapp"></i>PERSONALE</a>
                 <a href="javascript:chiudiOverlay();">CHIUDI X</a>
             </div>
         </div>
@@ -92,7 +121,31 @@
         const firebaseConfig = { databaseURL: "https://sito-sergio-b19ce-default-rtdb.europe-west1.firebasedatabase.app/" };
         if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
         const db = firebase.database();
-        function pulisciLink(url) { if (!url) return ""; let trovato = url.match(/https?:\/\/[^"'>\s]+\.(?:jpg|jpeg|gif|png|webp)/i); return trovato ? trovato[0] : url.trim(); }
+        
+        function pulisciLink(url) { 
+            if (!url) return ""; 
+            let trovato = url.match(/https?:\/\/[^"'>\s]+\.(?:jpg|jpeg|gif|png|webp)/i); 
+            return trovato ? trovato[0] : url.trim(); 
+        }
+
+        function ottieniAnteprimaMedia(postData) {
+            let stringaMedia = (postData.immagine || postData.urlImmagine || postData.foto || "").trim();
+            if (stringaMedia.includes('<img')) {
+                const match = stringaMedia.match(/src="([^"]+)"/);
+                if (match) stringaMedia = match[1];
+            }
+            stringaMedia = stringaMedia.trim();
+
+            if (stringaMedia.includes('youtube.com') || stringaMedia.includes('youtu.be')) {
+                const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+                const match = stringaMedia.match(regExp);
+                const vId = (match && match[2].length === 11) ? match[2] : null;
+                if (vId) {
+                    return 'https://img.youtube.com/vi/' + vId + '/hqdefault.jpg';
+                }
+            }
+            return stringaMedia || 'immagini/scuola.jpg';
+        }
         
         const urlParams = new URLSearchParams(window.location.search);
         const postId = urlParams.get('id');
@@ -101,20 +154,44 @@
         window.apri = function(id) {
             db.ref('archivioCinzia/' + id).once('value').then(function(snap) {
                 const art = snap.val(); if(!art) return;
-                const imgV = document.getElementById('img-view');
-                if(art.immagine) { imgV.src = pulisciLink(art.immagine); imgV.style.display = 'block'; } else { imgV.style.display = 'none'; }
-                document.getElementById('titolo-view').innerText = art.titolo;
-                document.getElementById('testo-view').innerText = art.testo;
+                
+                document.getElementById('titolo-view').innerText = art.titolo || "Senza Titolo";
+                document.getElementById('testo-view').innerText = art.testo || "";
+                
+                const display = document.getElementById('media-display');
+                let stringaMedia = (art.immagine || art.urlImmagine || art.foto || "").trim();
+                
+                if (stringaMedia.includes('<img')) {
+                    const match = stringaMedia.match(/src="([^"]+)"/);
+                    if (match) stringaMedia = match[1];
+                }
+                stringaMedia = stringaMedia.trim();
+
+                const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+                const match = stringaMedia.match(regExp);
+                const vId = (match && match[2].length === 11) ? match[2] : null;
+
+                if (vId) {
+                    display.innerHTML = '<div style="background:rgba(0,0,0,0.03); padding:40px; border-radius:15px; margin-bottom:25px;">' +
+                                        '<a href="https://www.youtube.com/watch?v=' + vId + '" target="_blank" style="display:inline-block; background:#1e8449; color:white; padding:15px 40px; border-radius:50px; text-decoration:none; font-weight:bold; font-size:1.2rem;">GUARDA IL VIDEO 🎥</a>' +
+                                        '</div>';
+                } else if (stringaMedia.length > 10) {
+                    display.innerHTML = '<img src="' + stringaMedia + '" class="img-view" onerror="this.src=\'immagini/scuola.jpg\'">';
+                } else {
+                    display.innerHTML = '';
+                }
                 
                 const urlSito = "https://scarabelli-portale.github.io/cinzia.html?id=" + id;
-                const msgTutti = encodeURIComponent("🚀 *VIENI A VEDERE IL POST:*\n\n📖 *" + art.titolo + "*\n🔗 " + urlSito);
-                const msgMe = encodeURIComponent("📌 ARCHIVIO PERSONALE:\nPost: " + art.titolo + "\nLink: " + urlSito);
+                
+                // MESSAGGIO IN ITALIANO PULITO SALVA-VECCHIETTI
+                const messaggioPulito = encodeURIComponent("Guarda questo contenuto su Scarabelliamente:\n\n" + (art.titolo || "") + "\n\nClicca qui per vederlo sul sito:\n" + urlSito);
 
-                document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + msgTutti;
-                document.getElementById('link-tutti').href = "https://api.whatsapp.com/send?text=" + msgTutti;
-                document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + msgMe;
+                document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + messaggioPulito;
+                document.getElementById('link-tutti').href = "https://api.whatsapp.com/send?text=" + messaggioPulito;
+                document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + messaggioPulito;
 
-                document.getElementById('overlay').style.display = 'block'; document.body.style.overflow = 'hidden';
+                document.getElementById('overlay').style.display = 'block'; 
+                document.body.style.overflow = 'hidden';
             });
         }
         
@@ -125,17 +202,21 @@
         }
 
         db.ref('archivioCinzia').on('value', function(snapshot) {
-            const container = document.getElementById('container-articoli-cinzia'); container.innerHTML = "";
+            const container = document.getElementById('container-articoli-cinzia'); 
+            container.innerHTML = "";
             const data = snapshot.val();
+            
             if (data) {
                 Object.keys(data).reverse().forEach(function(id) {
-                    const art = data[id]; const imgPulita = art.immagine ? pulisciLink(art.immagine) : 'https://via.placeholder.com/400x250?text=Didattica';
+                    const art = data[id]; 
+                    const miniaturaCorretta = ottieniAnteprimaMedia(art);
                     const card = document.createElement('div');
                     card.className = 'card-didattica';
                     card.onclick = function() { apri(id); };
-                    card.innerHTML = '<img src="' + imgPulita + '">' +
+                    
+                    card.innerHTML = '<div class="card-media-box"><img src="' + miniaturaCorretta + '" onerror="this.src=\'immagini/scuola.jpg\'"></div>' +
                                      '<div class="card-info">' +
-                                         '<div class="card-titolo">' + art.titolo + '</div>' +
+                                         '<div class="card-titolo">' + (art.titolo || 'Senza Titolo') + '</div>' +
                                      '</div>';
                     container.appendChild(card);
                 });

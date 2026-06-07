@@ -8,6 +8,8 @@
     <meta property="og:image" content="https://scarabelli-portale.github.io/scarabelliamente/immagini/scuola.jpg">
     <meta property="og:type" content="website">
     <title>ARCHIVIO METEO - FAUSTO</title>
+    <!-- AGGIUNTO IL PACCHETTO PER I SIMBOLINI/ICONE WHATSAPP -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
         
@@ -20,9 +22,12 @@
             line-height: 1.6;
         }
 
+        /* TESTATA MODELLO UNIFICATO ED ALLINEATO ALL'INDEX */
         .copertina-container { 
             position: relative; 
             width: 100%; 
+            max-width: 1300px;
+            margin: 0 auto;
             height: 250px; 
             overflow: hidden; 
             border-bottom: 5px solid #143ca0; 
@@ -48,22 +53,31 @@
         
         .titolo-stampato { 
             font-family: 'Parisienne', cursive;
-            font-size: 3.8rem; 
+            font-size: 1.8rem; 
             color: white; 
-            text-shadow: 3px 3px 8px rgba(0,0,0,1);
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.9); 
             font-weight: normal; 
-            text-transform: none; 
-            letter-spacing: normal;
+            letter-spacing: 2px;
             margin-bottom: -15px; 
             display: block;
         }
         
         .firma-fausto { 
             font-family: 'Parisienne', cursive; 
-            font-size: 2.2rem; 
+            font-size: 4.2rem; 
             color: white; 
             text-shadow: 3px 3px 8px rgba(0,0,0,1); 
             margin-top: 0;
+            display: block;
+        }
+
+        /* SCRITTA SOTTO-TITOLO PER IDENTIFICARE L'ARCHIVIO */
+        .sotto-firma-fausto {
+            font-family: 'Parisienne', cursive;
+            font-size: 2.2rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.9);
+            margin-top: -10px;
             display: block;
         }
 
@@ -173,6 +187,7 @@
             padding: 10px;
         }
 
+        /* PIEDE PULSANTIERA IN PURO TESTO NERO */
         .piede-pulsantiera-fausto {
             margin-top: 50px;
             padding-bottom: 20px;
@@ -197,7 +212,27 @@
             letter-spacing: 0.8px;
             transition: color 0.2s ease;
         }
+        
+        /* BOTTONI PC - ICONA VERDE SCURO */
+        .puro-testo-btn i {
+            color: #0f8b3c !important; 
+            font-size: 16px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
         .puro-testo-btn:hover { color: #143ca0 !important; }
+
+        /* OTTIMIZZAZIONE ALTEZZA COMPRESSA + WHATSAPP PER CELLULARI */
+        @media screen and (max-width: 600px) {
+            .copertina-container { height: 125px !important; }
+            .titolo-stampato { font-size: 1.1rem !important; margin-bottom: -8px !important; }
+            .firma-fausto { font-size: 2.3rem !important; }
+            .sotto-firma-fausto { font-size: 1.2rem !important; margin-top: -4px !important; }
+
+            .piede-pulsantiera-fausto { display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; justify-content: space-between !important; gap: 4px !important; margin-top: 25px !important; padding-top: 15px !important; }
+            .puro-testo-btn { margin: 0 !important; font-size: 11px !important; font-weight: 800 !important; white-space: nowrap !important; flex: 1; text-align: center; display: flex !important; align-items: center; justify-content: center; }
+            .puro-testo-btn i { font-size: 18px !important; margin-right: 4px !important; }
+        }
     </style>
 </head>
 <body>
@@ -206,8 +241,9 @@
         <a href="index.html" class="btn-nav btn-home">⬅ HOME</a>
         <img src="immagini/scuola.jpg" class="foto-scuola">
         <div id="contenitore-titolo">
-            <span class="titolo-stampato">Scarabelliamente</span>
-            <span class="firma-fausto">Archivio Fausto</span>
+            <span class="titolo-stampato">Progetto</span>
+            <span class="firma-fausto">Scarabelliamente</span>
+            <span class="sotto-firma-fausto">Archivio Fausto</span>
         </div>
     </div>
 
@@ -240,9 +276,9 @@
             <div id="modal-media" class="modal-media"></div>
             <div id="modal-text" class="modal-text"></div>
             <div class="piede-pulsantiera-fausto">
-                <a id="link-consiglio" href="#" target="_blank" class="puro-testo-btn">WZ CONSIGLIO</a>
-                <a id="link-tutti" href="#" target="_blank" class="puro-testo-btn">WZ TUTTI EX ALLIEVI</a>
-                <a id="link-privato" href="#" target="_blank" class="puro-testo-btn">WZ ARCHIVIO PERSONALE</a>
+                <a id="link-consiglio" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>CONSIGLIO</a>
+                <a id="link-tutti" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>EX ALLIEVI</a>
+                <a id="link-privato" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>PERSONALE</a>
                 <button class="puro-testo-btn" onclick="chiudiModal()">CHIUDI X</button>
             </div>
         </div>
@@ -275,7 +311,7 @@
                     return 'https://img.youtube.com/vi/' + vId + '/hqdefault.jpg';
                 }
             }
-            return stringaMedia;
+            return stringaMedia || 'immagini/scuola.jpg';
         }
 
         databaseRef.on('value', function(snap) {
@@ -291,7 +327,7 @@
                     card.className = 'card';
                     card.onclick = function() { apriModal(id); };
                     
-                    card.innerHTML = '<div class="card-media-container"><img src="' + miniaturaCorretta + '" onerror="this.src=\'immagini/fausto.jpg\'"></div>' +
+                    card.innerHTML = '<div class="card-media-container"><img src="' + miniaturaCorretta + '" onerror="this.src=\'immagini/scuola.jpg\'"></div>' +
                                      '<h3>' + (post.titolo || 'Senza Titolo') + '</h3>' +
                                      '<p style="text-align:center; font-size:0.95rem; color:#333; font-weight:500; padding:0 5px;">' + (post.testo || '') + '</p>';
                     container.appendChild(card);
@@ -330,12 +366,13 @@
                 }
                 
                 const urlSito = "https://scarabelli-portale.github.io/fausto.html?id=" + id;
-                const msgTutti = encodeURIComponent("🚀 *VIENI A VEDERE IL POST:*\n📖 *" + (post.titolo || "") + "*\n🔗 " + urlSito);
-                const msgMe = encodeURIComponent("📌 ARCHIVIO PERSONALE:\nPost: " + (post.titolo || "") + "\nLink: " + urlSito);
                 
-                document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + msgTutti;
-                document.getElementById('link-tutti').href = "https://api.whatsapp.com/send?text=" + msgTutti;
-                document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + msgMe;
+                // MESSAGGIO IN ITALIANO PULITO SALVA-VECCHIETTI
+                const messaggioPulito = encodeURIComponent("Guarda questo contenuto su Scarabelliamente:\n\n" + (post.titolo || "") + "\n\nClicca qui per vederlo sul sito:\n" + urlSito);
+                
+                document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + messaggioPulito;
+                document.getElementById('link-tutti').href = "https://api.whatsapp.com/send?text=" + messaggioPulito;
+                document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + messaggioPulito;
                 
                 document.getElementById("myModal").style.display = "block";
                 document.body.style.overflow = 'hidden';

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ARCHIVIO SCARABELLI - Carlo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* IMPORTAZIONE FONT ELEGANTE PARISIENNE */
         @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
@@ -12,13 +13,13 @@
             font-family: sans-serif; 
             margin: 0; 
             padding: 0;
-            background-color: #ffffff; /* Fondale bianco professionale */
-            color: #000000; /* Testo nero nitido */
+            background-color: #ffffff; 
+            color: #000000; 
             line-height: 1.6; 
             overflow-x: hidden; 
         }
 
-        /* TESTATA MODELLO UNIFICATO PORTALE */
+        /* TESTATA STRUTTURATA ED ALLINEATA ALL'INDEX */
         .copertina-container { 
             position: relative; 
             width: 100%; 
@@ -49,26 +50,34 @@
         
         .titolo-stampato { 
             font-family: 'Parisienne', cursive;
-            font-size: 3.8rem; 
+            font-size: 1.8rem; 
             color: white; 
-            text-shadow: 3px 3px 8px rgba(0,0,0,1);
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.9); 
             font-weight: normal; 
-            text-transform: none; 
-            letter-spacing: normal;
+            letter-spacing: 2px;
             margin-bottom: -15px; 
             display: block;
         }
         
         .firma-carlo { 
             font-family: 'Parisienne', cursive; 
-            font-size: 2.2rem; 
+            font-size: 4.2rem; 
             color: white; 
             text-shadow: 3px 3px 8px rgba(0,0,0,1); 
             margin-top: 0;
             display: block;
         }
+
+        /* SCRITTA SOTTO-TITOLO PER IDENTIFICARE L'ARCHIVIO */
+        .sotto-firma-carlo {
+            font-family: 'Parisienne', cursive;
+            font-size: 2.2rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.9);
+            margin-top: -10px;
+            display: block;
+        }
         
-        /* COMODISSIMO PULSANTE HOME ARROTONDATO IN ALTO A SINISTRA (STILE CINZIA) */
         .btn-nav { 
             position: absolute; 
             top: 15px; 
@@ -139,7 +148,7 @@
         .img-articolo { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
         .testo-articolo { font-size: 0.95rem; text-align: justify; white-space: pre-wrap; color: #444444; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
 
-        /* OVERLAY DETTAGLIO POST BIANCO COPIATO DA FAUSTO */
+        /* OVERLAY DETTAGLIO POST BIANCO */
         .modal { 
             display: none; 
             position: fixed; 
@@ -206,6 +215,14 @@
             letter-spacing: 0.8px;
             transition: color 0.2s ease;
         }
+        
+        /* BOTTONI PC - ICONA VERDE SCURO */
+        .puro-testo-btn i {
+            color: #0f8b3c !important; 
+            font-size: 16px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
         .puro-testo-btn:hover {
             color: #143ca0 !important; 
         }
@@ -213,29 +230,37 @@
         @media (max-width: 900px) { 
             .griglia-articoli { grid-template-columns: repeat(2, 1fr); } 
         }
+        
+        /* REVISIONE COMPRESSIONE RESPONSIVE PER CELLULARI */
         @media (max-width: 600px) { 
-            .copertina-container { height: 160px; } 
-            .firma-carlo { font-size: 2.2rem; }
+            .copertina-container { height: 125px !important; } 
+            .titolo-stampato { font-size: 1.1rem !important; margin-bottom: -8px !important; }
+            .firma-carlo { font-size: 2.3rem !important; }
+            .sotto-firma-carlo { font-size: 1.2rem !important; margin-top: -4px !important; }
+            
             .area-trading { flex-direction: column; } 
             .griglia-articoli { grid-template-columns: 1fr; }
+            
+            .piede-pulsantiera-carlo { display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; justify-content: space-between !important; gap: 4px !important; margin-top: 25px !important; padding-top: 15px !important; }
+            .puro-testo-btn { margin: 0 !important; font-size: 11px !important; font-weight: 800 !important; white-space: nowrap !important; flex: 1; text-align: center; display: flex !important; align-items: center; justify-content: center; }
+            .puro-testo-btn i { font-size: 18px !important; margin-right: 4px !important; }
         }
     </style>
 </head>
 <body>
 
-    <!-- STRUTTURA PRINCIPALE VISIBILE -->
     <div id="struttura-visibile-carlo">
         <div class="copertina-container">
             <a href="index.html" class="btn-nav btn-home">⬅ HOME</a>
             <img src="immagini/scuola.jpg" class="foto-scuola">
             <div id="contenitore-titolo">
-                <span class="titolo-stampato">Scarabelliamente</span>
-                <span class="firma-carlo">Archivio Carlo</span>
+                <span class="titolo-stampato">Progetto</span>
+                <span class="firma-carlo">Scarabelliamente</span>
+                <span class="sotto-firma-carlo">Archivio Carlo</span>
             </div>
         </div>
         
-                <div class="main-container">
-            <!-- SEZIONE FINANZIARIA TRADINGVIEW -->
+        <div class="main-container">
             <div id="sezione-trading">
                 <div style="margin-bottom: 20px; border-radius: 12px; overflow: hidden; border: 1px solid #eaeaea; background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.04);">
                     <iframe src="https://s.tradingview.com/embed-widget/ticker-tape/?locale=it" width="100%" height="46" frameborder="0" scrolling="no"></iframe>
@@ -253,12 +278,10 @@
                 </div>
             </div>
 
-            <!-- GRIGLIA POST ALBUM -->
             <div id="lista-articoli" class="griglia-articoli"></div>
         </div>
     </div>
 
-    <!-- OVERLAY DETTAGLIO POST BIANCO -->
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span id="modal-data" style="font-size:0.9rem; color:#777; font-weight:bold; margin-bottom:10px; display:block; text-align:center;"></span>
@@ -269,15 +292,14 @@
             <div id="modal-testo" class="modal-text"></div>
             
             <div class="piede-pulsantiera-carlo">
-                <a id="link-consiglio" href="#" target="_blank" class="puro-testo-btn">WZ CONSIGLIO</a>
-                <a id="link-tutti" href="#" target="_blank" class="puro-testo-btn">WZ TUTTI EX ALLIEVI</a>
-                <a id="link-privato" href="#" target="_blank" class="puro-testo-btn">WZ ARCHIVIO PERSONALE</a>
+                <a id="link-consiglio" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>CONSIGLIO</a>
+                <a id="link-tutti" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>EX ALLIEVI</a>
+                <a id="link-privato" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>PERSONALE</a>
                 <button class="puro-testo-btn" onclick="chiudiModal()">CHIUDI X</button>
             </div>
         </div>
     </div>
 
-    <!-- MOTORE MODERNO MODULARE FIREBASE 10 -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
@@ -352,13 +374,14 @@
                 mediaBox.innerHTML = '';
             }
             
-            const urlSito = window.location.origin + window.location.pathname + "?id=" + id;
-            const msgTutti = encodeURIComponent("🚀 *VIENI A VEDERE IL POST:*\n📖 *" + titolo + "*\n🔗 " + urlSito);
-            const msgMe = encodeURIComponent("📌 ARCHIVIO PERSONALE:\nPost: " + titolo + "\nLink: " + urlSito);
+            const urlSito = "https://scarabelli-portale.github.io/carlo.html?id=" + id;
+            
+            // LOGICA SALVA-VECCHIETTI IN ITALIANO PULITO
+            const messaggioPulito = encodeURIComponent("Guarda questo contenuto su Scarabelliamente:\n\n" + titolo + "\n\nClicca qui per vederlo sul sito:\n" + urlSito);
 
-            document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + msgTutti;
-            document.getElementById('link-tutti').href = "https://api.whatsapp.com/send?text=" + msgTutti;
-            document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + msgMe;
+            document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + messaggioPulito;
+            document.getElementById('link-tutti').href = "https://api.whatsapp.com/send?text=" + messaggioPulito;
+            document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + messaggioPulito;
 
             document.getElementById("myModal").style.display = "block";
             window.scrollTo(0, 0);
