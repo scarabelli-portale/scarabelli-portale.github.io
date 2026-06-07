@@ -8,6 +8,8 @@
     <meta property="og:image" content="https://scarabelli-portale.github.io/scarabelliamente/immagini/scuola.jpg">
     <meta property="og:type" content="website">
     <title>ARCHIVIO STORICO - SERGIO SILVESTRINI</title>
+    <!-- PACCHETTO GRAFICO PER I SIMBOLINI WHATSAPP -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
         
@@ -21,10 +23,13 @@
             line-height: 1.6;
         }
         
+        /* TESTATA STRUTTURATA ESATTAMENTE COME L'INDEX PERFETTO */
         .copertina-container { 
             position: relative; 
             width: 100%; 
-            height: 280px; 
+            max-width: 1300px;
+            margin: 0 auto;
+            height: 250px; 
             overflow: hidden; 
             border-bottom: 5px solid #143ca0; 
             background: #000; 
@@ -34,7 +39,8 @@
             width: 100%; 
             height: 100%; 
             object-fit: cover; 
-            opacity: 0.8; 
+            object-position: center 40%;
+            opacity: 0.7; 
         }
         
         #contenitore-titolo { 
@@ -49,22 +55,31 @@
         
         .titolo-stampato { 
             font-family: 'Parisienne', cursive;
-            font-size: 3.8rem; 
+            font-size: 1.8rem; 
             color: white; 
-            text-shadow: 3px 3px 8px rgba(0,0,0,1); 
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.9); 
             font-weight: normal; 
-            text-transform: none; 
-            letter-spacing: normal;
+            letter-spacing: 2px;
             margin-bottom: -15px; 
             display: block;
         }
         
         .firma-sergio { 
             font-family: 'Parisienne', cursive; 
-            font-size: 2.2rem; 
-            color: white; 
-            text-shadow: 2px 2px 6px rgba(0,0,0,1); 
+            font-size: 4.2rem; 
+            color: #ffffff; 
+            text-shadow: 3px 3px 8px rgba(0,0,0,1); 
             margin-top: 0;
+            display: block;
+        }
+
+        /* SCRITTA SOTTO-TITOLO CORRETTA PER IL TUO ARCHIVIO */
+        .sotto-firma-sergio {
+            font-family: 'Parisienne', cursive;
+            font-size: 2.2rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.9);
+            margin-top: -10px;
             display: block;
         }
         
@@ -129,7 +144,6 @@
             overflow: hidden; 
         }
         
-        /* IL TUO CODICE ORIGINALE PERFETTO: Mantiene le foto in griglia intere e NON TAGLIATE */
         .media-box img { 
             width: 100%; 
             height: 100%; 
@@ -170,7 +184,6 @@
             text-align: center; 
         }
         
-        /* FOTO DEL POPUP: Si allarga stile Cinzia ma con 'contain' per non tagliare nulla */
         .img-display-pulita {
             width: 100%;
             max-width: 750px; 
@@ -227,20 +240,40 @@
             transition: color 0.2s ease;
         }
 
+        /* PULSANTI PC - SIMBOLINI VERDE SCURO INTENSO */
+        .puro-testo-btn i {
+            color: #0f8b3c !important; 
+            font-size: 16px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
         .puro-testo-btn:hover {
             color: #143ca0 !important; 
+        }
+
+        /* OTTIMIZZAZIONE STRUTTURALE RESPONSIVE PER CELLULARI */
+        @media screen and (max-width: 600px) {
+            .copertina-container { height: 125px !important; }
+            .titolo-stampato { font-size: 1.1rem !important; margin-bottom: -8px !important; }
+            .firma-sergio { font-size: 2.3rem !important; }
+            .sotto-firma-sergio { font-size: 1.2rem !important; margin-top: -4px !important; }
+
+            .piga-testo-pulsanti { display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; justify-content: space-between !important; gap: 4px !important; }
+            .puro-testo-btn { margin: 0 !important; font-size: 11px !important; font-weight: 800 !important; white-space: nowrap !important; flex: 1; text-align: center; display: flex !important; align-items: center; justify-content: center; }
+            .puro-testo-btn i { font-size: 18px !important; margin-right: 4px !important; }
         }
     </style>
 </head>
 <body>
 
-    <!-- COPERTINA CON HOME IN ALTO A SINISTRA RIPRISTINATA -->
     <div class="copertina-container">
         <a href="index.html" class="btn-nav btn-home">⬅ HOME</a>
         <img src="immagini/scuola.jpg" class="foto-scuola">
         <div id="contenitore-titolo">
-            <span class="titolo-stampato">Scarabelliamente</span>
-            <span class="firma-sergio">Archivio Sergio</span>
+            <span class="titolo-stampato">Progetto</span>
+            <span class="firma-sergio">Scarabelliamente</span>
+            <span class="sotto-firma-sergio">Archivio Sergio</span>
         </div>
     </div>
 
@@ -258,9 +291,9 @@
             
             <div class="piede-pulsantiera">
                 <div class="riga-testo-pulsanti">
-                    <a id="link-luoghi" href="#" target="_blank" class="puro-testo-btn">WZ LUOGHI SCARABELLI</a>
-                    <a id="link-consiglio" href="#" target="_blank" class="puro-testo-btn">WZ CONSIGLIO</a>
-                    <a id="link-privato" href="#" target="_blank" class="puro-testo-btn">WZ A ME PRIVATO</a>
+                    <a id="link-luoghi" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>LUOGHI SCARABELLI</a>
+                    <a id="link-consiglio" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>CONSIGLIO</a>
+                    <a id="link-privato" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>A ME PRIVATO</a>
                     <button class="puro-testo-btn" onclick="chiudiTutto()">CHIUDI X</button>
                 </div>
             </div>
@@ -342,13 +375,14 @@
                     display.innerHTML = '<img src="' + stringaMedia + '" class="img-display-pulita" onerror="this.src=\'immagini/scuola.jpg\'">'; 
                 }
 
-                const urlSito = window.location.origin + window.location.pathname + "?id=" + id;
-                const msgTutti = encodeURIComponent("✨ Guarda questo ricordo:\n*" + (data.titolo || "") + "*\n\nLink:\n" + urlSito);
-                const msgMe = encodeURIComponent("Ciao Sergio, riguardo a: " + (data.titolo || "") + "\n" + urlSito); 
+                const urlSito = "https://scarabelli-portale.github.io/sergio.html?id=" + id;
+                
+                // MESSAGGIO SALVA-VECCHIETTI IN ITALIANO SUPER PULITO
+                const messaggioPulito = encodeURIComponent("Guarda questo contenuto su Scarabelliamente:\n\n" + (data.titolo || "") + "\n\nClicca qui per vederlo sul sito:\n" + urlSito);
 
-                document.getElementById('link-luoghi').href = "https://api.whatsapp.com/send?text=" + msgTutti;
-                document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + msgTutti;
-                document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + msgMe;
+                document.getElementById('link-luoghi').href = "https://api.whatsapp.com/send?text=" + messaggioPulito;
+                document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + messaggioPulito;
+                document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + messaggioPulito;
 
                 document.getElementById('overlay-blu').style.display = 'block'; 
                 document.body.style.overflow = 'hidden';
