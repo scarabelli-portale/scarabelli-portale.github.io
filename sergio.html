@@ -8,7 +8,6 @@
     <meta property="og:image" content="https://scarabelli-portale.github.io/scarabelliamente/immagini/scuola.jpg">
     <meta property="og:type" content="website">
     <title>ARCHIVIO STORICO - SERGIO SILVESTRINI</title>
-    <!-- PACCHETTO GRAFICO PER I SIMBOLINI WHATSAPP -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
@@ -259,7 +258,7 @@
             .firma-sergio { font-size: 2.3rem !important; }
             .sotto-firma-sergio { font-size: 1.2rem !important; margin-top: -4px !important; }
 
-            .piga-testo-pulsanti { display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; justify-content: space-between !important; gap: 4px !important; }
+            .riga-testo-pulsanti { display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; justify-content: space-between !important; gap: 4px !important; }
             .puro-testo-btn { margin: 0 !important; font-size: 11px !important; font-weight: 800 !important; white-space: nowrap !important; flex: 1; text-align: center; display: flex !important; align-items: center; justify-content: center; }
             .puro-testo-btn i { font-size: 18px !important; margin-right: 4px !important; }
         }
@@ -377,12 +376,13 @@
 
                 const urlSito = "https://scarabelli-portale.github.io/sergio.html?id=" + id;
                 
-                // MESSAGGIO SALVA-VECCHIETTI IN ITALIANO SUPER PULITO
-                const messaggioPulito = encodeURIComponent("Guarda questo contenuto su Scarabelliamente:\n\n" + (data.titolo || "") + "\n\nClicca qui per vederlo sul sito:\n" + urlSito);
+                // --- MODIFICA STRATEGICA: MESSAGGIO ULTRA SEMPLIFICATO "SALVA-VECCHIETTI" ---
+                // Il link blu viene messo subito all'inizio così WhatsApp genera la foto grande istantaneamente
+                const messaggioSemplice = encodeURIComponent(urlSito + "\n\nRicordo: " + (data.titolo || ""));
 
-                document.getElementById('link-luoghi').href = "https://api.whatsapp.com/send?text=" + messaggioPulito;
-                document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + messaggioPulito;
-                document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + messaggioPulito;
+                document.getElementById('link-luoghi').href = "https://api.whatsapp.com/send?text=" + messaggioSemplice;
+                document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + messaggioSemplice;
+                document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + messaggioSemplice;
 
                 document.getElementById('overlay-blu').style.display = 'block'; 
                 document.body.style.overflow = 'hidden';
