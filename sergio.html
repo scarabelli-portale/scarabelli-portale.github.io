@@ -241,7 +241,7 @@
             border: 1px solid #dcdcdc !important;
             border-radius: 6px !important;
             padding: 6px 14px !important; 
-            font-size: 15px !important; /* Ottimizzato per far stare le scritte lunghe su PC */
+            font-size: 15px !important; 
             font-weight: bold;
             text-transform: uppercase;
             text-decoration: none !important; 
@@ -276,7 +276,7 @@
             border: 1px solid #bd2130 !important;
             border-radius: 6px !important;
             padding: 6px 14px !important; 
-            font-size: 15px !important; /* Allineato ai pulsanti WZ */
+            font-size: 15px !important; 
             font-weight: bold;
             cursor: pointer;
             flex: 1;
@@ -302,7 +302,7 @@
                 gap: 10px !important;
             }
             .puro-testo-btn, .btn-chiudi-rosso {
-                font-size: 12px !important; /* Adattato per far stare tutto su una riga sul display del telefono */
+                font-size: 12px !important; 
                 padding: 10px 6px !important; 
             }
             .puro-testo-btn i {
@@ -337,12 +337,10 @@
             
             <div class="piede-pulsantiera">
                 <div class="riga-testo-pulsanti">
-                    <!-- PRIMA RIGA CON LE SCRITTE INTEGRALI E CORRETTE -->
                     <div class="sotto-riga">
                         <a id="link-luoghi" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>LUOGHI SCARABELLI</a>
                         <a id="link-consiglio" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>CONSIGLIO SCARABELLI</a>
                     </div>
-                    <!-- SECONDA RIGA DELLO CHASSIS -->
                     <div class="sotto-riga">
                         <a id="link-privato" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>A ME PRIVATO</a>
                         <button class="btn-chiudi-rosso" onclick="chiudiTutto()">CHIUDI X</button>
@@ -417,7 +415,7 @@
 
                 const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
                 const match = stringaMedia.match(regExp);
-                const vId = (match && match[2].length === 11) ? match[2] : null;
+                const vId = (match && match[2].length === 11) ? match[Child] : null;
 
                 if (vId) { 
                     display.innerHTML = '<div style="background:rgba(0,0,0,0.03); padding:40px; border-radius:15px; margin-bottom:25px;">' +
@@ -428,11 +426,13 @@
                 }
 
                 const urlSito = "https://scarabelli-portale.github.io/sergio.html?id=" + id;
-                const messaggioSemplice = encodeURIComponent(urlSito + "\n\nRicordo: " + (data.titolo || ""));
+                
+                // --- MODIFICA DRASTICA: SOLO IL LINK INTERNET PURO ED ESSENZIALE ---
+                const messaggioPuroLink = encodeURIComponent(urlSito);
 
-                document.getElementById('link-luoghi').href = "https://api.whatsapp.com/send?text=" + messaggioSemplice;
-                document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + messaggioSemplice;
-                document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + messaggioSemplice;
+                document.getElementById('link-luoghi').href = "https://api.whatsapp.com/send?text=" + messaggioPuroLink;
+                document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + messaggioPuroLink;
+                document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + messaggioPuroLink;
 
                 document.getElementById('overlay-blu').style.display = 'block'; 
                 document.body.style.overflow = 'hidden';
