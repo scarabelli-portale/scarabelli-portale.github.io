@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="ARCHIVIO STORICO - SERGIO SILVESTRINI">
+    <meta property="og:title" content="ARCHIVIO - SERGIO SILVESTRINI">
     <meta property="og:description" content="Guarda i ricordi e i documents dell'Archivio Scarabelli">
     <meta property="og:image" content="https://scarabelli-portale.github.io/scarabelliamente/immagini/scuola.jpg">
     <meta property="og:type" content="website">
-    <title>ARCHIVIO STORICO - SERGIO SILVESTRINI</title>
+    <title>ARCHIVIO - SERGIO SILVESTRINI</title>
     <!-- PACCHETTO GRAFICO PER I SIMBOLINI WHATSAPP -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -415,7 +415,7 @@
 
                 const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
                 const match = stringaMedia.match(regExp);
-                const vId = (match && match[2].length === 11) ? match[Child] : null;
+                const vId = (match && match[2].length === 11) ? match[2] : null;
 
                 if (vId) { 
                     display.innerHTML = '<div style="background:rgba(0,0,0,0.03); padding:40px; border-radius:15px; margin-bottom:25px;">' +
@@ -426,8 +426,6 @@
                 }
 
                 const urlSito = "https://scarabelli-portale.github.io/sergio.html?id=" + id;
-                
-                // --- MODIFICA DRASTICA: SOLO IL LINK INTERNET PURO ED ESSENZIALE ---
                 const messaggioPuroLink = encodeURIComponent(urlSito);
 
                 document.getElementById('link-luoghi').href = "https://api.whatsapp.com/send?text=" + messaggioPuroLink;
