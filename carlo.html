@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta property="og:title" content="ARCHIVIO - CARLO">
+    <meta property="og:description" content="Guarda i ricordi e i documents dell'Archivio Scarabelli">
+    <meta property="og:image" content="https://scarabelli-portale.github.io/immagini/scuola.jpg">
+    <meta property="og:type" content="website">
     <title>ARCHIVIO SCARABELLI - Carlo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -160,10 +164,10 @@
             background-color: #ffffff; 
             overflow-y: auto; 
             box-sizing: border-box;
-            padding: 40px 20px;
+            padding: 40px 25px;
         }
         .modal-content { 
-            max-width: 800px; 
+            max-width: 850px; 
             margin: auto; 
             text-align: center; 
             position: relative; 
@@ -190,48 +194,93 @@
             padding: 10px;
         }
 
-        /* PIEDE PULSANTIERA IN PURO TESTO NERO */
+        /* STRUTTURA PULSANTIERA RIGIDA SNELLA */
         .piede-pulsantiera-carlo {
-            margin-top: 50px;
-            padding-bottom: 20px;
+            margin-top: 40px;
+            padding-bottom: 40px;
             text-align: center;
             border-top: 1px solid #eaeaea;
-            padding-top: 30px;
+            padding-top: 25px;
             width: 100%;
         }
+
+        .riga-testo-pulsanti {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .sotto-riga {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+        }
+
+        /* BOTTONI CON CONTRASTO GRIGIO CHIARO */
         .puro-testo-btn {
-            background: none !important;
-            border: none !important;
-            box-shadow: none !important;
-            margin: 10px 20px;
-            font-size: 16px;
+            background: #f2f2f2 !important; 
+            border: 1px solid #dcdcdc !important;
+            border-radius: 6px !important;
+            padding: 6px 14px !important; 
+            font-size: 15px !important; 
             font-weight: bold;
             text-transform: uppercase;
             text-decoration: none !important; 
             color: #000000 !important; 
             cursor: pointer;
-            display: inline-block;
+            flex: 1;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             font-family: sans-serif;
-            letter-spacing: 0.8px;
-            transition: color 0.2s ease;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+            transition: background 0.2s ease;
         }
-        
-        /* BOTTONI PC - ICONA VERDE SCURO */
+
+        /* ICONE WHATSAPP GRANDI */
         .puro-testo-btn i {
             color: #0f8b3c !important; 
-            font-size: 16px;
-            margin-right: 5px;
+            font-size: 22px !important; 
             vertical-align: middle;
+            margin-right: 0 !important;
         }
+
         .puro-testo-btn:hover {
-            color: #143ca0 !important; 
+            background: #e5e5e5 !important;
+            color: #000000 !important;
+        }
+
+        /* BOTTONE CHIUDI ROSSO */
+        .btn-chiudi-rosso {
+            background: #dc3545 !important; 
+            color: #ffffff !important; 
+            border: 1px solid #bd2130 !important;
+            border-radius: 6px !important;
+            padding: 6px 14px !important; 
+            font-size: 15px !important; 
+            font-weight: bold;
+            cursor: pointer;
+            flex: 1;
+            font-family: sans-serif;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        }
+
+        .btn-chiudi-rosso:hover {
+            background: #c82333 !important;
         }
 
         @media (max-width: 900px) { 
             .griglia-articoli { grid-template-columns: repeat(2, 1fr); } 
         }
         
-        /* REVISIONE COMPRESSIONE RESPONSIVE PER CELLULARI */
+        /* ASSETTO CELLULARI */
         @media (max-width: 600px) { 
             .copertina-container { height: 125px !important; } 
             .titolo-stampato { font-size: 1.1rem !important; margin-bottom: -8px !important; }
@@ -241,9 +290,19 @@
             .area-trading { flex-direction: column; } 
             .griglia-articoli { grid-template-columns: 1fr; }
             
-            .piede-pulsantiera-carlo { display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; justify-content: space-between !important; gap: 4px !important; margin-top: 25px !important; padding-top: 15px !important; }
-            .puro-testo-btn { margin: 0 !important; font-size: 11px !important; font-weight: 800 !important; white-space: nowrap !important; flex: 1; text-align: center; display: flex !important; align-items: center; justify-content: center; }
-            .puro-testo-btn i { font-size: 18px !important; margin-right: 4px !important; }
+            .sotto-riga {
+                display: flex !important;
+                flex-direction: row !important;
+                width: 100% !important;
+                gap: 10px !important;
+            }
+            .puro-testo-btn, .btn-chiudi-rosso {
+                font-size: 12px !important; 
+                padding: 10px 6px !important; 
+            }
+            .puro-testo-btn i {
+                font-size: 18px !important;
+            }
         }
     </style>
 </head>
@@ -292,10 +351,16 @@
             <div id="modal-testo" class="modal-text"></div>
             
             <div class="piede-pulsantiera-carlo">
-                <a id="link-consiglio" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>CONSIGLIO</a>
-                <a id="link-tutti" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>EX ALLIEVI</a>
-                <a id="link-privato" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>PERSONALE</a>
-                <button class="puro-testo-btn" onclick="chiudiModal()">CHIUDI X</button>
+                <div class="riga-testo-pulsanti">
+                    <div class="sotto-riga">
+                        <a id="link-consiglio" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>CONSIGLIO</a>
+                        <a id="link-tutti" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>EX ALLIEVI</a>
+                    </div>
+                    <div class="sotto-riga">
+                        <a id="link-privato" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>PERSONALE</a>
+                        <button class="btn-chiudi-rosso" onclick="chiudiModal()">CHIUDI X</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -340,9 +405,9 @@
                     if (imgLink) {
                         contenutoCard += '<img src="' + imgLink + '" class="img-articolo" onerror="this.style.display=\'none\'">';
                     }
-                    contenutoCard += '<span style="font-size:0.8rem; color:#777; font-weight:bold; margin-bottom:5px; display:block; text-align:left;">DATA: ' + (post.data || '') + '</span>';
-                    contenutoCard += '<h1>' + post.titolo + '</h1>';
-                    contenutoCard += '<div class="testo-articolo">' + post.testo + '</div>';
+                    contenuCard += '<span style="font-size:0.8rem; color:#777; font-weight:bold; margin-bottom:5px; display:block; text-align:left;">DATA: ' + (post.data || '') + '</span>';
+                    contenuCard += '<h1>' + post.titolo + '</h1>';
+                    contenuCard += '<div class="testo-articolo">' + post.testo + '</div>';
                     
                     card.innerHTML = contenutoCard;
                     container.appendChild(card);
@@ -376,12 +441,12 @@
             
             const urlSito = "https://scarabelli-portale.github.io/carlo.html?id=" + id;
             
-            // LOGICA SALVA-VECCHIETTI IN ITALIANO PULITO
-            const messaggioPulito = encodeURIComponent("Guarda questo contenuto su Scarabelliamente:\n\n" + titolo + "\n\nClicca qui per vederlo sul sito:\n" + urlSito);
+            // --- MODIFICA DRASTICA: INVIO DEL PURO LINK PER I VECCHIETTI ---
+            const messaggioPuroLink = encodeURIComponent(urlSito);
 
-            document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + messaggioPulito;
-            document.getElementById('link-tutti').href = "https://api.whatsapp.com/send?text=" + messaggioPulito;
-            document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + messaggioPulito;
+            document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + messaggioPuroLink;
+            document.getElementById('link-tutti').href = "https://api.whatsapp.com/send?text=" + messaggioPuroLink;
+            document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + messaggioPuroLink;
 
             document.getElementById("myModal").style.display = "block";
             window.scrollTo(0, 0);

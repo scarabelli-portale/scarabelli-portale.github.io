@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta property="og:title" content="ARCHIVIO - FRANCESCO">
+    <meta property="og:description" content="Guarda i ricordi e i documenti dell'Archivio Scarabelli">
+    <meta property="og:image" content="https://scarabelli-portale.github.io/scarabelliamente/immagini/scuola.jpg">
+    <meta property="og:type" content="website">
     <title>Archivio Francesco - SCARABELLIAMENTE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -48,20 +52,31 @@
         
         .titolo-stampato { 
             font-family: 'Parisienne', cursive;
-            font-size: 3.8rem; 
+            font-size: 1.8rem; 
             color: white; 
-            text-shadow: 3px 3px 8px rgba(0,0,0,1);
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.9); 
             font-weight: normal; 
-            margin-bottom: -15px;
+            letter-spacing: 2px;
+            margin-bottom: -15px; 
             display: block;
         }
         
         .firma-francesco { 
             font-family: 'Parisienne', cursive; 
-            font-size: 2.2rem; 
+            font-size: 4.2rem; 
             color: #ffffff; 
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.9); 
+            text-shadow: 3px 3px 8px rgba(0,0,0,1); 
             margin-top: 0;
+            display: block;
+        }
+
+        /* SCRITTA SOTTO-TITOLO PER IDENTIFICARE L'ARCHIVIO */
+        .sotto-firma-francesco {
+            font-family: 'Parisienne', cursive;
+            font-size: 2.2rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.9);
+            margin-top: -10px;
             display: block;
         }
 
@@ -134,9 +149,9 @@
             background-color: #ffffff; 
             overflow-y: auto; 
             box-sizing: border-box;
-            padding: 40px 20px;
+            padding: 40px 25px;
         }
-        .modal-content { max-width: 800px; margin: auto; text-align: center; }
+        .modal-content { max-width: 850px; margin: auto; text-align: center; }
         
         .modal-media img { 
             width: auto; 
@@ -150,7 +165,6 @@
             background: #ffffff;
         }
         
-        /* CORREZIONE STRUTTURALE DEL LETTORE VIDEO DENTRO IL POPUP */
         .modal-media iframe { 
             width: 100%; 
             max-width: 650px;
@@ -173,75 +187,112 @@
             padding: 10px;
         }
 
+        /* STRUTTURA PULSANTIERA RIGIDA MODERNA */
         .piede-pulsantiera-francesco {
-            margin-top: 50px;
+            margin-top: 40px;
+            padding-bottom: 40px;
             text-align: center;
             border-top: 1px solid #eaeaea;
-            padding-top: 30px;
+            padding-top: 25px;
             width: 100%;
         }
+
+        .riga-testo-pulsanti {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .sotto-riga {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+        }
+
+        /* BOTTONI SNELLI CON SFONDO GRIGIO DI CONTRASTO */
         .puro-testo-btn {
-            background: none !important;
-            border: none !important;
-            margin: 10px 20px;
-            font-size: 16px;
+            background: #f2f2f2 !important; 
+            border: 1px solid #dcdcdc !important;
+            border-radius: 6px !important;
+            padding: 6px 14px !important; 
+            font-size: 15px !important; 
             font-weight: bold;
             text-transform: uppercase;
             text-decoration: none !important; 
             color: #000000 !important; 
             cursor: pointer;
-            display: inline-block;
+            flex: 1;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             font-family: sans-serif;
-            letter-spacing: 0.8px;
-            transition: color 0.2s ease;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+            transition: background 0.2s ease;
         }
-        
-        /* ICONA MODALITÀ VERDE SCURO E COMPATTA PER PC */
+
+        /* ICONE WHATSAPP GRANDI */
         .puro-testo-btn i {
             color: #0f8b3c !important; 
-            font-size: 16px;
-            margin-right: 5px;
+            font-size: 22px !important; 
             vertical-align: middle;
+            margin-right: 0 !important;
         }
-        .puro-testo-btn:hover { color: #143ca0 !important; }
 
-        /* PULSANTIERA ULTRA-COMPATTA CON ICONE GIGANTI PER CELLULARI */
+        .puro-testo-btn:hover {
+            background: #e5e5e5 !important;
+            color: #000000 !important;
+        }
+
+        /* BOTTONE CHIUDI ROSSO */
+        .btn-chiudi-rosso {
+            background: #dc3545 !important; 
+            color: #ffffff !important; 
+            border: 1px solid #bd2130 !important;
+            border-radius: 6px !important;
+            padding: 6px 14px !important; 
+            font-size: 15px !important; 
+            font-weight: bold;
+            cursor: pointer;
+            flex: 1;
+            font-family: sans-serif;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        }
+
+        .btn-chiudi-rosso:hover {
+            background: #c82333 !important;
+        }
+
+        /* ASSETTO RESPONSIVE SU TELEFONINO */
         @media screen and (max-width: 600px) {
             #modal-titolo { 
-                font-size: 1.15rem !important; 
+                font-size: 1.3rem !important; 
                 margin-bottom: 15px !important;
                 line-height: 1.4 !important;
             }
-            .titolo-stampato { font-size: 2.2rem !important; }
-            .firma-francesco { font-size: 1.3rem !important; }
-            .copertina-container { height: 160px !important; }
+            .copertina-container { height: 125px !important; }
+            .titolo-stampato { font-size: 1.1rem !important; margin-bottom: -8px !important; }
+            .firma-francesco { font-size: 1.2rem !important; margin-top: -4px !important; }
             .modal-media iframe { height: 210px; } 
             
-            .piede-pulsantiera-francesco { 
-                display: flex !important; 
-                flex-direction: row !important; 
-                flex-wrap: nowrap !important; 
-                justify-content: space-between !important; 
-                gap: 4px !important; 
-                margin-top: 25px !important; 
-                padding-top: 15px !important; 
+            .sotto-riga {
+                display: flex !important;
+                flex-direction: row !important;
+                width: 100% !important;
+                gap: 10px !important;
             }
-            .puro-testo-btn { 
-                margin: 0 !important; 
-                font-size: 11px !important; 
-                font-weight: 800 !important; 
-                white-space: nowrap !important; 
-                flex: 1; 
-                text-align: center; 
-                display: flex !important; 
-                align-items: center; 
-                justify-content: center; 
+            .puro-testo-btn, .btn-chiudi-rosso {
+                font-size: 12px !important; 
+                padding: 10px 6px !important; 
             }
-            
-            /* ICONE GIGANTI AD ALTO CONTRASTO SUL TELEFONO */
-            .puro-testo-btn i { 
-                font-size: 18px !important; 
-                margin-right: 4px !important; 
+            .puro-testo-btn i {
+                font-size: 18px !important;
             }
         }
     </style>
@@ -252,8 +303,9 @@
         <a href="index.html" class="btn-nav btn-home">⬅ HOME</a>
         <img src="immagini/scuola.jpg" class="foto-scuola">
         <div id="contenitore-titolo">
-            <span class="titolo-stampato">Scarabelliamente</span>
-            <span class="firma-francesco">Archivio Francesco</span>
+            <span class="titolo-stampato">Progetto</span>
+            <span class="firma-francesco">Scarabelliamente</span>
+            <span class="sotto-firma-francesco">Archivio Francesco</span>
         </div>
     </div>
 
@@ -267,10 +319,16 @@
             <div id="modal-media" class="modal-media"></div>
             <div id="modal-text" class="modal-text"></div>
             <div class="piede-pulsantiera-francesco">
-                <a id="link-consiglio" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>CONSIGLIO</a>
-                <a id="link-tutti" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>EX ALLIEVI</a>
-                <a id="link-privato" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>PERSONALE</a>
-                <button class="puro-testo-btn" onclick="chiudiModal()">CHIUDI X</button>
+                <div class="riga-testo-pulsanti">
+                    <div class="sotto-riga">
+                        <a id="link-consiglio" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>CONSIGLIO</a>
+                        <a id="link-tutti" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>EX ALLIEVI</a>
+                    </div>
+                    <div class="sotto-riga">
+                        <a id="link-privato" href="#" target="_blank" class="puro-testo-btn"><i class="fab fa-whatsapp"></i>PERSONALE</a>
+                        <button class="btn-chiudi-rosso" onclick="chiudiModal()">CHIUDI X</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -364,12 +422,12 @@
                 
                 const urlSito = "https://scarabelli-portale.github.io/francesco.html?id=" + id;
                 
-                // LOGICA SALVA-VECCHIETTI ATTIVATA: MESSAGGIO PULITO IN ITALIANO
-                const messaggioPulito = encodeURIComponent("Guarda questo contenuto su Scarabelliamente:\n\n" + (post.titolo || "") + "\n\nClicca qui per vederlo sul sito:\n" + urlSito);
+                // --- CURA DIMAGRANTE COMPLETA: SOLO IL PURO LINK INTERNET ---
+                const messaggioPuroLink = encodeURIComponent(urlSito);
 
-                document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + messaggioPulito;
-                document.getElementById('link-tutti').href = "https://api.whatsapp.com/send?text=" + messaggioPulito;
-                document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + messaggioPulito;
+                document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + messaggioPuroLink;
+                document.getElementById('link-tutti').href = "https://api.whatsapp.com/send?text=" + messaggioPuroLink;
+                document.getElementById('link-privato').href = "https://wa.me/393398329580?text=" + messaggioPuroLink;
 
                 document.getElementById("myModal").style.display = "block";
                 document.body.style.overflow = 'hidden';
