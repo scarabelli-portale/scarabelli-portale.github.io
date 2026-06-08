@@ -405,9 +405,9 @@
                     if (imgLink) {
                         contenutoCard += '<img src="' + imgLink + '" class="img-articolo" onerror="this.style.display=\'none\'">';
                     }
-                    contenuCard += '<span style="font-size:0.8rem; color:#777; font-weight:bold; margin-bottom:5px; display:block; text-align:left;">DATA: ' + (post.data || '') + '</span>';
-                    contenuCard += '<h1>' + post.titolo + '</h1>';
-                    contenuCard += '<div class="testo-articolo">' + post.testo + '</div>';
+                    contenutoCard += '<span style="font-size:0.8rem; color:#777; font-weight:bold; margin-bottom:5px; display:block; text-align:left;">DATA: ' + (post.data || '') + '</span>';
+                    contenutoCard += '<h1>' + post.titolo + '</h1>';
+                    contenutoCard += '<div class="testo-articolo">' + post.testo + '</div>';
                     
                     card.innerHTML = contenutoCard;
                     container.appendChild(card);
@@ -441,7 +441,6 @@
             
             const urlSito = "https://scarabelli-portale.github.io/carlo.html?id=" + id;
             
-            // --- MODIFICA DRASTICA: INVIO DEL PURO LINK PER I VECCHIETTI ---
             const messaggioPuroLink = encodeURIComponent(urlSito);
 
             document.getElementById('link-consiglio').href = "https://api.whatsapp.com/send?text=" + messaggioPuroLink;
