@@ -8,7 +8,6 @@
     <meta property="og:image" content="https://scarabelli-portale.github.io/scarabelliamente/immagini/scuola.jpg">
     <meta property="og:type" content="website">
     <title>SCARABELLIAMENTE - Home Page</title>
-    <!-- AGGIUNTO IL PACCHETTO PER I SIMBOLINI/ICONE -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* IMPORTAZIONE NUOVO FONT ELEGANTE PARISIENNE */
@@ -24,7 +23,7 @@
             overflow-x: hidden; 
         }
         
-        /* TESTATA PULITA SU PC */
+        /* TESTATA RIGENERATA CON OMBRA E PROPORZIONI GIORNALISTICHE */
         .copertina-container { 
             position: relative; 
             width: 100%; 
@@ -46,30 +45,34 @@
         
         #contenitore-titolo-home { 
             position: absolute; 
-            bottom: 5px; 
+            bottom: 15px; /* Alzato leggermente per far spazio al nuovo testo */
             left: 50%; 
             transform: translateX(-50%); 
             text-align: center; 
             z-index: 10; 
-            width: 100%; 
+            width: 95%; 
         }
         
-        .titolo-stampato-home { 
-            font-family: 'Parisienne', cursive;
-            font-size: 1.8rem; 
-            color: white; 
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.9); 
-            font-weight: normal; 
-            letter-spacing: 2px;
-            margin-bottom: -15px; 
-        }
-        
+        /* Titolo principale più compatto con ombra chiara aggiuntiva */
         .firma-home { 
             font-family: 'Parisienne', cursive; 
-            font-size: 4.2rem; 
+            font-size: 3.8rem; /* Rimpiccolito come da accordi */
             color: #ffffff; 
-            text-shadow: 3px 3px 8px rgba(0,0,0,1); 
-            margin-top: 0;
+            text-shadow: 3px 3px 8px rgba(0,0,0,1), 0 0 10px rgba(255,255,255,0.2); 
+            margin: 0 0 10px 0;
+            display: block;
+        }
+
+        /* Nuovo sottotitolo esplicativo in puro stampatello pulito */
+        .sottotitolo-istituzionale {
+            font-family: sans-serif;
+            font-size: 0.95rem;
+            color: #e0e0e0;
+            font-weight: 500;
+            letter-spacing: 0.8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
+            margin: 0;
+            display: block;
         }
 
         /* VETRINA PRIMA PAGINA LANCIATA DALLA REGIA */
@@ -88,6 +91,7 @@
             text-align: center;
         }
         .titolo-prima-pagina {
+            font-family: 'Georgia', serif;
             font-size: 1.8rem;
             font-weight: bold;
             text-transform: uppercase;
@@ -152,7 +156,7 @@
             transition: color 0.2s ease;
         }
         .puro-testo-vetrina-btn i {
-            color: #0f8b3c !important; /* VERDE SCURO AD ALTO CONTRASTO */
+            color: #0f8b3c !important;
             font-size: 16px;
             margin-right: 5px;
             vertical-align: middle;
@@ -191,7 +195,8 @@
         }
         
         .titolo-sezione {
-            font-size: 1.1rem;
+            font-family: 'Georgia', serif; 
+            font-size: 1.15rem;
             font-weight: bold;
             text-transform: uppercase;
             color: #000000;
@@ -279,10 +284,10 @@
 
         /* STRUTTURA AD ALTISSIMO RENDIMENTO PER SNELLIRET IL CELLULARE */
         @media (max-width: 600px) {
-            /* REVISIONE DEL LOGO/TESTATA: TAGLIATA DEL 50% SU TELEFONO */
             .copertina-container { height: 125px !important; }
-            .titolo-stampato-home { font-size: 1.1rem !important; margin-bottom: -8px !important; }
-            .firma-home { font-size: 2.3rem !important; }
+            .firma-home { font-size: 2.1rem !important; margin-bottom: 4px !important; }
+            .sottotitolo-istituzionale { font-size: 0.62rem !important; letter-spacing: 0.3px !important; }
+            #contenitore-titolo-home { bottom: 8px !important; }
             
             #vetrina-titolo, .titolo-prima-pagina { 
                 font-size: 1.05rem !important; 
@@ -297,7 +302,6 @@
             .media-prima-pagina { margin: 4px auto !important; }
             .testo-prima-pagina { margin: 8px auto 0 auto !important; font-size: 0.95rem !important; line-height: 1.35 !important; }
             
-            /* BOTTONI SU UNA SOLA RIGA COMPATTA */
             .piede-pulsantiera-vetrina { 
                 margin-top: 10px !important; 
                 padding-top: 10px !important; 
@@ -319,7 +323,6 @@
                 justify-content: center;
             }
             
-            /* SIMBOLINI WZ RADDOPPIATI E SCURITI SUL CELLULARE */
             .puro-testo-vetrina-btn i { 
                 font-size: 18px !important; 
                 margin-right: 4px !important; 
@@ -334,8 +337,8 @@
     <div class="copertina-container">
         <img src="immagini/scuola.jpg" class="foto-scuola">
         <div id="contenitore-titolo-home">
-            <div class="titolo-stampato-home">Progetto</div>
             <div class="firma-home">Scarabelliamente</div>
+            <div class="sottotitolo-istituzionale">Un progetto curato dagli ex alunni dell'istituto tecnico agrario di Imola Giuseppe Scarabelli</div>
         </div>
     </div>
 
@@ -357,10 +360,9 @@
     <div class="main-container">
         <div class="colonna-sinistra">
             <div class="box">
-                <!-- BOX FAUSTO -->
-                <div class="titolo-sezione">
-                    CHE TEMPO FA
-                    <span style="font-family: 'Parisienne', cursive; text-transform: none; display: block; font-size: 1.2rem; margin-top: 5px; color: #555555; font-weight: normal;">A cura di Fausto Ravaldi</span>
+                <div class="col-titolo-box-giornale">
+                    <div class="titolo-sezione">CHE TEMPO FA</div>
+                    <span style="font-family: 'Parisienne', cursive; text-transform: none; display: block; font-size: 1.2rem; margin-top: -10px; margin-bottom: 15px; color: #555555; font-weight: normal; text-align: center;">A cura di Fausto Ravaldi</span>
                 </div>
                 <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
                     <img src="immagini/fausto.jpg" class="foto-profilo">
@@ -378,10 +380,9 @@
             </div>    
 
             <div class="box">
-                <!-- BOX CINZIA -->
-                <div class="titolo-sezione">
-                    DALLA SCUOLA AL LAVORO
-                    <span style="font-family: 'Parisienne', cursive; text-transform: none; display: block; font-size: 1.2rem; margin-top: 5px; color: #555555; font-weight: normal;">A cura di Cinzia Astorri</span>
+                <div class="col-titolo-box-giornale">
+                    <div class="titolo-sezione">DALLA SCUOLA AL LAVORO</div>
+                    <span style="font-family: 'Parisienne', cursive; text-transform: none; display: block; font-size: 1.2rem; margin-top: -10px; margin-bottom: 15px; color: #555555; font-weight: normal; text-align: center;">A cura di Cinzia Astorri</span>
                 </div>
                 <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
                     <img src="immagini/cinzia.jpg" class="foto-profilo">
@@ -401,10 +402,9 @@
 
         <div class="colonna-centro">
             <div class="box" style="min-height: 550px;">
-                <!-- BOX FRANCESCO -->
-                <div class="titolo-sezione">
-                    OGGI IN PRIMA
-                    <span style="font-family: 'Parisienne', cursive; text-transform: none; display: block; font-size: 1.2rem; margin-top: 5px; color: #555555; font-weight: normal;">A cura di Francesco Mariani</span>
+                <div class="col-titolo-box-giornale">
+                    <div class="titolo-sezione" style="font-size: 1.35rem;">OGGI IN PRIMA</div>
+                    <span style="font-family: 'Parisienne', cursive; text-transform: none; display: block; font-size: 1.35rem; margin-top: -10px; margin-bottom: 15px; color: #555555; font-weight: normal; text-align: center;">A cura di Francesco Mariani</span>
                 </div>
                 <div style="display:flex; gap:15px; align-items: flex-start; margin-bottom: 15px;">
                     <img src="immagini/francesco.jpg" class="foto-profilo">
@@ -424,10 +424,9 @@
 
         <div class="colonna-destra">
             <div class="box">
-                <!-- BOX CARLO -->
-                <div class="titolo-sezione">
-                    ECONOMIA E MERCATI
-                    <span style="font-family: 'Parisienne', cursive; text-transform: none; display: block; font-size: 1.2rem; margin-top: 5px; color: #555555; font-weight: normal;">A cura di Carlo Pirazzoli</span>
+                <div class="col-titolo-box-giornale">
+                    <div class="titolo-sezione">ECONOMIA E MERCATI</div>
+                    <span style="font-family: 'Parisienne', cursive; text-transform: none; display: block; font-size: 1.2rem; margin-top: -10px; margin-bottom: 15px; color: #555555; font-weight: normal; text-align: center;">A cura di Carlo Pirazzoli</span>
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px;">
                     <div style="display: flex; justify-content: flex-start;">
@@ -447,10 +446,9 @@
             </div>
 
             <div class="box">
-                <!-- BOX SERGIO -->
-                <div class="titolo-sezione">
-                    STORIE ED ATTUALITÀ
-                    <span style="font-family: 'Parisienne', cursive; text-transform: none; display: block; font-size: 1.2rem; margin-top: 5px; color: #555555; font-weight: normal;">A cura di Sergio Silvestrini</span>
+                <div class="col-titolo-box-giornale">
+                    <div class="titolo-sezione">STORIE ED ATTUALITÀ</div>
+                    <span style="font-family: 'Parisienne', cursive; text-transform: none; display: block; font-size: 1.2rem; margin-top: -10px; margin-bottom: 15px; color: #555555; font-weight: normal; text-align: center;">A cura di Sergio Silvestrini</span>
                 </div>
                 <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
                     <img src="immagini/sergio.jpg" class="foto-profilo">
@@ -478,7 +476,6 @@
         if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
         const db = firebase.database();
 
-        // [Resto dello script Firebase invariato per mantenere intatta la logica dei dati]
         function getYTThumb(url) {
             if (url && (url.includes('youtube.com') || url.includes('youtu.be'))) {
                 let vid = "";
