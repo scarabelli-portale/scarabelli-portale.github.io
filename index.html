@@ -148,7 +148,7 @@
             cursor: pointer;
             display: inline-block;
             font-family: sans-serif;
-            letter-spacing: 0.8px;
+            letter-spacing: 0.5px;
             transition: color 0.2s ease;
         }
         .puro-testo-vetrina-btn i {
@@ -357,7 +357,11 @@
     <div class="main-container">
         <div class="colonna-sinistra">
             <div class="box">
-                <div class="titolo-sezione">Meteo & Satellite</div>
+                <!-- BOX FAUSTO -->
+                <div class="titolo-sezione">
+                    CHE TEMPO FA
+                    <span style="font-family: 'Parisienne', cursive; text-transform: none; display: block; font-size: 1.2rem; margin-top: 5px; color: #555555; font-weight: normal;">A cura di Fausto Ravaldi</span>
+                </div>
                 <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
                     <img src="immagini/fausto.jpg" class="foto-profilo">
                     <div style="flex: 1; border: 1px solid #eaeaea; border-radius: 6px; overflow: hidden; height: 100px; background:#f9f9f9; cursor: pointer;" onclick="window.location.href='fausto.html'">
@@ -374,7 +378,11 @@
             </div>    
 
             <div class="box">
-                <div class="titolo-sezione">Scuola e Lavoro</div>
+                <!-- BOX CINZIA -->
+                <div class="titolo-sezione">
+                    DALLA SCUOLA AL LAVORO
+                    <span style="font-family: 'Parisienne', cursive; text-transform: none; display: block; font-size: 1.2rem; margin-top: 5px; color: #555555; font-weight: normal;">A cura di Cinzia Astorri</span>
+                </div>
                 <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
                     <img src="immagini/cinzia.jpg" class="foto-profilo">
                     <div class="monitor-anteprima" style="height: 100px; min-height: 100px;">
@@ -393,7 +401,11 @@
 
         <div class="colonna-centro">
             <div class="box" style="min-height: 550px;">
-                <div class="titolo-sezione">Pres. Francesco Mariani</div>
+                <!-- BOX FRANCESCO -->
+                <div class="titolo-sezione">
+                    OGGI IN PRIMA
+                    <span style="font-family: 'Parisienne', cursive; text-transform: none; display: block; font-size: 1.2rem; margin-top: 5px; color: #555555; font-weight: normal;">A cura di Francesco Mariani</span>
+                </div>
                 <div style="display:flex; gap:15px; align-items: flex-start; margin-bottom: 15px;">
                     <img src="immagini/francesco.jpg" class="foto-profilo">
                     <div style="background: #ffffff; border: 1px solid #eaeaea; border-radius: 6px; padding: 8px; flex-grow: 1; height: 120px; overflow-y: auto;">
@@ -412,7 +424,11 @@
 
         <div class="colonna-destra">
             <div class="box">
-                <div class="titolo-sezione">Economia</div>
+                <!-- BOX CARLO -->
+                <div class="titolo-sezione">
+                    ECONOMIA E MERCATI
+                    <span style="font-family: 'Parisienne', cursive; text-transform: none; display: block; font-size: 1.2rem; margin-top: 5px; color: #555555; font-weight: normal;">A cura di Carlo Pirazzoli</span>
+                </div>
                 <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px;">
                     <div style="display: flex; justify-content: flex-start;">
                         <img src="immagini/carlo.jpg" class="foto-profilo">
@@ -431,7 +447,11 @@
             </div>
 
             <div class="box">
-                <div class="titolo-sezione">Archivio Sergio</div>
+                <!-- BOX SERGIO -->
+                <div class="titolo-sezione">
+                    STORIE ED ATTUALITÀ
+                    <span style="font-family: 'Parisienne', cursive; text-transform: none; display: block; font-size: 1.2rem; margin-top: 5px; color: #555555; font-weight: normal;">A cura di Sergio Silvestrini</span>
+                </div>
                 <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
                     <img src="immagini/sergio.jpg" class="foto-profilo">
                     <div class="monitor-anteprima" style="height: 100px; min-height: 100px;">
@@ -458,6 +478,7 @@
         if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
         const db = firebase.database();
 
+        // [Resto dello script Firebase invariato per mantenere intatta la logica dei dati]
         function getYTThumb(url) {
             if (url && (url.includes('youtube.com') || url.includes('youtu.be'))) {
                 let vid = "";
@@ -494,7 +515,6 @@
                 const idPost = art.idOriginale || "";
                 const urlSitoVetrina = "https://scarabelli-portale.github.io/" + nomeFileDestinazione + (idPost ? "?id=" + idPost : "");
                 
-                // MESSAGGIO SALVA-VECCHIETTI IN ITALIANO SUPER PULITO
                 const messaggioPulito = encodeURIComponent("Guarda questo contenuto su Scarabelliamente:\n\n" + (art.titolo || "") + "\n\nClicca qui per vederlo sul sito:\n" + urlSitoVetrina);
 
                 document.getElementById('vetrina-link-consiglio').href = "https://api.whatsapp.com/send?text=" + messaggioPulito;
